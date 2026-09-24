@@ -1,0 +1,66 @@
+Tên đề tài:
+ 
+Phát hiện và phân loại bất thường nhịp tim thông qua hệ thống đầu cuối tích hợp khử nhiễu tín hiệu ECG bằng DW-CNN và 1-D ResNet
+Key word:
+ ECG Signal Denoising, Time-series Deep Learning, DW-CNN, 
+DWT
+, 1-D ResNet, MIT-BIH Arrhythmia, NSTDB, AAMI Standard.
+Thành viên thực hiện:
+ Tạ Việt Cường
+Mục tiêu project
+Mục tiêu tổng quát
+Xây dựng model
+hai giai đoạn làm sạch nhiễu tín hiệu điện tâm đồ (ECG) thực tế và phân tích tự động để phân loại các rối loạn nhịp tim.
+Mục tiêu chi tiết
+Xử lý nhiễu sâu (Deep Denoising):
+ Xây dựng mạng nơ-ron tích chập sóng con (DW-CNN) để khử các loại nhiễu thực tế (trôi đường nền, nhiễu cơ, nhiễu chuyển động điện cực). Khắc phục nhược điểm mất mát thông tin của lớp Max-Pooling truyền thống bằng cách thay thế bằng biến đổi sóng con rời rạc (DWT) sử dụng sóng Haar, giúp nén không gian tín hiệu nhưng vẫn bảo toàn 100% đặc trưng hình thái học và biên độ tín hiệu gốc. 
+Phân loại đa phương thức (Multimodal Classification):
+ Thiết kế mạng phần dư 1 chiều (1-D ResNet) xử lý đồng thời 2 luồng dữ liệu độc lập: dạng sóng hình thái học (260 mẫu) và đặc trưng nhịp điệu (4 khoảng RR) nhằm chẩn đoán 5 loại nhịp tim theo tiêu chuẩn y tế AAMI (N, S, V, F, Q). 
+Đánh giá:
+ Áp dụng phương pháp đánh giá liên bệnh nhân (Inter-patient - De Chazal) để mô phỏng điều kiện y tế thực tế, ngăn chặn tuyệt đối rò rỉ dữ liệu (data leakage). Tiến hành khảo sát cắt bỏ (Ablation Study) để chứng minh hiệu năng của mạng DW-CNN so với các bộ lọc băng thông (Bandpass) truyền thống.
+Giải pháp đề xuất thực hiện
+1D-CNN, Wavelet
+, triển khai bằng Keras/TensorFlow 2.x, 
+sử dụng tích hợp
+ hai 
+bộ 
+dữ liệu: MIT-BIH Arrhythmia Database (MITDB) và Noise Stress Test Database (NSTDB).
+Quy trình hệ thống bao gồm 3 khâu chính:
+a) Giai đoạn 1: Mô hình khử nhiễu DW-CNN
+Tiền xử lý & Tổng hợp nhiễu:
+ Trích xuất đạo trình Lead II, chuẩn hóa toàn cục theo biên độ vật lý (không dùng Min-Max scaling để giữ nguyên mV). Tín hiệu sạch được cộng gộp ngẫu nhiên các loại nhiễu (BW, MA, EM) từ tập NSTDB với dải SNR động từ -6 dB đến 12 dB.
+Kiến trúc lõi:
+ Dựa trên cấu trúc U-Net 1-D, hệ thống sử dụng các khối tích chập kết hợp lớp DWT-based pooling trong bộ mã hóa (Encoder) để phân tách tín hiệu thành hệ số thông thấp (cA) và thông cao (cD). Ở bộ giải mã (Decoder), lớp IDWT-based up-sampling được áp dụng để tái tạo lại tín hiệu ECG sạch một cách hoàn hảo mà không làm biến dạng phức bộ QRS. 
+Hàm mất mát tùy chỉnh:
+ Sử dụng hàm Loss kết hợp (MSE + 0.3*MAE) kết hợp một mặt nạ (mask) nhân 3 lần trọng số phạt tại khu vực 
+ 50 mẫu quanh đỉnh R, ép mô hình tập trung bảo toàn chi tiết quan trọng nhất của nhịp tim.
+b) Khâu nối: Trích xuất nhịp tim (Segmentation Connector)
+Áp dụng thuật toán Pan-Tompkins trên đoạn tín hiệu đã được DW-CNN làm sạch nhằm loại bỏ sai số tích lũy do nhiễu gây ra.
+Cắt cửa sổ cố định 260 mẫu (-99 mẫu trước và +161 mẫu sau đỉnh R) để bao trọn sóng P, phức bộ QRS và sóng T.
+Tính toán 4 đặc trưng nhịp điệu (pre_RR, post_RR, local_RR, tỷ lệ ratio) và chuẩn hóa Z-score độc lập trên từng bệnh nhân.
+c) Giai đoạn 2: Mô hình phân loại 1-D ResNet
+Kiến trúc:
+ Mạng phần dư đa đầu vào (Multi-input 1-D ResNet) giúp khắc phục vấn đề tiêu biến gradient, tự động trích xuất các đặc trưng tiềm ẩn sâu mà không cần thiết kế thủ công. 
+Xử lý mất cân bằng:
+ Thuật toán SMOTE được áp dụng nội bộ trên tập huấn luyện nhằm tái tạo dữ liệu cho các nhóm bệnh lý thiểu số (S, V, F, Q). 
+Data Augmentation On-the-fly:
+ Trình tạo dữ liệu tự động (Generator) tiến hành co giãn thời gian (time-warping), xê dịch khung cắt và điều chỉnh biên độ ngẫu nhiên ngay trong quá trình huấn luyện nhằm tăng độ mạnh mẽ (robustness) cho mô hình.
+Kết quả dự kiến đạt được
+1. Đối với mô hình khử nhiễu (DW-CNN):
+ Thông qua khảo sát Ablation Study trên tập kiểm thử (DS2), kiến trúc DW-CNN sử dụng DWT pooling kỳ vọng sẽ vượt trội hoàn toàn so với bộ lọc Bandpass cơ bản và CNN dùng Max-pooling truyền thống. Cụ thể, mô hình sẽ đạt mức 
+sai số RMSE thấp nhất và cải thiện mạnh mẽ tỷ số tín hiệu trên nhiễu (SNR Improvement), mang lại tín hiệu sạch và sắc nét ở cả ba mức độ nhiễu thử nghiệm (0, 5, 10 dB). 
+2. Đối với mô hình phân loại (1-D ResNet):
+ Sau khi được huấn luyện trên dữ liệu đã làm sạch và cân bằng, mô hình phân loại 5 lớp nhịp tim (N, S, V, F, Q) kỳ vọng sẽ đạt các mốc hiệu năng tiêu chuẩn so với các nghiên cứu hiện hành sử dụng cấu trúc tương đương: 
+Accuracy (Độ chính xác tổng thể):
+ 
+Precision (Độ chính xác):
+ 
+Sensitivity/Recall (Độ nhạy):
+ 
+ (Đảm bảo không bỏ lót các rối loạn nhịp nguy hiểm như ngoại tâm thu thất - V) 
+Specificity (Độ đặc hiệu):
+ 
+Tài liệu tham khảo
+[1] Khan F, Yu X, Yuan Z, Rehman Au (2023) ECG classification using 1-D convolutional deep residual neural network. PLoS ONE 18(4): e0284791. 
+https://doi.org/10.1371/journal.pone.0284791
+[2] Jin, Y., Qin, C., Liu, J., Liu, Y., Li, Z., & Liu, C. (2024). A novel deep wavelet convolutional neural network for actual ECG signal denoising. Biomedical Signal Processing and Control, 87, 105480.
