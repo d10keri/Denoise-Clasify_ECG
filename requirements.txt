@@ -1,0 +1,11 @@
+torch==2.12.1
+
+numpy
+pandas
+scikit-learn
+scipy
+wfdb
+pyyaml
+tqdm
+matplotlib
+PyWavelets
