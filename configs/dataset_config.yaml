@@ -1,0 +1,51 @@
+# Phase 1 Dataset Configuration
+database:
+  name: "mitdb"
+  source: "local"                              # ✓ xác nhận: dùng local
+  local_path: "C:/d2l-en/data/ECG_Project_Data/mitdb"
+
+signal:
+  sampling_rate: 360
+  lead: "MLII"
+  channel_index: 0
+
+window:
+  size: 260
+  before_r: 99
+  after_r: 161
+
+preprocessing:
+  filter_type: "butterworth"     # "butterworth" (IIR) hoặc "fir"
+  lowcut_hz: 0.5                 # ✓ cắt thấp: loại baseline wander
+  highcut_hz: 60.0               # ✓ cắt cao: loại powerline noise
+  # Butterworth IIR params:
+  butterworth_order: 4           # order 4 cho bandpass (thực tế 8-pole)
+  # FIR params:
+  fir_numtaps: 101               # số tap cho FIR (phải lẻ)
+  normalization: "per_beat_zscore"
+
+aami_mapping:
+  N: [N, L, R, e, j]          # class 0
+  S: [A, a, J, S]             # class 1
+  V: [V, E]                   # class 2
+  F: [F]                      # class 3
+  Q: [/, f, Q]                # class 4
+
+excluded_records: [102, 104, 107, 217]
+
+splits:
+  train_records: [101, 106, 108, 109, 112, 114, 115, 116, 118, 119,
+                  122, 124, 201, 205, 207, 208, 209, 215]
+  val_records:   [203, 220, 223, 230]
+  test_records:  [100, 103, 105, 111, 113, 117, 121, 123,
+                  200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233, 234]
+
+imbalance:
+  strategy: "class_weight"     # primary
+  oversample_classes: [3, 4]   # F(3) và Q(4) thêm random oversampling
+  oversample_ratio: 0.1        # tăng lên 10% của class N
+
+paths:
+  processed_dir: "data/processed"
+  metadata_dir:  "data/metadata"
+  raw_dir:       "data/raw/mitdb"
