@@ -200,21 +200,6 @@ Mỗi sample là một **nhịp tim đơn lẻ** được cắt xung quanh đỉ
 - Cần R-peak positions từ annotation (hoặc phát hiện tự động)
 - Window có thể bị cắt xén ở đầu/cuối bản ghi
 
-#### Phương pháp B: Fixed-window sliding segmentation
-
-Cắt toàn bộ tín hiệu thành các đoạn bằng nhau với stride cố định, không quan tâm đến R-peak:
-- Window size: ví dụ 1024 hay 2048 samples
-- Label: nhãn của đoạn đó (cần quy tắc để lấy label từ annotation trong window)
-
-**Ưu điểm:**
-- Không phụ thuộc R-peak detection
-- Phù hợp cho rhythm classification hoặc denoising
-
-**Nhược điểm:**
-- Một window có thể chứa nhiều beat với nhãn khác nhau → label ambiguous
-- Không phù hợp cho beat-level classification
-- Phức tạp hơn để gán label chính xác
-
 ### Lựa chọn cho Phase 1
 
 > [!IMPORTANT]
