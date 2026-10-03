@@ -1,0 +1,28 @@
+model:
+  name: "MLPBaseline"
+  input_size: 260
+  hidden1: 128
+  hidden2: 64
+  num_classes: 5
+
+training:
+  seed: 42
+  epochs: 30
+  batch_size: 64
+  learning_rate: 1.0e-3
+  optimizer: "adam"
+  use_class_weights: true
+
+paths:
+  processed_dir: "data/processed"
+  metadata_dir: "data/metadata"
+  checkpoint_dir: "checkpoints"
+  results_dir: "results/mlp"
+
+checkpoint:
+  monitor: "val_macro_f1"
+  mode: "max"
+
+logging:
+  log_every_epoch: true
+  save_history: true
