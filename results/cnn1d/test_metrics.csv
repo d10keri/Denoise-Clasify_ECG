@@ -1,0 +1,10 @@
+Metric,Value,Precision,Recall,F1,Support
+Overall Accuracy,0.7302,,,,
+Macro-Average,,0.3440,0.3250,0.3282,
+
+Class,Precision,Recall,F1,Support
+N,0.9444,0.7606,0.8426,44239.0
+S,0.0172,0.0642,0.0272,1837.0
+V,0.7563,0.7795,0.7677,3220.0
+F,0.0021,0.0206,0.0038,388.0
+Q,0.0000,0.0000,0.0000,7.0
