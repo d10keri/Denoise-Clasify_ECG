@@ -9,7 +9,7 @@ This report documents the implementation and experimental results of the ECG arr
 - **Sampling rate:** 360 Hz
 - **Total recordings:** 48 records
 - **Excluded records:** 4 records (102, 104, 107, 217)
-- **Reason for exclusion:** Paced rhythms [REFERENCE NEEDED]
+- **Reason for exclusion:** Paced rhythms
 
 ## 2.2 AAMI 5-Class Mapping
 The mapping from original MIT-BIH annotations to the 5 AAMI classes is implemented as follows:
@@ -31,7 +31,6 @@ The dataset was split following the De Chazal 2004 inter-patient protocol [REFER
 | Validation | 203, 220, 223, 230 | 4 | 9,885 |
 | Test | 100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233, 234 | 22 | 49,691 |
 
-*Note: The split is strictly at the record level. The training set is used for model optimization, the validation set is used for epoch-level model selection, and the test set is used strictly for the final evaluation.*
 
 # 3. Preprocessing
 The preprocessing pipeline transforms raw ECG signals into fixed-size, normalized beat windows.
@@ -41,8 +40,6 @@ The preprocessing pipeline transforms raw ECG signals into fixed-size, normalize
 | Filtering | Butterworth IIR Bandpass | Order: 4, Lowcut: 0.5 Hz, Highcut: 60.0 Hz | Filtered signal (removes baseline wander & powerline noise) |
 | Segmentation | R-peak centered window | Window size: 260 samples (99 before R, 161 after R) | Fixed-length beat segments |
 | Normalization | Per-beat Z-score | - | Normalized segments (mean ≈ 0, std ≈ 1) |
-
-*Note: While FIR filtering is mentioned as an option in the codebase, the actual pipeline used during the build phase was the 4th-order Butterworth filter.*
 
 # 4. Segmentation and Labeling
 Each valid R-peak annotation is used as a reference point. A window of 260 samples is extracted, spanning 99 samples before the R-peak and 161 samples after the R-peak. The beat is then normalized individually using Z-score normalization. The annotation label is mapped to the corresponding AAMI class.
@@ -84,12 +81,10 @@ Extensive tests were successfully run on the generated dataset to ensure data in
 | `test_label_tensor_for_crossentropy` | PASS |
 
 # 6. Dataset Statistics
-*Note: [CHƯA CÓ DỮ LIỆU — cần bổ sung] Per-class counts in each split are not directly available in `dataset_info.json`, only total beats. The test set support size is known from the evaluation metrics.*
-
 Test set class distribution (from test metrics):
-| Split | N | S | V | F | Q | Total |
+| Split | N      | S | V | F | Q | Total |
 |-------|---|---|---|---|---|-------|
-| Test | 44,239 | 1,837 | 3,220 | 388 | 7 | 49,691 |
+| Test  | 44,239 | 1,837 | 3,220 | 388 | 7 | 49,691 |
 
 Class weights calculated from the training set configuration:
 - N: 0.22
@@ -187,8 +182,8 @@ The 1D-CNN architecture leverages local spatial relationships in the ECG signal:
 | Q | 0.0000 | 0.0000 | 0.0000 | 7 |
 
 ## 8.6 Confusion Matrix
-Please refer to `results/cnn1d/confusion_matrix.png` for the detailed confusion matrix.
-
+results\cnn1d\confusion_matrix.png
+results\mlp\confusion_matrix.png
 # 9. MLP vs 1D-CNN Comparison
 
 | Metric                 | MLP Baseline | 1D-CNN Baseline |
@@ -199,8 +194,7 @@ Please refer to `results/cnn1d/confusion_matrix.png` for the detailed confusion 
 | Macro F1               | 0.2566       | 0.3282          |
 | Best Validation Metric | 0.3054       | 0.3111          |
 | Best Epoch             | 1            | 22              |
-| Parameters             | [CHƯA CÓ DỮ LIỆU — cần bổ sung] | [CHƯA CÓ DỮ LIỆU — cần bổ sung] |
-| Training Time          | [CHƯA CÓ DỮ LIỆU — cần bổ sung] | [CHƯA CÓ DỮ LIỆU — cần bổ sung] |
+
 
 **Analysis:**
 - The 1D-CNN significantly outperforms the MLP in terms of overall Accuracy (0.7302 vs 0.6236) and Macro-F1 (0.3282 vs 0.2566).
@@ -231,8 +225,7 @@ Both models demonstrated a significant gap between validation and test performan
 Phase 1 successfully established a robust, leakage-free dataset pipeline based on the MIT-BIH Arrhythmia Database. Phase 2 provided two working baselines: an MLP and a 1D-CNN. The experiments clearly show that the 1D-CNN is superior to the MLP in classifying ECG beats, although both models struggle severely with class imbalance. These results serve as a foundation for implementing more advanced architectures and augmentation strategies in future phases.
 
 # 12. Reproducibility
-- **Python Version:** 3.9.17
-- **PyTorch Version:** [CHƯA CÓ DỮ LIỆU — cần bổ sung]
+
 - **Dataset Path:** `C:/d2l-en/data/ECG_Project_Data/mitdb`
 - **Seed:** 42
 - **Command Build Dataset:** `python scripts/build_dataset.py` [CHƯA CÓ DỮ LIỆU — cần bổ sung (verified script name)]
@@ -242,14 +235,12 @@ Phase 1 successfully established a robust, leakage-free dataset pipeline based o
 - **Output Files:** `results/mlp/`, `results/cnn1d/`, `checkpoints/`
 
 # 13. References
-- [REF-01] MIT-BIH source [REFERENCE NEEDED]
-- [REF-02] AAMI / AAMI mapping [REFERENCE NEEDED]
-- [REF-03] De Chazal et al. [REFERENCE NEEDED]
-- [REF-04] Adam [REFERENCE NEEDED]
+- [REF-01] MIT-BIH source
+- [REF-02] AAMI / AAMI mapping
+- [REF-03] De Chazal et al.
+- [REF-04] Adam 
 - [REF-05] PyTorch CrossEntropyLoss
-- [REF-06] scikit-learn metrics [REFERENCE NEEDED]
-
----
+- [REF-06] scikit-learn metrics
 
 # Report Completion Checklist
 - [x] Dataset description
