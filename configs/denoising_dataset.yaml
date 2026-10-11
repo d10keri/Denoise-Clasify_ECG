@@ -1,0 +1,50 @@
+# Level 2 Denoising Dataset Configuration
+# Phiên bản: 1.0 | Ngày: 2026-10-11
+# KHÔNG sửa đổi file này cùng với configs/dataset_config.yaml
+
+database:
+  mitdb_path: "C:/d2l-en/data/ECG_Project_Data/mitdb"
+  nstdb_path: "C:/d2l-en/data/ECG_Project_Data/nstdb"
+
+signal:
+  sampling_rate: 360
+  lead: "MLII"
+  channel_index: 0      # MITDB: 0 = MLII
+  noise_channel: 0      # NSTDB: 0 = noise1
+
+preprocessing:
+  filter_type: "butterworth"
+  lowcut_hz: 0.05        # Thấp hơn Phase 1 (0.5 Hz) — giữ BW content cho model học
+  highcut_hz: 60.0       # Loại powerline noise
+  butterworth_order: 4
+  normalization: "record_max_abs"  # Không dùng per-beat Z-score
+
+window:
+  size: 1024             # ~2.84 giây ở 360 Hz (covers ≥2 RR intervals)
+  stride: 512            # 50% overlap
+
+noise:
+  types: ["bw", "ma", "em"]
+  snr_levels_db: [-6, 0, 6, 12, 18, 24]  # Standard NSTDB benchmark levels
+  block_size: 100000     # samples per noise block (~4.6 min ở 360 Hz)
+  guard_samples: 500     # guard interval at block boundaries (filter edge effects)
+  # Block allocation (temporal order):
+  #   Blocks 0-3 (index 0-3) → train  (4 blocks = ~67%)
+  #   Block 4              → val    (1 block = ~17%)
+  #   Block 5              → test   (1 block = ~17%)
+
+splits:
+  # Level 2 patient-grouped split
+  # KHÁC Phase 1: 202 chuyển sang train (cùng bệnh nhân với 201)
+  train_records: [101, 106, 108, 109, 112, 114, 115, 116, 118, 119,
+                  122, 124, 201, 202, 205, 207, 208, 209, 215]
+  val_records:   [203, 220, 223, 230]
+  test_records:  [100, 103, 105, 111, 113, 117, 121, 123,
+                  200, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233, 234]
+  excluded_records: [102, 104, 107, 217]   # Paced rhythms — loại để tương thích Phase 1
+
+paths:
+  output_dir: "C:/d2l-en/data/ECG_Project_Data/Processed/denoising_v1"
+
+reproducibility:
+  seed: 42
