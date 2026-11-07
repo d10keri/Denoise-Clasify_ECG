@@ -1,0 +1,424 @@
+{
+  "task": "A2 - Zero-Retrain Binary Baseline from 5-Class CNN1DBaseline Checkpoint",
+  "source_checkpoint": "checkpoints/cnn1d_best.pt",
+  "source_best_epoch": 22,
+  "threshold_free_metrics": {
+    "val": {
+      "auroc": 0.786284,
+      "pr_auc": 0.292261
+    },
+    "test": {
+      "auroc": 0.776999,
+      "pr_auc": 0.503371
+    }
+  },
+  "thresholds_selected_on_val": {
+    "best_val_f1_threshold": 0.67,
+    "best_val_youden_j_threshold": 0.44,
+    "val_recall_ge_85_threshold": 0.32
+  },
+  "val_operating_points": {
+    "1_argmax_5class_mapped": {
+      "threshold": "argmax_5class > 0",
+      "accuracy": 0.720081,
+      "recall_non_N_sensitivity": 0.767631,
+      "specificity_N": 0.71409,
+      "precision_non_N": 0.252754,
+      "f1_non_N": 0.380291,
+      "f1_N": 0.819209,
+      "macro_f1_binary": 0.59975,
+      "youden_j": 0.481722,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 6269,
+        "FP": 2510,
+        "FN": 257,
+        "TP": 849
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 169,
+          "detected_as_non_N": 47,
+          "recall": 0.278107
+        },
+        "V": {
+          "support": 918,
+          "detected_as_non_N": 786,
+          "recall": 0.856209
+        },
+        "F": {
+          "support": 15,
+          "detected_as_non_N": 14,
+          "recall": 0.933333
+        },
+        "Q": {
+          "support": 4,
+          "detected_as_non_N": 2,
+          "recall": 0.5
+        }
+      }
+    },
+    "2_default_threshold_0.50": {
+      "threshold": 0.5,
+      "accuracy": 0.706424,
+      "recall_non_N_sensitivity": 0.783002,
+      "specificity_N": 0.696776,
+      "precision_non_N": 0.245465,
+      "f1_non_N": 0.373759,
+      "f1_N": 0.808272,
+      "macro_f1_binary": 0.591015,
+      "youden_j": 0.479778,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 6117,
+        "FP": 2662,
+        "FN": 240,
+        "TP": 866
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 169,
+          "detected_as_non_N": 48,
+          "recall": 0.284024
+        },
+        "V": {
+          "support": 918,
+          "detected_as_non_N": 802,
+          "recall": 0.873638
+        },
+        "F": {
+          "support": 15,
+          "detected_as_non_N": 14,
+          "recall": 0.933333
+        },
+        "Q": {
+          "support": 4,
+          "detected_as_non_N": 2,
+          "recall": 0.5
+        }
+      }
+    },
+    "3_val_best_f1_threshold": {
+      "threshold": 0.67,
+      "accuracy": 0.743652,
+      "recall_non_N_sensitivity": 0.724231,
+      "specificity_N": 0.746099,
+      "precision_non_N": 0.264356,
+      "f1_non_N": 0.387331,
+      "f1_N": 0.837917,
+      "macro_f1_binary": 0.612624,
+      "youden_j": 0.47033,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 6550,
+        "FP": 2229,
+        "FN": 305,
+        "TP": 801
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 169,
+          "detected_as_non_N": 40,
+          "recall": 0.236686
+        },
+        "V": {
+          "support": 918,
+          "detected_as_non_N": 746,
+          "recall": 0.812636
+        },
+        "F": {
+          "support": 15,
+          "detected_as_non_N": 13,
+          "recall": 0.866667
+        },
+        "Q": {
+          "support": 4,
+          "detected_as_non_N": 2,
+          "recall": 0.5
+        }
+      }
+    },
+    "4_val_recall_ge_0.85_threshold": {
+      "threshold": 0.32,
+      "accuracy": 0.650683,
+      "recall_non_N_sensitivity": 0.851718,
+      "specificity_N": 0.625356,
+      "precision_non_N": 0.222642,
+      "f1_non_N": 0.353007,
+      "f1_N": 0.760757,
+      "macro_f1_binary": 0.556882,
+      "youden_j": 0.477074,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 5490,
+        "FP": 3289,
+        "FN": 164,
+        "TP": 942
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 169,
+          "detected_as_non_N": 68,
+          "recall": 0.402367
+        },
+        "V": {
+          "support": 918,
+          "detected_as_non_N": 858,
+          "recall": 0.934641
+        },
+        "F": {
+          "support": 15,
+          "detected_as_non_N": 14,
+          "recall": 0.933333
+        },
+        "Q": {
+          "support": 4,
+          "detected_as_non_N": 2,
+          "recall": 0.5
+        }
+      }
+    },
+    "5_val_best_youden_j_threshold": {
+      "threshold": 0.44,
+      "accuracy": 0.692767,
+      "recall_non_N_sensitivity": 0.816456,
+      "specificity_N": 0.677184,
+      "precision_non_N": 0.241638,
+      "f1_non_N": 0.372909,
+      "f1_N": 0.796543,
+      "macro_f1_binary": 0.584726,
+      "youden_j": 0.49364,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 5945,
+        "FP": 2834,
+        "FN": 203,
+        "TP": 903
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 169,
+          "detected_as_non_N": 58,
+          "recall": 0.343195
+        },
+        "V": {
+          "support": 918,
+          "detected_as_non_N": 829,
+          "recall": 0.90305
+        },
+        "F": {
+          "support": 15,
+          "detected_as_non_N": 14,
+          "recall": 0.933333
+        },
+        "Q": {
+          "support": 4,
+          "detected_as_non_N": 2,
+          "recall": 0.5
+        }
+      }
+    }
+  },
+  "test_operating_points": {
+    "1_argmax_5class_mapped": {
+      "threshold": "argmax_5class > 0",
+      "accuracy": 0.746976,
+      "recall_non_N_sensitivity": 0.636464,
+      "specificity_N": 0.760596,
+      "precision_non_N": 0.246782,
+      "f1_non_N": 0.35566,
+      "f1_N": 0.84258,
+      "macro_f1_binary": 0.59912,
+      "youden_j": 0.39706,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 33648,
+        "FP": 10591,
+        "FN": 1982,
+        "TP": 3470
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 1837,
+          "detected_as_non_N": 168,
+          "recall": 0.091453
+        },
+        "V": {
+          "support": 3220,
+          "detected_as_non_N": 3028,
+          "recall": 0.940373
+        },
+        "F": {
+          "support": 388,
+          "detected_as_non_N": 269,
+          "recall": 0.693299
+        },
+        "Q": {
+          "support": 7,
+          "detected_as_non_N": 5,
+          "recall": 0.714286
+        }
+      }
+    },
+    "2_default_threshold_0.50": {
+      "threshold": 0.5,
+      "accuracy": 0.729388,
+      "recall_non_N_sensitivity": 0.648753,
+      "specificity_N": 0.739325,
+      "precision_non_N": 0.23472,
+      "f1_non_N": 0.34472,
+      "f1_N": 0.829485,
+      "macro_f1_binary": 0.587102,
+      "youden_j": 0.388078,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 32707,
+        "FP": 11532,
+        "FN": 1915,
+        "TP": 3537
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 1837,
+          "detected_as_non_N": 185,
+          "recall": 0.100708
+        },
+        "V": {
+          "support": 3220,
+          "detected_as_non_N": 3057,
+          "recall": 0.949379
+        },
+        "F": {
+          "support": 388,
+          "detected_as_non_N": 289,
+          "recall": 0.744845
+        },
+        "Q": {
+          "support": 7,
+          "detected_as_non_N": 6,
+          "recall": 0.857143
+        }
+      }
+    },
+    "3_val_best_f1_threshold": {
+      "threshold": 0.67,
+      "accuracy": 0.811394,
+      "recall_non_N_sensitivity": 0.608034,
+      "specificity_N": 0.836457,
+      "precision_non_N": 0.314218,
+      "f1_non_N": 0.414323,
+      "f1_N": 0.887599,
+      "macro_f1_binary": 0.650961,
+      "youden_j": 0.44449,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 37004,
+        "FP": 7235,
+        "FN": 2137,
+        "TP": 3315
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 1837,
+          "detected_as_non_N": 88,
+          "recall": 0.047904
+        },
+        "V": {
+          "support": 3220,
+          "detected_as_non_N": 2987,
+          "recall": 0.92764
+        },
+        "F": {
+          "support": 388,
+          "detected_as_non_N": 235,
+          "recall": 0.60567
+        },
+        "Q": {
+          "support": 7,
+          "detected_as_non_N": 5,
+          "recall": 0.714286
+        }
+      }
+    },
+    "4_val_recall_ge_0.85_threshold": {
+      "threshold": 0.32,
+      "accuracy": 0.61168,
+      "recall_non_N_sensitivity": 0.702678,
+      "specificity_N": 0.600466,
+      "precision_non_N": 0.178136,
+      "f1_non_N": 0.28422,
+      "f1_N": 0.733569,
+      "macro_f1_binary": 0.508894,
+      "youden_j": 0.303144,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 26564,
+        "FP": 17675,
+        "FN": 1621,
+        "TP": 3831
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 1837,
+          "detected_as_non_N": 395,
+          "recall": 0.215024
+        },
+        "V": {
+          "support": 3220,
+          "detected_as_non_N": 3096,
+          "recall": 0.961491
+        },
+        "F": {
+          "support": 388,
+          "detected_as_non_N": 334,
+          "recall": 0.860825
+        },
+        "Q": {
+          "support": 7,
+          "detected_as_non_N": 6,
+          "recall": 0.857143
+        }
+      }
+    },
+    "5_val_best_youden_j_threshold": {
+      "threshold": 0.44,
+      "accuracy": 0.691594,
+      "recall_non_N_sensitivity": 0.661959,
+      "specificity_N": 0.695246,
+      "precision_non_N": 0.211164,
+      "f1_non_N": 0.320188,
+      "f1_N": 0.800557,
+      "macro_f1_binary": 0.560373,
+      "youden_j": 0.357205,
+      "passes_gate_85_85": false,
+      "confusion_matrix": {
+        "TN": 30757,
+        "FP": 13482,
+        "FN": 1843,
+        "TP": 3609
+      },
+      "subclass_detection_recall": {
+        "S": {
+          "support": 1837,
+          "detected_as_non_N": 224,
+          "recall": 0.121938
+        },
+        "V": {
+          "support": 3220,
+          "detected_as_non_N": 3072,
+          "recall": 0.954037
+        },
+        "F": {
+          "support": 388,
+          "detected_as_non_N": 307,
+          "recall": 0.791237
+        },
+        "Q": {
+          "support": 7,
+          "detected_as_non_N": 6,
+          "recall": 0.857143
+        }
+      }
+    }
+  }
+}

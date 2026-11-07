@@ -1,0 +1,89 @@
+{
+  "task": "Binary Classification Label Audit (0 = N, 1 = non-N [S, V, F, Q])",
+  "splits": {
+    "train": {
+      "split": "train",
+      "total_beats": 41116,
+      "binary_counts": {
+        "N (0)": 37068,
+        "non-N (1)": 4048
+      },
+      "binary_ratios": {
+        "N_pct": 90.1547,
+        "non_N_pct": 9.8453
+      },
+      "original_5class_counts": {
+        "N": 37068,
+        "S": 775,
+        "V": 2870,
+        "F": 399,
+        "Q": 4
+      },
+      "non_N_breakdown_pct_of_non_N": {
+        "S": 19.1453,
+        "V": 70.8992,
+        "F": 9.8567,
+        "Q": 0.0988
+      }
+    },
+    "val": {
+      "split": "val",
+      "total_beats": 9885,
+      "binary_counts": {
+        "N (0)": 8779,
+        "non-N (1)": 1106
+      },
+      "binary_ratios": {
+        "N_pct": 88.8113,
+        "non_N_pct": 11.1887
+      },
+      "original_5class_counts": {
+        "N": 8779,
+        "S": 169,
+        "V": 918,
+        "F": 15,
+        "Q": 4
+      },
+      "non_N_breakdown_pct_of_non_N": {
+        "S": 15.2803,
+        "V": 83.0018,
+        "F": 1.3562,
+        "Q": 0.3617
+      }
+    },
+    "test": {
+      "split": "test",
+      "total_beats": 49691,
+      "binary_counts": {
+        "N (0)": 44239,
+        "non-N (1)": 5452
+      },
+      "binary_ratios": {
+        "N_pct": 89.0282,
+        "non_N_pct": 10.9718
+      },
+      "original_5class_counts": {
+        "N": 44239,
+        "S": 1837,
+        "V": 3220,
+        "F": 388,
+        "Q": 7
+      },
+      "non_N_breakdown_pct_of_non_N": {
+        "S": 33.6941,
+        "V": 59.0609,
+        "F": 7.1167,
+        "Q": 0.1284
+      }
+    }
+  },
+  "train_binary_class_weights_balanced": {
+    "weight_N_0": 0.554602,
+    "weight_non_N_1": 5.078557,
+    "raw_list": [
+      0.554602,
+      5.078557
+    ],
+    "pos_weight_ratio_N_over_non_N": 9.157115
+  }
+}
