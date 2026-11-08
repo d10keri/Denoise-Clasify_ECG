@@ -1,0 +1,818 @@
+{
+  "M1-Reg (Baseline 2-Class Regularized)": {
+    "model_name": "M1-Reg (Baseline 2-Class Regularized)",
+    "pytorch_trainable_params": 35906,
+    "mcu_fused_params": 35458,
+    "total_maccs": 2970496,
+    "receptive_field_before_gap_samples": 24,
+    "receptive_field_before_gap_ms": 66.67,
+    "flash_weights_fp32_kb": 138.51,
+    "flash_weights_int8_kb": 34.63,
+    "peak_pingpong_ram_fp32_kb": 48.75,
+    "peak_pingpong_ram_int8_kb": 12.19,
+    "max_single_tensor_fp32_kb": 32.5,
+    "layers": [
+      {
+        "layer": "features.0",
+        "type": "StandardConv1d",
+        "config": "1->32, k=5, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          260
+        ],
+        "fused_params": 192,
+        "maccs": 41600,
+        "receptive_field_samples": 5,
+        "in_out_ram_fp32_bytes": 34320,
+        "in_out_ram_int8_bytes": 8580,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "features.3",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          32,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 6,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "features.5",
+        "type": "StandardConv1d",
+        "config": "32->64, k=5, groups=1",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          130
+        ],
+        "fused_params": 10304,
+        "maccs": 1331200,
+        "receptive_field_samples": 14,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "features.8",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          64,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 16,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "features.10",
+        "type": "StandardConv1d",
+        "config": "64->128, k=3, groups=1",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          65
+        ],
+        "fused_params": 24704,
+        "maccs": 1597440,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "classifier",
+        "type": "Linear",
+        "config": "128->2",
+        "input_shape": [
+          1,
+          128
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "fused_params": 258,
+        "maccs": 256,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 520,
+        "in_out_ram_int8_bytes": 130,
+        "output_ram_fp32_bytes": 8
+      }
+    ],
+    "maccs_vs_m1_reg_pct": 0.0,
+    "params_vs_m1_reg_pct": 0.0
+  },
+  "M2-A (Direct DS Replacement)": {
+    "model_name": "M2-A (Direct DS Replacement)",
+    "pytorch_trainable_params": 11650,
+    "mcu_fused_params": 11330,
+    "total_maccs": 873856,
+    "receptive_field_before_gap_samples": 24,
+    "receptive_field_before_gap_ms": 66.67,
+    "flash_weights_fp32_kb": 44.26,
+    "flash_weights_int8_kb": 11.06,
+    "peak_pingpong_ram_fp32_kb": 48.75,
+    "peak_pingpong_ram_int8_kb": 12.19,
+    "max_single_tensor_fp32_kb": 32.5,
+    "layers": [
+      {
+        "layer": "stem.0",
+        "type": "StandardConv1d",
+        "config": "1->32, k=5, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          260
+        ],
+        "fused_params": 192,
+        "maccs": 41600,
+        "receptive_field_samples": 5,
+        "in_out_ram_fp32_bytes": 34320,
+        "in_out_ram_int8_bytes": 8580,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "stem.3",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          32,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 6,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.0.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "32->32, k=5, groups=32",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "fused_params": 192,
+        "maccs": 20800,
+        "receptive_field_samples": 14,
+        "in_out_ram_fp32_bytes": 33280,
+        "in_out_ram_int8_bytes": 8320,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.0.block.3",
+        "type": "PointwiseConv1d",
+        "config": "32->64, k=1, groups=1",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          130
+        ],
+        "fused_params": 2112,
+        "maccs": 266240,
+        "receptive_field_samples": 14,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "ds_blocks.0.block.6",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          64,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 16,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.1.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "64->64, k=3, groups=64",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "fused_params": 256,
+        "maccs": 12480,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 33280,
+        "in_out_ram_int8_bytes": 8320,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.1.block.3",
+        "type": "PointwiseConv1d",
+        "config": "64->128, k=1, groups=1",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          65
+        ],
+        "fused_params": 8320,
+        "maccs": 532480,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "classifier",
+        "type": "Linear",
+        "config": "128->2",
+        "input_shape": [
+          1,
+          128
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "fused_params": 258,
+        "maccs": 256,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 520,
+        "in_out_ram_int8_bytes": 130,
+        "output_ram_fp32_bytes": 8
+      }
+    ],
+    "maccs_vs_m1_reg_pct": -70.58,
+    "params_vs_m1_reg_pct": -68.05
+  },
+  "M2-B (Proposed Accuracy-Prioritized DS-CNN)": {
+    "model_name": "M2-B (Proposed Accuracy-Prioritized DS-CNN)",
+    "pytorch_trainable_params": 29634,
+    "mcu_fused_params": 29058,
+    "total_maccs": 1468544,
+    "receptive_field_before_gap_samples": 86,
+    "receptive_field_before_gap_ms": 238.89,
+    "flash_weights_fp32_kb": 113.51,
+    "flash_weights_int8_kb": 28.38,
+    "peak_pingpong_ram_fp32_kb": 48.75,
+    "peak_pingpong_ram_int8_kb": 12.19,
+    "max_single_tensor_fp32_kb": 32.5,
+    "layers": [
+      {
+        "layer": "stem.0",
+        "type": "StandardConv1d",
+        "config": "1->32, k=7, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          260
+        ],
+        "fused_params": 256,
+        "maccs": 58240,
+        "receptive_field_samples": 7,
+        "in_out_ram_fp32_bytes": 34320,
+        "in_out_ram_int8_bytes": 8580,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "stem.3",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          32,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 8,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.0.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "32->32, k=9, groups=32",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "fused_params": 320,
+        "maccs": 37440,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 33280,
+        "in_out_ram_int8_bytes": 8320,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.0.block.3",
+        "type": "PointwiseConv1d",
+        "config": "32->64, k=1, groups=1",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          130
+        ],
+        "fused_params": 2112,
+        "maccs": 266240,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "ds_blocks.0.block.6",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          64,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 26,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.1.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "64->64, k=7, groups=64",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "fused_params": 512,
+        "maccs": 29120,
+        "receptive_field_samples": 50,
+        "in_out_ram_fp32_bytes": 33280,
+        "in_out_ram_int8_bytes": 8320,
+        "output_ram_fp32_bytes": 16640
+      },
+      {
+        "layer": "ds_blocks.1.block.3",
+        "type": "PointwiseConv1d",
+        "config": "64->128, k=1, groups=1",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          65
+        ],
+        "fused_params": 8320,
+        "maccs": 532480,
+        "receptive_field_samples": 50,
+        "in_out_ram_fp32_bytes": 49920,
+        "in_out_ram_int8_bytes": 12480,
+        "output_ram_fp32_bytes": 33280
+      },
+      {
+        "layer": "ds_blocks.1.block.6",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          128,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 54,
+        "in_out_ram_fp32_bytes": 49664,
+        "in_out_ram_int8_bytes": 12416,
+        "output_ram_fp32_bytes": 16384
+      },
+      {
+        "layer": "ds_blocks.2.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "128->128, k=5, groups=128",
+        "input_shape": [
+          1,
+          128,
+          32
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "fused_params": 768,
+        "maccs": 20480,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 32768,
+        "in_out_ram_int8_bytes": 8192,
+        "output_ram_fp32_bytes": 16384
+      },
+      {
+        "layer": "ds_blocks.2.block.3",
+        "type": "PointwiseConv1d",
+        "config": "128->128, k=1, groups=1",
+        "input_shape": [
+          1,
+          128,
+          32
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "fused_params": 16512,
+        "maccs": 524288,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 32768,
+        "in_out_ram_int8_bytes": 8192,
+        "output_ram_fp32_bytes": 16384
+      },
+      {
+        "layer": "classifier",
+        "type": "Linear",
+        "config": "128->2",
+        "input_shape": [
+          1,
+          128
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "fused_params": 258,
+        "maccs": 256,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 520,
+        "in_out_ram_int8_bytes": 130,
+        "output_ram_fp32_bytes": 8
+      }
+    ],
+    "maccs_vs_m1_reg_pct": -50.56,
+    "params_vs_m1_reg_pct": -18.05
+  },
+  "M2-C (Compact Cost-Prioritized DS-CNN)": {
+    "model_name": "M2-C (Compact Cost-Prioritized DS-CNN)",
+    "pytorch_trainable_params": 17234,
+    "mcu_fused_params": 16802,
+    "total_maccs": 853344,
+    "receptive_field_before_gap_samples": 86,
+    "receptive_field_before_gap_ms": 238.89,
+    "flash_weights_fp32_kb": 65.63,
+    "flash_weights_int8_kb": 16.41,
+    "peak_pingpong_ram_fp32_kb": 36.56,
+    "peak_pingpong_ram_int8_kb": 9.14,
+    "max_single_tensor_fp32_kb": 24.38,
+    "layers": [
+      {
+        "layer": "stem.0",
+        "type": "StandardConv1d",
+        "config": "1->24, k=7, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          24,
+          260
+        ],
+        "fused_params": 192,
+        "maccs": 43680,
+        "receptive_field_samples": 7,
+        "in_out_ram_fp32_bytes": 26000,
+        "in_out_ram_int8_bytes": 6500,
+        "output_ram_fp32_bytes": 24960
+      },
+      {
+        "layer": "stem.3",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          24,
+          260
+        ],
+        "output_shape": [
+          1,
+          24,
+          130
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 8,
+        "in_out_ram_fp32_bytes": 37440,
+        "in_out_ram_int8_bytes": 9360,
+        "output_ram_fp32_bytes": 12480
+      },
+      {
+        "layer": "ds_blocks.0.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "24->24, k=9, groups=24",
+        "input_shape": [
+          1,
+          24,
+          130
+        ],
+        "output_shape": [
+          1,
+          24,
+          130
+        ],
+        "fused_params": 240,
+        "maccs": 28080,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 24960,
+        "in_out_ram_int8_bytes": 6240,
+        "output_ram_fp32_bytes": 12480
+      },
+      {
+        "layer": "ds_blocks.0.block.3",
+        "type": "PointwiseConv1d",
+        "config": "24->48, k=1, groups=1",
+        "input_shape": [
+          1,
+          24,
+          130
+        ],
+        "output_shape": [
+          1,
+          48,
+          130
+        ],
+        "fused_params": 1200,
+        "maccs": 149760,
+        "receptive_field_samples": 24,
+        "in_out_ram_fp32_bytes": 37440,
+        "in_out_ram_int8_bytes": 9360,
+        "output_ram_fp32_bytes": 24960
+      },
+      {
+        "layer": "ds_blocks.0.block.6",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          48,
+          130
+        ],
+        "output_shape": [
+          1,
+          48,
+          65
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 26,
+        "in_out_ram_fp32_bytes": 37440,
+        "in_out_ram_int8_bytes": 9360,
+        "output_ram_fp32_bytes": 12480
+      },
+      {
+        "layer": "ds_blocks.1.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "48->48, k=7, groups=48",
+        "input_shape": [
+          1,
+          48,
+          65
+        ],
+        "output_shape": [
+          1,
+          48,
+          65
+        ],
+        "fused_params": 384,
+        "maccs": 21840,
+        "receptive_field_samples": 50,
+        "in_out_ram_fp32_bytes": 24960,
+        "in_out_ram_int8_bytes": 6240,
+        "output_ram_fp32_bytes": 12480
+      },
+      {
+        "layer": "ds_blocks.1.block.3",
+        "type": "PointwiseConv1d",
+        "config": "48->96, k=1, groups=1",
+        "input_shape": [
+          1,
+          48,
+          65
+        ],
+        "output_shape": [
+          1,
+          96,
+          65
+        ],
+        "fused_params": 4704,
+        "maccs": 299520,
+        "receptive_field_samples": 50,
+        "in_out_ram_fp32_bytes": 37440,
+        "in_out_ram_int8_bytes": 9360,
+        "output_ram_fp32_bytes": 24960
+      },
+      {
+        "layer": "ds_blocks.1.block.6",
+        "type": "MaxPool1d",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          96,
+          65
+        ],
+        "output_shape": [
+          1,
+          96,
+          32
+        ],
+        "fused_params": 0,
+        "maccs": 0,
+        "receptive_field_samples": 54,
+        "in_out_ram_fp32_bytes": 37248,
+        "in_out_ram_int8_bytes": 9312,
+        "output_ram_fp32_bytes": 12288
+      },
+      {
+        "layer": "ds_blocks.2.block.0",
+        "type": "DepthwiseConv1d",
+        "config": "96->96, k=5, groups=96",
+        "input_shape": [
+          1,
+          96,
+          32
+        ],
+        "output_shape": [
+          1,
+          96,
+          32
+        ],
+        "fused_params": 576,
+        "maccs": 15360,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 24576,
+        "in_out_ram_int8_bytes": 6144,
+        "output_ram_fp32_bytes": 12288
+      },
+      {
+        "layer": "ds_blocks.2.block.3",
+        "type": "PointwiseConv1d",
+        "config": "96->96, k=1, groups=1",
+        "input_shape": [
+          1,
+          96,
+          32
+        ],
+        "output_shape": [
+          1,
+          96,
+          32
+        ],
+        "fused_params": 9312,
+        "maccs": 294912,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 24576,
+        "in_out_ram_int8_bytes": 6144,
+        "output_ram_fp32_bytes": 12288
+      },
+      {
+        "layer": "classifier",
+        "type": "Linear",
+        "config": "96->2",
+        "input_shape": [
+          1,
+          96
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "fused_params": 194,
+        "maccs": 192,
+        "receptive_field_samples": 86,
+        "in_out_ram_fp32_bytes": 392,
+        "in_out_ram_int8_bytes": 98,
+        "output_ram_fp32_bytes": 8
+      }
+    ],
+    "maccs_vs_m1_reg_pct": -71.27,
+    "params_vs_m1_reg_pct": -52.61
+  }
+}
