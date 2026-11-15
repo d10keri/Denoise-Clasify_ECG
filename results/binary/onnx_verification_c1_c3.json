@@ -1,0 +1,191 @@
+{
+  "M1-Reg_seed42": {
+    "onnx_file": "export\\cnn1d_binary_reg_seed42_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 2.384185791015625e-06,
+      "mean_abs_logit_diff": 2.7521232937033346e-07,
+      "rmse_logit": 3.6581971585292195e-07,
+      "stm32ai_l2r": 2.5491085525520947e-07,
+      "stm32ai_cosine_similarity": 1.0000000526960702,
+      "max_abs_prob_diff": 3.8743019104003906e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 1.9073486328125e-06,
+      "mean_abs_logit_diff": 2.8477421665229485e-07,
+      "rmse_logit": 3.8100557731013396e-07,
+      "stm32ai_l2r": 2.516751168071944e-07,
+      "stm32ai_cosine_similarity": 0.9999999983355224,
+      "max_abs_prob_diff": 3.5762786865234375e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M1-Reg_seed43": {
+    "onnx_file": "export\\cnn1d_binary_reg_seed43_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 1.9073486328125e-06,
+      "mean_abs_logit_diff": 2.6010349074567785e-07,
+      "rmse_logit": 3.4593639952618105e-07,
+      "stm32ai_l2r": 2.58443603968049e-07,
+      "stm32ai_cosine_similarity": 1.0000000518866614,
+      "max_abs_prob_diff": 3.5762786865234375e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 1.430511474609375e-06,
+      "mean_abs_logit_diff": 2.566091836797568e-07,
+      "rmse_logit": 3.369757450855104e-07,
+      "stm32ai_l2r": 2.4847171948949133e-07,
+      "stm32ai_cosine_similarity": 1.0000000416597496,
+      "max_abs_prob_diff": 5.364418029785156e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M1-Reg_seed44": {
+    "onnx_file": "export\\cnn1d_binary_reg_seed44_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 1.430511474609375e-06,
+      "mean_abs_logit_diff": 3.0863100164424395e-07,
+      "rmse_logit": 3.9571085608258727e-07,
+      "stm32ai_l2r": 2.7260348203240004e-07,
+      "stm32ai_cosine_similarity": 0.9999998534934946,
+      "max_abs_prob_diff": 4.172325134277344e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 1.9073486328125e-06,
+      "mean_abs_logit_diff": 3.0825287922198186e-07,
+      "rmse_logit": 3.996758550783852e-07,
+      "stm32ai_l2r": 2.771252315056394e-07,
+      "stm32ai_cosine_similarity": 1.0000001299827381,
+      "max_abs_prob_diff": 2.682209014892578e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M2-B-KD_seed42": {
+    "onnx_file": "export\\cnn1d_binary_dsB_kd_seed42_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 2.384185791015625e-06,
+      "mean_abs_logit_diff": 3.2695265872462187e-07,
+      "rmse_logit": 4.2690692225733073e-07,
+      "stm32ai_l2r": 2.779219123864678e-07,
+      "stm32ai_cosine_similarity": 1.0000000282381603,
+      "max_abs_prob_diff": 3.5762786865234375e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 1.9073486328125e-06,
+      "mean_abs_logit_diff": 3.416948004542064e-07,
+      "rmse_logit": 4.555071484446671e-07,
+      "stm32ai_l2r": 2.9875715727850805e-07,
+      "stm32ai_cosine_similarity": 0.9999999687141636,
+      "max_abs_prob_diff": 4.172325134277344e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M2-B-KD_seed43": {
+    "onnx_file": "export\\cnn1d_binary_dsB_kd_seed43_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 1.6689300537109375e-06,
+      "mean_abs_logit_diff": 3.077406347529177e-07,
+      "rmse_logit": 3.992455503976089e-07,
+      "stm32ai_l2r": 2.736418553843207e-07,
+      "stm32ai_cosine_similarity": 1.000000001924566,
+      "max_abs_prob_diff": 3.5762786865234375e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 2.1457672119140625e-06,
+      "mean_abs_logit_diff": 3.1060724836606823e-07,
+      "rmse_logit": 4.118926710816595e-07,
+      "stm32ai_l2r": 2.8007188995371777e-07,
+      "stm32ai_cosine_similarity": 1.0000000416171964,
+      "max_abs_prob_diff": 4.172325134277344e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M2-B-KD_seed44": {
+    "onnx_file": "export\\cnn1d_binary_dsB_kd_seed44_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 2.384185791015625e-06,
+      "mean_abs_logit_diff": 3.0094432190708176e-07,
+      "rmse_logit": 3.9618475966562983e-07,
+      "stm32ai_l2r": 2.874963082469909e-07,
+      "stm32ai_cosine_similarity": 0.9999999929202812,
+      "max_abs_prob_diff": 4.470348358154297e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 1.9073486328125e-06,
+      "mean_abs_logit_diff": 3.067403895329335e-07,
+      "rmse_logit": 4.0438345649818075e-07,
+      "stm32ai_l2r": 2.93651730419996e-07,
+      "stm32ai_cosine_similarity": 0.9999999837968365,
+      "max_abs_prob_diff": 5.066394805908203e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  },
+  "M1-Base_seed42": {
+    "onnx_file": "export\\cnn1d_binary_m1_base_fp32.onnx",
+    "verify_2000_test_beats": {
+      "num_samples": 2000,
+      "max_abs_logit_diff": 2.384185791015625e-06,
+      "mean_abs_logit_diff": 3.427462615945842e-07,
+      "rmse_logit": 4.636296466742351e-07,
+      "stm32ai_l2r": 2.2438609471706697e-07,
+      "stm32ai_cosine_similarity": 1.000000092996148,
+      "max_abs_prob_diff": 5.066394805908203e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    },
+    "host_val_500_beats": {
+      "num_samples": 500,
+      "max_abs_logit_diff": 2.384185791015625e-06,
+      "mean_abs_logit_diff": 3.281161298218649e-07,
+      "rmse_logit": 4.575912839754892e-07,
+      "stm32ai_l2r": 2.186283760298309e-07,
+      "stm32ai_cosine_similarity": 0.9999999434958838,
+      "max_abs_prob_diff": 2.980232238769531e-07,
+      "argmax_agreement_pct": 100.0,
+      "threshold_agreement_pct": 100.0,
+      "passes_gate_c1": true
+    }
+  }
+}

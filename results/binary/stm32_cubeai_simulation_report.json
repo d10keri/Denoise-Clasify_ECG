@@ -1,0 +1,670 @@
+{
+  "task": "C2 & D4 - STM32Cube.AI Resource & Latency Analysis on NUCLEO-F446RE, G474RE, L476RG",
+  "M1-Reg": {
+    "model_key": "M1-Reg (CNN1DBinaryRegularized)",
+    "total_fused_params": 35458,
+    "total_maccs": 2970496,
+    "memory_summary": {
+      "FP32": {
+        "weights_ro_bytes": 141832,
+        "weights_ro_kb": 138.51,
+        "st_runtime_flash_kb": 14.5,
+        "total_flash_kb": 153.01,
+        "activations_peak_ram_bytes": 49920,
+        "activations_peak_ram_kb": 48.75,
+        "st_runtime_ram_kb": 1.25,
+        "total_ram_kb": 50.0,
+        "estimated_total_cycles": 18466739,
+        "avg_cycles_per_macc": 6.22
+      },
+      "INT8": {
+        "weights_and_scales_ro_bytes": 37266,
+        "weights_and_scales_ro_kb": 36.39,
+        "st_runtime_flash_kb": 18.0,
+        "total_flash_kb": 54.39,
+        "activations_plus_im2col_ram_bytes": 13248,
+        "activations_plus_im2col_ram_kb": 12.94,
+        "im2col_scratch_bytes": 768,
+        "st_runtime_ram_kb": 1.25,
+        "total_ram_kb": 14.19,
+        "estimated_total_cycles": 5520314,
+        "avg_cycles_per_macc": 1.86,
+        "weights_compression_ratio": 3.81,
+        "activations_compression_ratio": 3.77
+      }
+    },
+    "board_evaluations": {
+      "NUCLEO-F446RE": {
+        "mcu": "STM32F446RET6",
+        "freq_mhz": 180,
+        "flash_capacity_kb": 512.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 153.01,
+          "flash_usage_pct": 29.88,
+          "remaining_flash_for_firmware_kb": 358.99,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 102.59,
+          "max_supported_heart_rate_bpm": 292,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 54.39,
+          "flash_usage_pct": 10.62,
+          "remaining_flash_for_firmware_kb": 457.61,
+          "total_ram_kb": 14.19,
+          "ram_usage_pct": 11.08,
+          "remaining_ram_for_dsp_kb": 113.81,
+          "estimated_latency_ms": 30.67,
+          "speedup_vs_fp32": 3.35,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      },
+      "NUCLEO-G474RE": {
+        "mcu": "STM32G474RET6",
+        "freq_mhz": 170,
+        "flash_capacity_kb": 512.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 153.01,
+          "flash_usage_pct": 29.88,
+          "remaining_flash_for_firmware_kb": 358.99,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 108.63,
+          "max_supported_heart_rate_bpm": 276,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 54.39,
+          "flash_usage_pct": 10.62,
+          "remaining_flash_for_firmware_kb": 457.61,
+          "total_ram_kb": 14.19,
+          "ram_usage_pct": 11.08,
+          "remaining_ram_for_dsp_kb": 113.81,
+          "estimated_latency_ms": 32.47,
+          "speedup_vs_fp32": 3.35,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      },
+      "NUCLEO-L476RG": {
+        "mcu": "STM32L476RGT6",
+        "freq_mhz": 80,
+        "flash_capacity_kb": 1024.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 153.01,
+          "flash_usage_pct": 14.94,
+          "remaining_flash_for_firmware_kb": 870.99,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 230.83,
+          "max_supported_heart_rate_bpm": 130,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 54.39,
+          "flash_usage_pct": 5.31,
+          "remaining_flash_for_firmware_kb": 969.61,
+          "total_ram_kb": 14.19,
+          "ram_usage_pct": 11.08,
+          "remaining_ram_for_dsp_kb": 113.81,
+          "estimated_latency_ms": 69.0,
+          "speedup_vs_fp32": 3.35,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      }
+    },
+    "c_graph_layers": [
+      {
+        "c_layer_id": 0,
+        "pytorch_name": "features.0",
+        "st_edge_ai_fused_op": "StandardConv1d + ReLU (Fused in-place)",
+        "config": "1->32, k=5, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          260
+        ],
+        "params": 192,
+        "maccs": 41600,
+        "macc_pct": 1.4,
+        "weights_ro_fp32_bytes": 768,
+        "weights_ro_int8_bytes": 448,
+        "active_ram_fp32_bytes": 34320,
+        "active_ram_int8_bytes": 8600,
+        "est_cycles_fp32": 257920,
+        "est_cycles_int8": 76960
+      },
+      {
+        "c_layer_id": 1,
+        "pytorch_name": "features.3",
+        "st_edge_ai_fused_op": "MaxPool1d (k=2, s=2)",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          32,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "params": 0,
+        "maccs": 0,
+        "macc_pct": 0.0,
+        "weights_ro_fp32_bytes": 0,
+        "weights_ro_int8_bytes": 0,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 16640,
+        "est_cycles_int8": 8320
+      },
+      {
+        "c_layer_id": 2,
+        "pytorch_name": "features.5",
+        "st_edge_ai_fused_op": "StandardConv1d + ReLU (Fused in-place)",
+        "config": "32->64, k=5, groups=1",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          130
+        ],
+        "params": 10304,
+        "maccs": 1331200,
+        "macc_pct": 44.81,
+        "weights_ro_fp32_bytes": 41216,
+        "weights_ro_int8_bytes": 10816,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 13120,
+        "est_cycles_fp32": 8253440,
+        "est_cycles_int8": 2462720
+      },
+      {
+        "c_layer_id": 3,
+        "pytorch_name": "features.8",
+        "st_edge_ai_fused_op": "MaxPool1d (k=2, s=2)",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          64,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "params": 0,
+        "maccs": 0,
+        "macc_pct": 0.0,
+        "weights_ro_fp32_bytes": 0,
+        "weights_ro_int8_bytes": 0,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 16640,
+        "est_cycles_int8": 8320
+      },
+      {
+        "c_layer_id": 4,
+        "pytorch_name": "features.10",
+        "st_edge_ai_fused_op": "StandardConv1d + ReLU (Fused in-place)",
+        "config": "64->128, k=3, groups=1",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          65
+        ],
+        "params": 24704,
+        "maccs": 1597440,
+        "macc_pct": 53.78,
+        "weights_ro_fp32_bytes": 98816,
+        "weights_ro_int8_bytes": 25728,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 13248,
+        "est_cycles_fp32": 9904128,
+        "est_cycles_int8": 2955264
+      },
+      {
+        "c_layer_id": 5,
+        "pytorch_name": "classifier",
+        "st_edge_ai_fused_op": "AvgPool1d + Flatten + Gemm (Classifier)",
+        "config": "128->2",
+        "input_shape": [
+          1,
+          128
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "params": 258,
+        "maccs": 256,
+        "macc_pct": 0.01,
+        "weights_ro_fp32_bytes": 1032,
+        "weights_ro_int8_bytes": 274,
+        "active_ram_fp32_bytes": 520,
+        "active_ram_int8_bytes": 386,
+        "est_cycles_fp32": 17971,
+        "est_cycles_int8": 8730
+      }
+    ],
+    "operator_compatibility_warnings": []
+  },
+  "M2-B-KD": {
+    "model_key": "M2-B-KD (CNN1DBinaryDS Variant B + KD)",
+    "total_fused_params": 29058,
+    "total_maccs": 1468544,
+    "memory_summary": {
+      "FP32": {
+        "weights_ro_bytes": 116232,
+        "weights_ro_kb": 113.51,
+        "st_runtime_flash_kb": 18.0,
+        "total_flash_kb": 131.51,
+        "activations_peak_ram_bytes": 49920,
+        "activations_peak_ram_kb": 48.75,
+        "st_runtime_ram_kb": 1.25,
+        "total_ram_kb": 50.0,
+        "estimated_total_cycles": 8425958,
+        "avg_cycles_per_macc": 5.74
+      },
+      "INT8": {
+        "weights_and_scales_ro_bytes": 33682,
+        "weights_and_scales_ro_kb": 32.89,
+        "st_runtime_flash_kb": 22.5,
+        "total_flash_kb": 55.39,
+        "activations_plus_im2col_ram_bytes": 12480,
+        "activations_plus_im2col_ram_kb": 12.19,
+        "im2col_scratch_bytes": 1280,
+        "st_runtime_ram_kb": 1.25,
+        "total_ram_kb": 13.44,
+        "estimated_total_cycles": 2464404,
+        "avg_cycles_per_macc": 1.68,
+        "weights_compression_ratio": 3.45,
+        "activations_compression_ratio": 4.0
+      }
+    },
+    "board_evaluations": {
+      "NUCLEO-F446RE": {
+        "mcu": "STM32F446RET6",
+        "freq_mhz": 180,
+        "flash_capacity_kb": 512.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 131.51,
+          "flash_usage_pct": 25.69,
+          "remaining_flash_for_firmware_kb": 380.49,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 46.81,
+          "max_supported_heart_rate_bpm": 641,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 55.39,
+          "flash_usage_pct": 10.82,
+          "remaining_flash_for_firmware_kb": 456.61,
+          "total_ram_kb": 13.44,
+          "ram_usage_pct": 10.5,
+          "remaining_ram_for_dsp_kb": 114.56,
+          "estimated_latency_ms": 13.69,
+          "speedup_vs_fp32": 3.42,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      },
+      "NUCLEO-G474RE": {
+        "mcu": "STM32G474RET6",
+        "freq_mhz": 170,
+        "flash_capacity_kb": 512.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 131.51,
+          "flash_usage_pct": 25.69,
+          "remaining_flash_for_firmware_kb": 380.49,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 49.56,
+          "max_supported_heart_rate_bpm": 605,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 55.39,
+          "flash_usage_pct": 10.82,
+          "remaining_flash_for_firmware_kb": 456.61,
+          "total_ram_kb": 13.44,
+          "ram_usage_pct": 10.5,
+          "remaining_ram_for_dsp_kb": 114.56,
+          "estimated_latency_ms": 14.5,
+          "speedup_vs_fp32": 3.42,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      },
+      "NUCLEO-L476RG": {
+        "mcu": "STM32L476RGT6",
+        "freq_mhz": 80,
+        "flash_capacity_kb": 1024.0,
+        "ram_capacity_kb": 128.0,
+        "FP32": {
+          "total_flash_kb": 131.51,
+          "flash_usage_pct": 12.84,
+          "remaining_flash_for_firmware_kb": 892.49,
+          "total_ram_kb": 50.0,
+          "ram_usage_pct": 39.06,
+          "remaining_ram_for_dsp_kb": 78.0,
+          "estimated_latency_ms": 105.32,
+          "max_supported_heart_rate_bpm": 285,
+          "passes_gate_c2_70flash_60ram": true
+        },
+        "INT8": {
+          "total_flash_kb": 55.39,
+          "flash_usage_pct": 5.41,
+          "remaining_flash_for_firmware_kb": 968.61,
+          "total_ram_kb": 13.44,
+          "ram_usage_pct": 10.5,
+          "remaining_ram_for_dsp_kb": 114.56,
+          "estimated_latency_ms": 30.81,
+          "speedup_vs_fp32": 3.42,
+          "passes_gate_c2_70flash_60ram": true
+        }
+      }
+    },
+    "c_graph_layers": [
+      {
+        "c_layer_id": 0,
+        "pytorch_name": "stem.0",
+        "st_edge_ai_fused_op": "StandardConv1d + ReLU (Fused in-place)",
+        "config": "1->32, k=7, groups=1",
+        "input_shape": [
+          1,
+          1,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          260
+        ],
+        "params": 256,
+        "maccs": 58240,
+        "macc_pct": 3.97,
+        "weights_ro_fp32_bytes": 1024,
+        "weights_ro_int8_bytes": 512,
+        "active_ram_fp32_bytes": 34320,
+        "active_ram_int8_bytes": 8608,
+        "est_cycles_fp32": 361088,
+        "est_cycles_int8": 107744
+      },
+      {
+        "c_layer_id": 1,
+        "pytorch_name": "stem.3",
+        "st_edge_ai_fused_op": "MaxPool1d (k=2, s=2)",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          32,
+          260
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "params": 0,
+        "maccs": 0,
+        "macc_pct": 0.0,
+        "weights_ro_fp32_bytes": 0,
+        "weights_ro_int8_bytes": 0,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 16640,
+        "est_cycles_int8": 8320
+      },
+      {
+        "c_layer_id": 2,
+        "pytorch_name": "ds_blocks.0.block.0",
+        "st_edge_ai_fused_op": "DepthwiseConv1d + ReLU (Fused in-place)",
+        "config": "32->32, k=9, groups=32",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          32,
+          130
+        ],
+        "params": 320,
+        "maccs": 37440,
+        "macc_pct": 2.55,
+        "weights_ro_fp32_bytes": 1280,
+        "weights_ro_int8_bytes": 576,
+        "active_ram_fp32_bytes": 33280,
+        "active_ram_int8_bytes": 8896,
+        "est_cycles_fp32": 366912,
+        "est_cycles_int8": 174096
+      },
+      {
+        "c_layer_id": 3,
+        "pytorch_name": "ds_blocks.0.block.3",
+        "st_edge_ai_fused_op": "PointwiseConv1d + ReLU (Fused in-place)",
+        "config": "32->64, k=1, groups=1",
+        "input_shape": [
+          1,
+          32,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          130
+        ],
+        "params": 2112,
+        "maccs": 266240,
+        "macc_pct": 18.13,
+        "weights_ro_fp32_bytes": 8448,
+        "weights_ro_int8_bytes": 2624,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 1437696,
+        "est_cycles_int8": 386048
+      },
+      {
+        "c_layer_id": 4,
+        "pytorch_name": "ds_blocks.0.block.6",
+        "st_edge_ai_fused_op": "MaxPool1d (k=2, s=2)",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          64,
+          130
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "params": 0,
+        "maccs": 0,
+        "macc_pct": 0.0,
+        "weights_ro_fp32_bytes": 0,
+        "weights_ro_int8_bytes": 0,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 16640,
+        "est_cycles_int8": 8320
+      },
+      {
+        "c_layer_id": 5,
+        "pytorch_name": "ds_blocks.1.block.0",
+        "st_edge_ai_fused_op": "DepthwiseConv1d + ReLU (Fused in-place)",
+        "config": "64->64, k=7, groups=64",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          64,
+          65
+        ],
+        "params": 512,
+        "maccs": 29120,
+        "macc_pct": 1.98,
+        "weights_ro_fp32_bytes": 2048,
+        "weights_ro_int8_bytes": 1024,
+        "active_ram_fp32_bytes": 33280,
+        "active_ram_int8_bytes": 9216,
+        "est_cycles_fp32": 285376,
+        "est_cycles_int8": 135408
+      },
+      {
+        "c_layer_id": 6,
+        "pytorch_name": "ds_blocks.1.block.3",
+        "st_edge_ai_fused_op": "PointwiseConv1d + ReLU (Fused in-place)",
+        "config": "64->128, k=1, groups=1",
+        "input_shape": [
+          1,
+          64,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          65
+        ],
+        "params": 8320,
+        "maccs": 532480,
+        "macc_pct": 36.26,
+        "weights_ro_fp32_bytes": 33280,
+        "weights_ro_int8_bytes": 9344,
+        "active_ram_fp32_bytes": 49920,
+        "active_ram_int8_bytes": 12480,
+        "est_cycles_fp32": 2875392,
+        "est_cycles_int8": 772096
+      },
+      {
+        "c_layer_id": 7,
+        "pytorch_name": "ds_blocks.1.block.6",
+        "st_edge_ai_fused_op": "MaxPool1d (k=2, s=2)",
+        "config": "k=2, s=2",
+        "input_shape": [
+          1,
+          128,
+          65
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "params": 0,
+        "maccs": 0,
+        "macc_pct": 0.0,
+        "weights_ro_fp32_bytes": 0,
+        "weights_ro_int8_bytes": 0,
+        "active_ram_fp32_bytes": 49664,
+        "active_ram_int8_bytes": 12416,
+        "est_cycles_fp32": 16384,
+        "est_cycles_int8": 8192
+      },
+      {
+        "c_layer_id": 8,
+        "pytorch_name": "ds_blocks.2.block.0",
+        "st_edge_ai_fused_op": "DepthwiseConv1d + ReLU (Fused in-place)",
+        "config": "128->128, k=5, groups=128",
+        "input_shape": [
+          1,
+          128,
+          32
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "params": 768,
+        "maccs": 20480,
+        "macc_pct": 1.39,
+        "weights_ro_fp32_bytes": 3072,
+        "weights_ro_int8_bytes": 1792,
+        "active_ram_fp32_bytes": 32768,
+        "active_ram_int8_bytes": 9472,
+        "est_cycles_fp32": 200704,
+        "est_cycles_int8": 95232
+      },
+      {
+        "c_layer_id": 9,
+        "pytorch_name": "ds_blocks.2.block.3",
+        "st_edge_ai_fused_op": "PointwiseConv1d + ReLU (Fused in-place)",
+        "config": "128->128, k=1, groups=1",
+        "input_shape": [
+          1,
+          128,
+          32
+        ],
+        "output_shape": [
+          1,
+          128,
+          32
+        ],
+        "params": 16512,
+        "maccs": 524288,
+        "macc_pct": 35.7,
+        "weights_ro_fp32_bytes": 66048,
+        "weights_ro_int8_bytes": 17536,
+        "active_ram_fp32_bytes": 32768,
+        "active_ram_int8_bytes": 8192,
+        "est_cycles_fp32": 2831155,
+        "est_cycles_int8": 760218
+      },
+      {
+        "c_layer_id": 10,
+        "pytorch_name": "classifier",
+        "st_edge_ai_fused_op": "AvgPool1d + Flatten + Gemm (Classifier)",
+        "config": "128->2",
+        "input_shape": [
+          1,
+          128
+        ],
+        "output_shape": [
+          1,
+          2
+        ],
+        "params": 258,
+        "maccs": 256,
+        "macc_pct": 0.02,
+        "weights_ro_fp32_bytes": 1032,
+        "weights_ro_int8_bytes": 274,
+        "active_ram_fp32_bytes": 520,
+        "active_ram_int8_bytes": 386,
+        "est_cycles_fp32": 17971,
+        "est_cycles_int8": 8730
+      }
+    ],
+    "operator_compatibility_warnings": []
+  }
+}

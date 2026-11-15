@@ -1,0 +1,45 @@
+{
+  "seed": 42,
+  "calibration_set": {
+    "source": "data/processed/train.npz",
+    "file_npy": "export\\calib_train.npy",
+    "shape": [
+      600,
+      1,
+      260
+    ],
+    "dtype": "float32",
+    "n_normal": 300,
+    "n_abnormal": 300,
+    "class_5_breakdown": {
+      "N": 300,
+      "S": 57,
+      "V": 213,
+      "F": 29,
+      "Q": 1
+    },
+    "min_val": -4.44358,
+    "max_val": 7.082849,
+    "mean_val": 0.0,
+    "std_val": 1.0
+  },
+  "host_validation_subset": {
+    "source": "data/processed/test.npz",
+    "file_npy": "export\\host_val_test500_x.npy",
+    "shape": [
+      500,
+      1,
+      260
+    ],
+    "dtype": "float32",
+    "n_normal": 250,
+    "n_abnormal": 250,
+    "class_5_breakdown": {
+      "N": 250,
+      "S": 84,
+      "V": 148,
+      "F": 17,
+      "Q": 1
+    }
+  }
+}

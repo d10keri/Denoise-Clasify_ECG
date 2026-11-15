@@ -1,0 +1,236 @@
+{
+  "M1-Reg": {
+    "42": {
+      "onnx_path": "export\\cnn1d_binary_reg_seed42_fp32.onnx",
+      "file_size_bytes": 144020,
+      "file_size_kb": 140.64,
+      "fused_mcu_params": 35458,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    },
+    "43": {
+      "onnx_path": "export\\cnn1d_binary_reg_seed43_fp32.onnx",
+      "file_size_bytes": 144020,
+      "file_size_kb": 140.64,
+      "fused_mcu_params": 35458,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    },
+    "44": {
+      "onnx_path": "export\\cnn1d_binary_reg_seed44_fp32.onnx",
+      "file_size_bytes": 144020,
+      "file_size_kb": 140.64,
+      "fused_mcu_params": 35458,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    }
+  },
+  "M2-B-KD": {
+    "42": {
+      "onnx_path": "export\\cnn1d_binary_dsB_kd_seed42_fp32.onnx",
+      "file_size_bytes": 120247,
+      "file_size_kb": 117.43,
+      "fused_mcu_params": 29058,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    },
+    "43": {
+      "onnx_path": "export\\cnn1d_binary_dsB_kd_seed43_fp32.onnx",
+      "file_size_bytes": 120247,
+      "file_size_kb": 117.43,
+      "fused_mcu_params": 29058,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    },
+    "44": {
+      "onnx_path": "export\\cnn1d_binary_dsB_kd_seed44_fp32.onnx",
+      "file_size_bytes": 120247,
+      "file_size_kb": 117.43,
+      "fused_mcu_params": 29058,
+      "opset_version": 17,
+      "input_shape": [
+        1,
+        1,
+        260
+      ],
+      "output_shape": [
+        1,
+        2
+      ],
+      "onnx_operators_in_order": [
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "MaxPool",
+        "Conv",
+        "Relu",
+        "Conv",
+        "Relu",
+        "AveragePool",
+        "Flatten",
+        "Gemm"
+      ]
+    }
+  },
+  "M1-Base-Seed42": {
+    "onnx_path": "export\\cnn1d_binary_m1_base_fp32.onnx",
+    "file_size_bytes": 144020,
+    "file_size_kb": 140.64,
+    "fused_mcu_params": 35458,
+    "opset_version": 17,
+    "input_shape": [
+      1,
+      1,
+      260
+    ],
+    "output_shape": [
+      1,
+      2
+    ],
+    "onnx_operators_in_order": [
+      "Conv",
+      "Relu",
+      "MaxPool",
+      "Conv",
+      "Relu",
+      "MaxPool",
+      "Conv",
+      "Relu",
+      "AveragePool",
+      "Flatten",
+      "Gemm"
+    ]
+  }
+}
