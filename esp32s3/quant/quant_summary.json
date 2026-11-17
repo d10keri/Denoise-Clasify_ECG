@@ -1,0 +1,4034 @@
+{
+  "b_int16": {
+    "config_key": "b_int16",
+    "description": "B: Full INT16 (w16a16, ESPDL_S3_INT16, minmax calib on 600 beats)",
+    "espdl_file": "esp32s3\\quant\\b_int16.espdl",
+    "espdl_size_bytes": 74128,
+    "espdl_size_kb": 72.39,
+    "calib_samples": 600,
+    "quant_type": "w16a16",
+    "forced_input_exponent": null,
+    "graph_input_exponents": {
+      "ecg_input": -12
+    },
+    "graph_output_exponents": {
+      "logits": -12
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 100.0,
+      "host500_cosine_sim": 0.999996,
+      "host500_max_abs_logit_diff": 0.0659,
+      "host500_mean_abs_logit_diff": 0.0008
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -25
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -14
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -25
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -15
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -26
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -15
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -26
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -14
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -17
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -31
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          }
+        ]
+      }
+    ]
+  },
+  "c0": {
+    "config_key": "c0",
+    "description": "C0: Default INT8 (w8a8, ESPDL_S3_INT8, KL calib on 600 beats)",
+    "espdl_file": "esp32s3\\quant\\c0.espdl",
+    "espdl_size_bytes": 43104,
+    "espdl_size_kb": 42.09,
+    "calib_samples": 600,
+    "quant_type": "w8a8",
+    "forced_input_exponent": null,
+    "graph_input_exponents": {
+      "ecg_input": -4
+    },
+    "graph_output_exponents": {
+      "logits": -5
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 97.0,
+      "host500_cosine_sim": 0.970298,
+      "host500_max_abs_logit_diff": 2.3384,
+      "host500_mean_abs_logit_diff": 0.2329
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -8
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -13
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -9
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -15
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      }
+    ]
+  },
+  "c1": {
+    "config_key": "c1",
+    "description": "C1: Peak-Enriched INT8 (w8a8, KL calib on 600 base + 200 high-peak V/S/F train beats)",
+    "espdl_file": "esp32s3\\quant\\c1.espdl",
+    "espdl_size_bytes": 43104,
+    "espdl_size_kb": 42.09,
+    "calib_samples": 800,
+    "quant_type": "w8a8",
+    "forced_input_exponent": null,
+    "graph_input_exponents": {
+      "ecg_input": -4
+    },
+    "graph_output_exponents": {
+      "logits": -5
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 98.2,
+      "host500_cosine_sim": 0.990797,
+      "host500_max_abs_logit_diff": 2.0259,
+      "host500_mean_abs_logit_diff": 0.128
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -10
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -8
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -13
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -9
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -15
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      }
+    ]
+  },
+  "c2a": {
+    "config_key": "c2a",
+    "description": "C2a: INT8 with Forced Input Exponent -4 (scale=0.0625, range +-7.94, 0% R-peak clipping)",
+    "espdl_file": "esp32s3\\quant\\c2a.espdl",
+    "espdl_size_bytes": 43104,
+    "espdl_size_kb": 42.09,
+    "calib_samples": 600,
+    "quant_type": "w8a8",
+    "forced_input_exponent": -4,
+    "graph_input_exponents": {
+      "ecg_input": -4
+    },
+    "graph_output_exponents": {
+      "logits": -5
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 97.0,
+      "host500_cosine_sim": 0.970298,
+      "host500_max_abs_logit_diff": 2.3384,
+      "host500_mean_abs_logit_diff": 0.2329
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -8
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -13
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -9
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -15
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      }
+    ]
+  },
+  "c2b": {
+    "config_key": "c2b",
+    "description": "C2b: INT8 with Forced Input Exponent -5 (scale=0.03125, range +-3.97, 2x finer P/T resolution)",
+    "espdl_file": "esp32s3\\quant\\c2b.espdl",
+    "espdl_size_bytes": 43104,
+    "espdl_size_kb": 42.09,
+    "calib_samples": 600,
+    "quant_type": "w8a8",
+    "forced_input_exponent": -5,
+    "graph_input_exponents": {
+      "ecg_input": -5
+    },
+    "graph_output_exponents": {
+      "logits": -5
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 97.4,
+      "host500_cosine_sim": 0.964747,
+      "host500_max_abs_logit_diff": 2.6196,
+      "host500_mean_abs_logit_diff": 0.2379
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -8
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -13
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -9
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -15
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      }
+    ]
+  },
+  "c3": {
+    "config_key": "c3",
+    "description": "C3: Mixed Precision INT16+INT8 (Stem Conv1+MaxPool1 & Final Gemm in INT16, middle DS blocks in INT8, peak-enriched calib)",
+    "espdl_file": "esp32s3\\quant\\c3.espdl",
+    "espdl_size_bytes": 45184,
+    "espdl_size_kb": 44.12,
+    "calib_samples": 800,
+    "quant_type": "w8a8",
+    "forced_input_exponent": null,
+    "graph_input_exponents": {
+      "ecg_input": -12
+    },
+    "graph_output_exponents": {
+      "logits": -12
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 99.6,
+      "host500_cosine_sim": 0.992078,
+      "host500_max_abs_logit_diff": 1.9937,
+      "host500_mean_abs_logit_diff": 0.0835
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -25
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -10
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -9
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -5
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -8
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 20,
+            "state": "PASSIVE",
+            "exponent": -13
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -4
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -4
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_INT8",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 8,
+            "state": "OVERLAPPED",
+            "exponent": -6
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_INT16",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -14
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -17
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -31
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          }
+        ]
+      }
+    ]
+  },
+  "c_w8a16": {
+    "config_key": "c_w8a16",
+    "description": "C_W8A16: 8-bit Weights + 16-bit Activations (ESPDL_S3_W8A16, full 16-bit wave dynamic range)",
+    "espdl_file": "esp32s3\\quant\\c_w8a16.espdl",
+    "espdl_size_bytes": 47056,
+    "espdl_size_kb": 45.95,
+    "calib_samples": 600,
+    "quant_type": "w8a16",
+    "forced_input_exponent": null,
+    "graph_input_exponents": {
+      "ecg_input": -12
+    },
+    "graph_output_exponents": {
+      "logits": -12
+    },
+    "sanity_host500": {
+      "host500_agree_vs_fp32_pct": 99.4,
+      "host500_cosine_sim": 0.999574,
+      "host500_max_abs_logit_diff": 0.1582,
+      "host500_mean_abs_logit_diff": 0.043
+    },
+    "operations": [
+      {
+        "name": "/features/features.0/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "ecg_input",
+            "is_param": false,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          },
+          {
+            "var": "features.0.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -5
+          },
+          {
+            "var": "features.0.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -17
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.1/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.0/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.2/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.1/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.3/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.2/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.3.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.3.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.4/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.3/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.5/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.4/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.5.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -6
+          },
+          {
+            "var": "features.5.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -17
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.6/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.5/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.7/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.6/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.8/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.7/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.8.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.8.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.9/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.8/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.10/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.9/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.10.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.10.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -18
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.11/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.10/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.12/MaxPool",
+        "type": "MaxPool",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.11/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.13/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.12/MaxPool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.13.weight",
+            "is_param": true,
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -13
+          },
+          {
+            "var": "features.13.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -24
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.14/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.13/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.15/Conv",
+        "type": "Conv",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.14/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          },
+          {
+            "var": "features.15.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -7
+          },
+          {
+            "var": "features.15.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -18
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/features/features.16/Relu",
+        "type": "Relu",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.15/Conv_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -11
+          }
+        ]
+      },
+      {
+        "name": "/avg_pool/AveragePool",
+        "type": "AveragePool",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/features/features.16/Relu_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -11
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -14
+          }
+        ]
+      },
+      {
+        "name": "/flatten/Flatten",
+        "type": "Flatten",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/avg_pool/AveragePool_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          }
+        ],
+        "outputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          }
+        ]
+      },
+      {
+        "name": "/classifier/Gemm",
+        "type": "Gemm",
+        "platform": "ESPDL_S3_W8A16",
+        "inputs": [
+          {
+            "var": "/flatten/Flatten_output_0",
+            "is_param": false,
+            "bits": 16,
+            "state": "OVERLAPPED",
+            "exponent": -14
+          },
+          {
+            "var": "classifier.weight",
+            "is_param": true,
+            "bits": 8,
+            "state": "ACTIVATED",
+            "exponent": -9
+          },
+          {
+            "var": "classifier.bias",
+            "is_param": true,
+            "bits": 40,
+            "state": "PASSIVE",
+            "exponent": -23
+          }
+        ],
+        "outputs": [
+          {
+            "var": "logits",
+            "bits": 16,
+            "state": "ACTIVATED",
+            "exponent": -12
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,329 @@
+
+================================================================================
+CONFIG b_int16: B: Full INT16 (w16a16, ESPDL_S3_INT16, minmax calib on 600 beats)
+================================================================================
+[15:52:32] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:32] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:32] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:32] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:32] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:33] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:33] PPQ Passive Parameter Quantization Running ... Finished.
+[15:52:33] ESPDL LUT Fusion Pass Running ...              Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ███████████████████  | 0.000%
+/features/features.15/Conv: | ████████████         | 0.000%
+/features/features.10/Conv: | ███████████          | 0.000%
+/features/features.8/Conv:  | ██████████           | 0.000%
+/features/features.5/Conv:  | ████                 | 0.000%
+/classifier/Gemm:           | ████                 | 0.000%
+/features/features.3/Conv:  | █                    | 0.000%
+/features/features.0/Conv:  |                      | 0.000%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ███████████          | 0.000%
+/features/features.3/Conv:  | ██                   | 0.000%
+/features/features.8/Conv:  | █                    | 0.000%
+/classifier/Gemm:           | █                    | 0.000%
+/features/features.5/Conv:  |                      | 0.000%
+/features/features.10/Conv: |                      | 0.000%
+/features/features.13/Conv: |                      | 0.000%
+/features/features.15/Conv: |                      | 0.000%
+
+
+================================================================================
+CONFIG c0: C0: Default INT8 (w8a8, ESPDL_S3_INT8, KL calib on 600 beats)
+================================================================================
+[15:52:35] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:35] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:35] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:35] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:35] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:36] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:36] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 7.151%
+/classifier/Gemm:           | ████████████████████ | 7.020%
+/features/features.10/Conv: | █████████████████    | 6.118%
+/features/features.15/Conv: | ████████████████     | 5.765%
+/features/features.8/Conv:  | ████████████████     | 5.726%
+/features/features.5/Conv:  | ████████████         | 4.506%
+/features/features.3/Conv:  | █                    | 0.495%
+/features/features.0/Conv:  |                      | 0.277%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.715%
+/features/features.3/Conv:  | ██                   | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+
+================================================================================
+CONFIG c1: C1: Peak-Enriched INT8 (w8a8, KL calib on 600 base + 200 high-peak V/S/F train beats)
+================================================================================
+[15:52:38] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:38] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:38] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:38] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:38] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:39] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:39] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 3.550%
+/features/features.15/Conv: | ██████████████       | 2.558%
+/features/features.10/Conv: | █████████████        | 2.479%
+/features/features.8/Conv:  | ████████████         | 2.310%
+/features/features.5/Conv:  | ██████               | 1.317%
+/classifier/Gemm:           | ██████               | 1.239%
+/features/features.3/Conv:  | █                    | 0.495%
+/features/features.0/Conv:  |                      | 0.277%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.715%
+/features/features.3/Conv:  | ██                   | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+
+================================================================================
+CONFIG c2a: C2a: INT8 with Forced Input Exponent -4 (scale=0.0625, range +-7.94, 0% R-peak clipping)
+================================================================================
+[15:52:41] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:41] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:41] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:41] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:41] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:41] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:41] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 7.151%
+/classifier/Gemm:           | ████████████████████ | 7.020%
+/features/features.10/Conv: | █████████████████    | 6.118%
+/features/features.15/Conv: | ████████████████     | 5.765%
+/features/features.8/Conv:  | ████████████████     | 5.726%
+/features/features.5/Conv:  | ████████████         | 4.506%
+/features/features.3/Conv:  | █                    | 0.495%
+/features/features.0/Conv:  |                      | 0.277%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.715%
+/features/features.3/Conv:  | ██                   | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+--- Error Report After Forcing Input Exponent = -4 ---
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 7.151%
+/classifier/Gemm:           | ████████████████████ | 7.020%
+/features/features.10/Conv: | █████████████████    | 6.118%
+/features/features.15/Conv: | ████████████████     | 5.765%
+/features/features.8/Conv:  | ████████████████     | 5.726%
+/features/features.5/Conv:  | ████████████         | 4.506%
+/features/features.3/Conv:  | █                    | 0.495%
+/features/features.0/Conv:  |                      | 0.277%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.715%
+/features/features.3/Conv:  | ██                   | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+
+================================================================================
+CONFIG c2b: C2b: INT8 with Forced Input Exponent -5 (scale=0.03125, range +-3.97, 2x finer P/T resolution)
+================================================================================
+[15:52:45] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:45] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:45] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:45] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:45] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:45] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:45] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 7.151%
+/classifier/Gemm:           | ████████████████████ | 7.020%
+/features/features.10/Conv: | █████████████████    | 6.118%
+/features/features.15/Conv: | ████████████████     | 5.765%
+/features/features.8/Conv:  | ████████████████     | 5.726%
+/features/features.5/Conv:  | ████████████         | 4.506%
+/features/features.3/Conv:  | █                    | 0.495%
+/features/features.0/Conv:  |                      | 0.277%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.715%
+/features/features.3/Conv:  | ██                   | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+--- Error Report After Forcing Input Exponent = -5 ---
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/classifier/Gemm:           | ████████████████████ | 32.624%
+/features/features.13/Conv: | █████                | 9.154%
+/features/features.15/Conv: | ████                 | 8.676%
+/features/features.8/Conv:  | ████                 | 8.043%
+/features/features.10/Conv: | ████                 | 7.593%
+/features/features.5/Conv:  | ███                  | 6.725%
+/features/features.3/Conv:  |                      | 2.584%
+/features/features.0/Conv:  |                      | 2.115%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 49.562%
+/features/features.3/Conv:  |                      | 0.064%
+/features/features.5/Conv:  |                      | 0.018%
+/features/features.8/Conv:  |                      | 0.014%
+/classifier/Gemm:           |                      | 0.012%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+
+
+================================================================================
+CONFIG c3: C3: Mixed Precision INT16+INT8 (Stem Conv1+MaxPool1 & Final Gemm in INT16, middle DS blocks in INT8, peak-enriched calib)
+================================================================================
+[15:52:49] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:49] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:49] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:49] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:49] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:50] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:50] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [20]
+OVERLAPPED:                   [28]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 1.618%
+/features/features.15/Conv: | ████████████████     | 1.297%
+/features/features.10/Conv: | █████████████        | 1.036%
+/features/features.8/Conv:  | ████████████         | 0.931%
+/classifier/Gemm:           | ███████              | 0.534%
+/features/features.5/Conv:  | ██████               | 0.453%
+/features/features.3/Conv:  | ██                   | 0.148%
+/features/features.0/Conv:  |                      | 0.000%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.3/Conv:  | ████████████████████ | 0.218%
+/features/features.5/Conv:  | ██                   | 0.018%
+/features/features.8/Conv:  | █                    | 0.014%
+/features/features.10/Conv: | █                    | 0.006%
+/features/features.13/Conv: |                      | 0.004%
+/features/features.15/Conv: |                      | 0.000%
+/features/features.0/Conv:  |                      | 0.000%
+/classifier/Gemm:           |                      | 0.000%
+
+
+================================================================================
+CONFIG c_w8a16: C_W8A16: 8-bit Weights + 16-bit Activations (ESPDL_S3_W8A16, full 16-bit wave dynamic range)
+================================================================================
+[15:52:51] ConvTranspose Decomposition Pass Running ... Finished.
+[15:52:52] PPQ Quantization Fusion Pass Running ...       Finished.
+[15:52:52] PPQ Quantize Simplify Pass Running ...         Finished.
+[15:52:52] PPQ Parameter Quantization Pass Running ...    Finished.
+[15:52:52] PPQ Runtime Calibration Pass Running ...       Finished.
+[15:52:52] PPQ Quantization Alignment Pass Running ...    Finished.
+[15:52:52] PPQ Passive Parameter Quantization Running ... Finished.
+[15:52:52] ESPDL LUT Fusion Pass Running ...              Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [20]
+Num of Quantized Op:          [20]
+Num of Variable:              [37]
+Num of Quantized Var:         [37]
+------- Quantization Snapshot ------
+Num of Quant Config:          [56]
+ACTIVATED:                    [18]
+OVERLAPPED:                   [30]
+PASSIVE:                      [8]
+Network Quantization Finished.
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.13/Conv: | ████████████████████ | 0.379%
+/features/features.10/Conv: | ██████████████       | 0.301%
+/features/features.15/Conv: | ██████████████       | 0.290%
+/classifier/Gemm:           | ████████████         | 0.271%
+/features/features.8/Conv:  | ██████████           | 0.237%
+/features/features.5/Conv:  | ███████              | 0.205%
+/features/features.3/Conv:  |                      | 0.105%
+/features/features.0/Conv:  |                      | 0.105%
+Layer                       | NOISE:SIGNAL POWER RATIO 
+/features/features.0/Conv:  | ████████████████████ | 0.237%
+/features/features.5/Conv:  | █                    | 0.018%
+/features/features.10/Conv: |                      | 0.006%
+/features/features.15/Conv: |                      | 0.002%
+/classifier/Gemm:           |                      | 0.000%
+/features/features.3/Conv:  |                      | 0.000%
+/features/features.8/Conv:  |                      | 0.000%
+/features/features.13/Conv: |                      | 0.000%
+
