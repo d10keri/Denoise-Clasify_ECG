@@ -1,0 +1,1181 @@
+{
+  "phase": "A - Model Weights & ESP32-S3 Capability Assessment",
+  "gate_a_evaluation": {
+    "memory_fit_pass": true,
+    "sram_no_psram_pass": true,
+    "operator_compat_pass": true,
+    "int8_latency_under_10ms_pass": true,
+    "overall_gate_a_pass": true
+  },
+  "model_analysis": {
+    "model_name": "M2-B-KD (CNN1DBinaryDS, G=1, D=2)",
+    "onnx_file": "export\\cnn1d_binary_dsB_kd_fp32.onnx",
+    "input_shape": [
+      1,
+      1,
+      260
+    ],
+    "output_shape": [
+      1,
+      2
+    ],
+    "total_params": 29058,
+    "total_weight_params": 28480,
+    "total_bias_params": 578,
+    "total_macs": 1497472,
+    "mac_breakdown": {
+      "pointwise_conv_macs": 1323008,
+      "pointwise_conv_pct": 88.35,
+      "depthwise_conv_macs": 87040,
+      "depthwise_conv_pct": 5.81,
+      "standard_conv1_macs": 58240,
+      "standard_conv1_pct": 3.89,
+      "gemm_macs": 256,
+      "gemm_pct": 0.02,
+      "pooling_ops": 28928,
+      "pooling_pct": 1.93
+    },
+    "pie_alignment": {
+      "int8_16lane_aligned_macs": 1410304,
+      "int8_16lane_aligned_pct": 94.18,
+      "int16_8lane_aligned_macs": 1410304,
+      "int16_8lane_aligned_pct": 94.18
+    },
+    "memory_footprint": {
+      "esp32s3_flash_limit_kb": 16384.0,
+      "esp32s3_internal_sram_total_kb": 512.0,
+      "esp32s3_internal_sram_usable_kb": 320.0,
+      "esp32s3_psram_limit_kb": 8192.0,
+      "flash_weights_kb": {
+        "fp32": 113.51,
+        "int16": 59.38,
+        "int8": 32.57
+      },
+      "peak_pingpong_activation_layer": "/features/features.2/MaxPool (MaxPool1d (k=2))",
+      "peak_pingpong_elements": 12480,
+      "peak_pingpong_ram_kb": {
+        "fp32": 48.75,
+        "int16": 24.38,
+        "int8": 12.19
+      },
+      "total_activation_arena_with_io_kb": {
+        "fp32": 50.77,
+        "int16": 25.88,
+        "int8": 13.44
+      },
+      "psram_required": false
+    },
+    "latency_estimate_240mhz": {
+      "cpu_freq_mhz": 240,
+      "note": "[ước tính lý thuyết] Dựa trên MACC và hiệu suất giả định 15-30% của PIE SIMD / FPU trên Xtensa LX7 @ 240MHz. Thời gian thật chỉ đo trên board.",
+      "fp32_scalar_c": {
+        "assumed_mac_per_cycle": [
+          0.25,
+          0.5
+        ],
+        "cycles_range": [
+          2994944,
+          5989888
+        ],
+        "latency_ms_range": [
+          12.48,
+          24.96
+        ]
+      },
+      "int16_pie_8lane": {
+        "peak_mac_per_cycle": 8,
+        "assumed_efficiency": [
+          0.15,
+          0.3
+        ],
+        "cycles_range": [
+          623946,
+          1247893
+        ],
+        "latency_ms_range": [
+          2.6,
+          5.2
+        ]
+      },
+      "int8_pie_16lane": {
+        "peak_mac_per_cycle": 16,
+        "assumed_efficiency": [
+          0.15,
+          0.3
+        ],
+        "cycles_range": [
+          311973,
+          623946
+        ],
+        "latency_ms_range": [
+          1.3,
+          2.6
+        ]
+      }
+    },
+    "layers": [
+      {
+        "index": 1,
+        "name": "/features/features.0/Conv",
+        "op_type": "Conv",
+        "subtype": "StandardConv1d (k=7)",
+        "in_shape": [
+          1,
+          1,
+          260
+        ],
+        "out_shape": [
+          1,
+          32,
+          260
+        ],
+        "weight_shape": [
+          32,
+          1,
+          7
+        ],
+        "bias_shape": [
+          32
+        ],
+        "kernel_size": 7,
+        "groups": 1,
+        "params": 256,
+        "weight_params": 224,
+        "bias_params": 32,
+        "macs": 58240,
+        "in_elems": 260,
+        "out_elems": 8320,
+        "ping_pong_elems": 8580,
+        "int8_in_aligned_16": false,
+        "int8_out_aligned_16": true,
+        "pie_note": "in_ch=1 (unaligned input), out_ch=32 (16-aligned); low SIMD utilization on input reduction",
+        "weight_analysis": {
+          "min": -3.57861,
+          "max": 3.61018,
+          "abs_max": 3.61018,
+          "mean": 0.01016,
+          "std": 0.84722,
+          "p99_abs": 2.76139,
+          "outlier_ratio_max_over_p99": 1.31,
+          "int8_pow2_per_tensor": {
+            "abs_max": 3.610183,
+            "exponent": -5,
+            "scale": 0.03125,
+            "sqnr_db": 38.82,
+            "max_quant_err": 0.01529,
+            "zero_fraction_after_quant": 0.0179
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 45.51,
+            "max_quant_err": 0.015144,
+            "exponent_min": -9,
+            "exponent_max": -5,
+            "channel_absmax_ratio": 15.94
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 3.610183,
+            "exponent": -13,
+            "scale": 0.0001220703125,
+            "sqnr_db": 88.13,
+            "max_quant_err": 6.1e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -0.15801,
+          "bias_max": 0.07098,
+          "bias_abs_max": 0.15801
+        },
+        "mac_pct": 3.89
+      },
+      {
+        "index": 2,
+        "name": "/features/features.1/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          32,
+          260
+        ],
+        "out_shape": [
+          1,
+          32,
+          260
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 8320,
+        "out_elems": 8320,
+        "ping_pong_elems": 8320,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 3,
+        "name": "/features/features.2/MaxPool",
+        "op_type": "MaxPool",
+        "subtype": "MaxPool1d (k=2)",
+        "in_shape": [
+          1,
+          32,
+          260
+        ],
+        "out_shape": [
+          1,
+          32,
+          130
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 2,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 8320,
+        "in_elems": 8320,
+        "out_elems": 4160,
+        "ping_pong_elems": 12480,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.56
+      },
+      {
+        "index": 4,
+        "name": "/features/features.3/Conv",
+        "op_type": "Conv",
+        "subtype": "DepthwiseConv1d (k=9, g=32)",
+        "in_shape": [
+          1,
+          32,
+          130
+        ],
+        "out_shape": [
+          1,
+          32,
+          130
+        ],
+        "weight_shape": [
+          32,
+          1,
+          9
+        ],
+        "bias_shape": [
+          32
+        ],
+        "kernel_size": 9,
+        "groups": 32,
+        "params": 320,
+        "weight_params": 288,
+        "bias_params": 32,
+        "macs": 37440,
+        "in_elems": 4160,
+        "out_elems": 4160,
+        "ping_pong_elems": 8320,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Vectorizes across 32 channels (multiple of 16: True)",
+        "weight_analysis": {
+          "min": -2.17117,
+          "max": 1.8558,
+          "abs_max": 2.17117,
+          "mean": -0.03601,
+          "std": 0.66938,
+          "p99_abs": 1.77014,
+          "outlier_ratio_max_over_p99": 1.23,
+          "int8_pow2_per_tensor": {
+            "abs_max": 2.171166,
+            "exponent": -5,
+            "scale": 0.03125,
+            "sqnr_db": 37.57,
+            "max_quant_err": 0.015607,
+            "zero_fraction_after_quant": 0.0035
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 44.35,
+            "max_quant_err": 0.014916,
+            "exponent_min": -8,
+            "exponent_max": -5,
+            "channel_absmax_ratio": 5.55
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 2.171166,
+            "exponent": -13,
+            "scale": 0.0001220703125,
+            "sqnr_db": 85.72,
+            "max_quant_err": 6.1e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -0.80633,
+          "bias_max": 0.66457,
+          "bias_abs_max": 0.80633
+        },
+        "mac_pct": 2.5
+      },
+      {
+        "index": 5,
+        "name": "/features/features.4/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          32,
+          130
+        ],
+        "out_shape": [
+          1,
+          32,
+          130
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 4160,
+        "out_elems": 4160,
+        "ping_pong_elems": 4160,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 6,
+        "name": "/features/features.5/Conv",
+        "op_type": "Conv",
+        "subtype": "PointwiseConv1d (1x1)",
+        "in_shape": [
+          1,
+          32,
+          130
+        ],
+        "out_shape": [
+          1,
+          64,
+          130
+        ],
+        "weight_shape": [
+          64,
+          32,
+          1
+        ],
+        "bias_shape": [
+          64
+        ],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 2112,
+        "weight_params": 2048,
+        "bias_params": 64,
+        "macs": 266240,
+        "in_elems": 4160,
+        "out_elems": 8320,
+        "ping_pong_elems": 12480,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "in_ch=32, out_ch=64 (100% 16-lane INT8 & 8-lane INT16 aligned)",
+        "weight_analysis": {
+          "min": -1.23594,
+          "max": 1.16894,
+          "abs_max": 1.23594,
+          "mean": 0.00492,
+          "std": 0.3558,
+          "p99_abs": 0.91249,
+          "outlier_ratio_max_over_p99": 1.35,
+          "int8_pow2_per_tensor": {
+            "abs_max": 1.235936,
+            "exponent": -6,
+            "scale": 0.015625,
+            "sqnr_db": 37.89,
+            "max_quant_err": 0.007812,
+            "zero_fraction_after_quant": 0.0142
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 43.23,
+            "max_quant_err": 0.007793,
+            "exponent_min": -8,
+            "exponent_max": -6,
+            "channel_absmax_ratio": 3.26
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 1.235936,
+            "exponent": -14,
+            "scale": 6.103515625e-05,
+            "sqnr_db": 85.99,
+            "max_quant_err": 3.1e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -1.55196,
+          "bias_max": 1.38291,
+          "bias_abs_max": 1.55196
+        },
+        "mac_pct": 17.78
+      },
+      {
+        "index": 7,
+        "name": "/features/features.6/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          64,
+          130
+        ],
+        "out_shape": [
+          1,
+          64,
+          130
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 8320,
+        "out_elems": 8320,
+        "ping_pong_elems": 8320,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 8,
+        "name": "/features/features.7/MaxPool",
+        "op_type": "MaxPool",
+        "subtype": "MaxPool1d (k=2)",
+        "in_shape": [
+          1,
+          64,
+          130
+        ],
+        "out_shape": [
+          1,
+          64,
+          65
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 2,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 8320,
+        "in_elems": 8320,
+        "out_elems": 4160,
+        "ping_pong_elems": 12480,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.56
+      },
+      {
+        "index": 9,
+        "name": "/features/features.8/Conv",
+        "op_type": "Conv",
+        "subtype": "DepthwiseConv1d (k=7, g=64)",
+        "in_shape": [
+          1,
+          64,
+          65
+        ],
+        "out_shape": [
+          1,
+          64,
+          65
+        ],
+        "weight_shape": [
+          64,
+          1,
+          7
+        ],
+        "bias_shape": [
+          64
+        ],
+        "kernel_size": 7,
+        "groups": 64,
+        "params": 512,
+        "weight_params": 448,
+        "bias_params": 64,
+        "macs": 29120,
+        "in_elems": 4160,
+        "out_elems": 4160,
+        "ping_pong_elems": 8320,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Vectorizes across 64 channels (multiple of 16: True)",
+        "weight_analysis": {
+          "min": -2.88764,
+          "max": 3.21261,
+          "abs_max": 3.21261,
+          "mean": 0.00362,
+          "std": 0.74575,
+          "p99_abs": 2.38782,
+          "outlier_ratio_max_over_p99": 1.35,
+          "int8_pow2_per_tensor": {
+            "abs_max": 3.212606,
+            "exponent": -5,
+            "scale": 0.03125,
+            "sqnr_db": 38.45,
+            "max_quant_err": 0.015586,
+            "zero_fraction_after_quant": 0.0134
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 45.48,
+            "max_quant_err": 0.015463,
+            "exponent_min": -8,
+            "exponent_max": -5,
+            "channel_absmax_ratio": 10.42
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 3.212606,
+            "exponent": -13,
+            "scale": 0.0001220703125,
+            "sqnr_db": 86.35,
+            "max_quant_err": 6.1e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -1.13206,
+          "bias_max": 0.87847,
+          "bias_abs_max": 1.13206
+        },
+        "mac_pct": 1.94
+      },
+      {
+        "index": 10,
+        "name": "/features/features.9/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          64,
+          65
+        ],
+        "out_shape": [
+          1,
+          64,
+          65
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 4160,
+        "out_elems": 4160,
+        "ping_pong_elems": 4160,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 11,
+        "name": "/features/features.10/Conv",
+        "op_type": "Conv",
+        "subtype": "PointwiseConv1d (1x1)",
+        "in_shape": [
+          1,
+          64,
+          65
+        ],
+        "out_shape": [
+          1,
+          128,
+          65
+        ],
+        "weight_shape": [
+          128,
+          64,
+          1
+        ],
+        "bias_shape": [
+          128
+        ],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 8320,
+        "weight_params": 8192,
+        "bias_params": 128,
+        "macs": 532480,
+        "in_elems": 4160,
+        "out_elems": 8320,
+        "ping_pong_elems": 12480,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "in_ch=64, out_ch=128 (100% 16-lane INT8 & 8-lane INT16 aligned)",
+        "weight_analysis": {
+          "min": -0.71007,
+          "max": 0.58814,
+          "abs_max": 0.71007,
+          "mean": -0.0034,
+          "std": 0.16456,
+          "p99_abs": 0.418,
+          "outlier_ratio_max_over_p99": 1.7,
+          "int8_pow2_per_tensor": {
+            "abs_max": 0.710074,
+            "exponent": -7,
+            "scale": 0.0078125,
+            "sqnr_db": 37.34,
+            "max_quant_err": 0.003906,
+            "zero_fraction_after_quant": 0.0182
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 41.81,
+            "max_quant_err": 0.003905,
+            "exponent_min": -9,
+            "exponent_max": -7,
+            "channel_absmax_ratio": 3.4
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 0.710074,
+            "exponent": -15,
+            "scale": 3.0517578125e-05,
+            "sqnr_db": 85.44,
+            "max_quant_err": 1.5e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -1.58381,
+          "bias_max": 0.8277,
+          "bias_abs_max": 1.58381
+        },
+        "mac_pct": 35.56
+      },
+      {
+        "index": 12,
+        "name": "/features/features.11/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          128,
+          65
+        ],
+        "out_shape": [
+          1,
+          128,
+          65
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 8320,
+        "out_elems": 8320,
+        "ping_pong_elems": 8320,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 13,
+        "name": "/features/features.12/MaxPool",
+        "op_type": "MaxPool",
+        "subtype": "MaxPool1d (k=2)",
+        "in_shape": [
+          1,
+          128,
+          65
+        ],
+        "out_shape": [
+          1,
+          128,
+          32
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 2,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 8192,
+        "in_elems": 8320,
+        "out_elems": 4096,
+        "ping_pong_elems": 12416,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.55
+      },
+      {
+        "index": 14,
+        "name": "/features/features.13/Conv",
+        "op_type": "Conv",
+        "subtype": "DepthwiseConv1d (k=5, g=128)",
+        "in_shape": [
+          1,
+          128,
+          32
+        ],
+        "out_shape": [
+          1,
+          128,
+          32
+        ],
+        "weight_shape": [
+          128,
+          1,
+          5
+        ],
+        "bias_shape": [
+          128
+        ],
+        "kernel_size": 5,
+        "groups": 128,
+        "params": 768,
+        "weight_params": 640,
+        "bias_params": 128,
+        "macs": 20480,
+        "in_elems": 4096,
+        "out_elems": 4096,
+        "ping_pong_elems": 8192,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Vectorizes across 128 channels (multiple of 16: True)",
+        "weight_analysis": {
+          "min": -3.1866,
+          "max": 2.99009,
+          "abs_max": 3.1866,
+          "mean": 0.05202,
+          "std": 0.85553,
+          "p99_abs": 2.42028,
+          "outlier_ratio_max_over_p99": 1.32,
+          "int8_pow2_per_tensor": {
+            "abs_max": 3.186602,
+            "exponent": -5,
+            "scale": 0.03125,
+            "sqnr_db": 39.66,
+            "max_quant_err": 0.015613,
+            "zero_fraction_after_quant": 0.0094
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 46.07,
+            "max_quant_err": 0.014868,
+            "exponent_min": -8,
+            "exponent_max": -5,
+            "channel_absmax_ratio": 9.01
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 3.186602,
+            "exponent": -13,
+            "scale": 0.0001220703125,
+            "sqnr_db": 87.5,
+            "max_quant_err": 6.1e-05,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -1.35032,
+          "bias_max": 1.2022,
+          "bias_abs_max": 1.35032
+        },
+        "mac_pct": 1.37
+      },
+      {
+        "index": 15,
+        "name": "/features/features.14/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          128,
+          32
+        ],
+        "out_shape": [
+          1,
+          128,
+          32
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 4096,
+        "out_elems": 4096,
+        "ping_pong_elems": 4096,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 16,
+        "name": "/features/features.15/Conv",
+        "op_type": "Conv",
+        "subtype": "PointwiseConv1d (1x1)",
+        "in_shape": [
+          1,
+          128,
+          32
+        ],
+        "out_shape": [
+          1,
+          128,
+          32
+        ],
+        "weight_shape": [
+          128,
+          128,
+          1
+        ],
+        "bias_shape": [
+          128
+        ],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 16512,
+        "weight_params": 16384,
+        "bias_params": 128,
+        "macs": 524288,
+        "in_elems": 4096,
+        "out_elems": 4096,
+        "ping_pong_elems": 8192,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "in_ch=128, out_ch=128 (100% 16-lane INT8 & 8-lane INT16 aligned)",
+        "weight_analysis": {
+          "min": -0.50681,
+          "max": 0.48484,
+          "abs_max": 0.50681,
+          "mean": -0.00136,
+          "std": 0.11748,
+          "p99_abs": 0.32782,
+          "outlier_ratio_max_over_p99": 1.55,
+          "int8_pow2_per_tensor": {
+            "abs_max": 0.506814,
+            "exponent": -7,
+            "scale": 0.0078125,
+            "sqnr_db": 34.31,
+            "max_quant_err": 0.003906,
+            "zero_fraction_after_quant": 0.0272
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 41.07,
+            "max_quant_err": 0.003895,
+            "exponent_min": -9,
+            "exponent_max": -7,
+            "channel_absmax_ratio": 3.57
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 0.506814,
+            "exponent": -15,
+            "scale": 3.0517578125e-05,
+            "sqnr_db": 82.43,
+            "max_quant_err": 1.5e-05,
+            "zero_fraction_after_quant": 0.0001
+          },
+          "bias_min": -1.51932,
+          "bias_max": 2.34314,
+          "bias_abs_max": 2.34314
+        },
+        "mac_pct": 35.01
+      },
+      {
+        "index": 17,
+        "name": "/features/features.16/Relu",
+        "op_type": "Relu",
+        "subtype": "ReLU (in-place fused)",
+        "in_shape": [
+          1,
+          128,
+          32
+        ],
+        "out_shape": [
+          1,
+          128,
+          32
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 4096,
+        "out_elems": 4096,
+        "ping_pong_elems": 4096,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 18,
+        "name": "/avg_pool/AveragePool",
+        "op_type": "AveragePool",
+        "subtype": "AveragePool1d (k=32)",
+        "in_shape": [
+          1,
+          128,
+          32
+        ],
+        "out_shape": [
+          1,
+          128,
+          1
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 32,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 4096,
+        "in_elems": 4096,
+        "out_elems": 128,
+        "ping_pong_elems": 4224,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.27
+      },
+      {
+        "index": 19,
+        "name": "/flatten/Flatten",
+        "op_type": "Flatten",
+        "subtype": "Flatten (zero-copy view)",
+        "in_shape": [
+          1,
+          128,
+          1
+        ],
+        "out_shape": [
+          1,
+          128
+        ],
+        "weight_shape": [],
+        "bias_shape": [],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 0,
+        "weight_params": 0,
+        "bias_params": 0,
+        "macs": 0,
+        "in_elems": 128,
+        "out_elems": 128,
+        "ping_pong_elems": 128,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": true,
+        "pie_note": "Non-MAC / activation / pooling layer",
+        "weight_analysis": null,
+        "mac_pct": 0.0
+      },
+      {
+        "index": 20,
+        "name": "/classifier/Gemm",
+        "op_type": "Gemm",
+        "subtype": "Linear / Gemm",
+        "in_shape": [
+          1,
+          128
+        ],
+        "out_shape": [
+          1,
+          2
+        ],
+        "weight_shape": [
+          2,
+          128
+        ],
+        "bias_shape": [
+          2
+        ],
+        "kernel_size": 1,
+        "groups": 1,
+        "params": 258,
+        "weight_params": 256,
+        "bias_params": 2,
+        "macs": 256,
+        "in_elems": 128,
+        "out_elems": 2,
+        "ping_pong_elems": 130,
+        "int8_in_aligned_16": true,
+        "int8_out_aligned_16": false,
+        "pie_note": "in_features=128 (16-aligned dot-product), out_features=2",
+        "weight_analysis": {
+          "min": -0.13467,
+          "max": 0.13605,
+          "abs_max": 0.13605,
+          "mean": -0.00611,
+          "std": 0.07843,
+          "p99_abs": 0.13433,
+          "outlier_ratio_max_over_p99": 1.01,
+          "int8_pow2_per_tensor": {
+            "abs_max": 0.136046,
+            "exponent": -9,
+            "scale": 0.001953125,
+            "sqnr_db": 42.7,
+            "max_quant_err": 0.000965,
+            "zero_fraction_after_quant": 0.0078
+          },
+          "int8_pow2_per_channel": {
+            "sqnr_db": 42.7,
+            "max_quant_err": 0.000965,
+            "exponent_min": -9,
+            "exponent_max": -9,
+            "channel_absmax_ratio": 1.01
+          },
+          "int16_pow2_per_tensor": {
+            "abs_max": 0.136046,
+            "exponent": -17,
+            "scale": 7.62939453125e-06,
+            "sqnr_db": 91.08,
+            "max_quant_err": 4e-06,
+            "zero_fraction_after_quant": 0.0
+          },
+          "bias_min": -0.04381,
+          "bias_max": 0.02085,
+          "bias_abs_max": 0.04381
+        },
+        "mac_pct": 0.02
+      }
+    ]
+  },
+  "amplitude_analysis": {
+    "calib_shape": [
+      600,
+      1,
+      260
+    ],
+    "global_min": -4.44358,
+    "global_max": 7.08285,
+    "global_abs_max": 7.08285,
+    "abs_percentiles": {
+      "p50": 0.3819,
+      "p90": 1.3929,
+      "p99": 3.943,
+      "p99_9": 5.9523,
+      "p99_99": 6.7596,
+      "p100": 7.0828
+    },
+    "per_beat_absmax_percentiles": {
+      "p01": 2.2744,
+      "p50": 4.0123,
+      "p95": 6.4308,
+      "p99": 6.864,
+      "p100": 7.0828
+    },
+    "int8_exponent_tradeoff": [
+      {
+        "exponent": -3,
+        "step_size_scale": 0.125,
+        "max_representable_abs": 15.875,
+        "pt_wave_0p3_levels": 2,
+        "clipped_samples_pct": 0.0,
+        "clipped_beats_pct": 0.0,
+        "overall_sqnr_db": 28.85
+      },
+      {
+        "exponent": -4,
+        "step_size_scale": 0.0625,
+        "max_representable_abs": 7.9375,
+        "pt_wave_0p3_levels": 5,
+        "clipped_samples_pct": 0.0,
+        "clipped_beats_pct": 0.0,
+        "overall_sqnr_db": 34.89
+      },
+      {
+        "exponent": -5,
+        "step_size_scale": 0.03125,
+        "max_representable_abs": 3.9688,
+        "pt_wave_0p3_levels": 10,
+        "clipped_samples_pct": 0.9795,
+        "clipped_beats_pct": 52.17,
+        "overall_sqnr_db": 19.06
+      },
+      {
+        "exponent": -6,
+        "step_size_scale": 0.015625,
+        "max_representable_abs": 1.9844,
+        "pt_wave_0p3_levels": 19,
+        "clipped_samples_pct": 6.5545,
+        "clipped_beats_pct": 99.67,
+        "overall_sqnr_db": 9.0
+      }
+    ],
+    "int16_input_pow2": {
+      "abs_max": 7.082849,
+      "exponent": -12,
+      "scale": 0.000244140625,
+      "sqnr_db": 83.04,
+      "max_quant_err": 0.000122,
+      "zero_fraction_after_quant": 0.0002
+    }
+  },
+  "operator_compatibility": {
+    "esp_ppq_available": true,
+    "onnx_ops_in_model": [
+      "Conv",
+      "Relu",
+      "MaxPool",
+      "AveragePool",
+      "Flatten",
+      "Gemm"
+    ],
+    "graph_load_1d_ok": true,
+    "espdl_DryRun_note": "esp-ppq 1.3.14 parses all 6 ONNX 1D operators (Conv, Relu, MaxPool, AveragePool, Flatten, Gemm) directly into its internal IR graph without error.",
+    "ops_parsed_by_esp_ppq": [
+      "AveragePool",
+      "Conv",
+      "Flatten",
+      "Gemm",
+      "MaxPool",
+      "Relu"
+    ],
+    "espdl_platforms_supported": [
+      "ESPDL_INT8",
+      "ESPDL_INT16",
+      "ESPDL_S3_INT8",
+      "ESPDL_S3_INT16",
+      "ESPDL_H_PRE_INT16",
+      "ESPDL_S3_H_PRE_INT16",
+      "ESPDL_C_INT8",
+      "ESPDL_C_INT16",
+      "ESPDL_C_H_PRE_INT16",
+      "ESPDL_W8A16",
+      "ESPDL_S3_W8A16",
+      "ESPDL_C_W8A16"
+    ]
+  }
+}
