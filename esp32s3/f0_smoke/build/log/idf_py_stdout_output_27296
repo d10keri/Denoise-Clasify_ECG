@@ -1,0 +1,44 @@
+Command: ninja all
+[1/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_add.S.obj
+[2/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_add2d.S.obj
+[3/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_avg_pool2d.S.obj
+[4/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_conv2d.S.obj
+[5/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_w8a16_conv2d.S.obj
+[6/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_depthwise_conv2d_block.S.obj
+[7/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_requantize_linear.S.obj
+[8/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_greaterorequal.S.obj
+[9/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_greater.S.obj
+[10/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_depthwise_conv2d.S.obj
+[11/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_equal.S.obj
+[12/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_relu.S.obj
+[13/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_matmul.S.obj
+[14/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_less.S.obj
+[15/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_matmul.S.obj
+[16/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_max_pool2d.S.obj
+[17/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_lessorequal.S.obj
+[18/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_max2d.S.obj
+[19/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_mul2d.S.obj
+[20/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_min2d.S.obj
+[21/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_mul.S.obj
+[22/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_conv2d.S.obj
+[23/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_prelu.S.obj
+[24/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_sub.S.obj
+[25/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_sub2d.S.obj
+[26/34] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\d2l-en\Denoise_Classify ECG\Denoise-Clasify_ECG\esp32s3\f0_smoke\build\bootloader\esp-idf\esptool_py" && C:\Users\vietc\ESP_SDK\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/bootloader/bootloader.bin""
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[27/34] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_w8a16_unaligned_conv2d.S.obj
+[28/34] No install step for 'bootloader'
+[29/34] Completed 'bootloader'
+[30/34] Linking C static library esp-idf\espressif__esp-dl\libespressif__esp-dl.a
+[31/34] Generating esp-idf/esp_system/ld/sections.ld
+[32/34] Linking CXX executable f0_smoke.elf
+[33/34] Generating binary image from built executable
+esptool.py v4.12.dev1
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/f0_smoke.bin
+[34/34] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\d2l-en\Denoise_Classify ECG\Denoise-Clasify_ECG\esp32s3\f0_smoke\build\esp-idf\esptool_py" && C:\Users\vietc\ESP_SDK\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/partition_table/partition-table.bin" "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/f0_smoke.bin""
+f0_smoke.bin binary size 0x16ffd0 bytes. Smallest app partition is 0x177000 bytes. 0x7030 bytes (2%) free.
+Warning: The smallest app partition is nearly full (2% free space left)!

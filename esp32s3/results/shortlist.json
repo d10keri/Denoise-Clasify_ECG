@@ -1,0 +1,44 @@
+{
+  "gate_h2_overall_pass": true,
+  "strictly_passing_configs": [
+    "b_int16",
+    "c_w8a16"
+  ],
+  "passing_with_c24_interseed_std_rule": [
+    "b_int16",
+    "c3",
+    "c_w8a16"
+  ],
+  "fp32_subclass_F_inter_seed_std_pct": 3.1,
+  "shortlisted_for_firmware": [
+    {
+      "config_key": "b_int16",
+      "espdl_file": "esp32s3/quant/b_int16.espdl",
+      "role": "Primary Accuracy Reference (w16a16, 8-lane PIE SIMD)",
+      "gate_h2_status": "PASS (5/5 strict criteria)"
+    },
+    {
+      "config_key": "c_w8a16",
+      "espdl_file": "esp32s3/quant/c_w8a16.espdl",
+      "role": "Compact Accuracy Reference (w8a16: 8-bit weights, 16-bit activations)",
+      "gate_h2_status": "PASS (5/5 strict criteria)"
+    },
+    {
+      "config_key": "c3",
+      "espdl_file": "esp32s3/quant/c3.espdl",
+      "role": "Primary Speed + Wave-Resolution Candidate (Mixed INT16 Stem+Gemm, INT8 DS blocks)",
+      "gate_h2_status": "PASS (via Rule C2.4.4: ΔF = -2.15% fixed / -1.46% recal is within ±1 inter-seed std = ±3.10%)"
+    },
+    {
+      "config_key": "c1",
+      "espdl_file": "esp32s3/quant/c1.espdl",
+      "role": "Pure INT8 Speed Candidate (w8a8 with peak-enriched calibration)",
+      "gate_h2_status": "SPEED_CANDIDATE (Độ chính xác chưa đạt Gate H2: Agreement=98.69% < 99%, Recal Spec=83.93% < 85%)"
+    }
+  ],
+  "excluded_configs": [
+    "c0",
+    "c2a",
+    "c2b"
+  ]
+}

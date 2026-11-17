@@ -1,0 +1,488 @@
+Command: ninja all
+[0/1] Re-running CMake...
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32s3
+NOTICE: Processing 4 dependencies:
+NOTICE: [1/4] espressif/dl_fft (0.8.0)
+NOTICE: [2/4] espressif/esp-dl (3.3.15)
+NOTICE: [3/4] espressif/esp_new_jpeg (1.0.2)
+NOTICE: [4/4] idf (5.5.2)
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5 SoCs
+-- Project sdkconfig file C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/sdkconfig
+Loading defaults file C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/sdkconfig.defaults...
+-- Compiler supported targets: xtensa-esp-elf
+-- USING O3
+-- App "f0_smoke" version: 585eb7f-dirty
+-- Adding linker script C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.bt_funcs.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_master.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_50.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_smp.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_dtm.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_test.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_scan.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.libc.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espcoredump espressif__dl_fft espressif__esp-dl espressif__esp_new_jpeg esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread rt sdmmc soc spi_flash spiffs tcp_transport touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/app_trace C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/app_update C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/bootloader C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/bootloader_support C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/bt C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/cmock C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/console C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/cxx C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/driver C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/efuse C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp-tls C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_adc C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_app_format C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_bootloader_format C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_coex C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_common C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ana_cmpr C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_bitscrambler C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_cam C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_dac C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_gpio C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_gptimer C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_i2c C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_i2s C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_isp C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_jpeg C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ledc C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_mcpwm C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_parlio C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_pcnt C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ppa C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_rmt C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdio C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdm C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdmmc C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdspi C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_spi C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_touch_sens C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_tsens C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_twai C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_uart C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_usb_serial_jtag C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_eth C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_event C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_gdbstub C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hid C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_http_client C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_http_server C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_https_ota C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_https_server C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_lcd C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_local_ctrl C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_mm C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_netif C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_netif_stack C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_partition C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_phy C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_pm C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_psram C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_ringbuf C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_security C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_system C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_timer C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_vfs_console C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_wifi C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/espcoredump C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__dl_fft C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp_new_jpeg C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esptool_py C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/fatfs C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/hal C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/heap C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/http_parser C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/idf_test C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/ieee802154 C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/json C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/log C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/main C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mqtt C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/newlib C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/nvs_flash C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/nvs_sec_provider C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/openthread C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/perfmon C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/protobuf-c C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/protocomm C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/pthread C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/rt C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/sdmmc C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/spi_flash C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/spiffs C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/tcp_transport C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/touch_element C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/ulp C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/unity C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/usb C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/vfs C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/wear_levelling C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/wifi_provisioning C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/wpa_supplicant C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/xtensa
+-- Configuring done (12.3s)
+-- Generating done (3.1s)
+-- Build files have been written to: C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build
+[1/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/tool/src/dl_tool.cpp.obj
+[2/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/math/src/dl_math.cpp.obj
+[3/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/math/src/dl_math_matrix.cpp.obj
+[4/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_model_context.cpp.obj
+[5/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/fbs_loader/src/fbs_loader.cpp.obj
+[6/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_bmp.cpp.obj
+[7/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_jpeg.cpp.obj
+[8/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_pixel_kernel.cpp.obj
+[9/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/tensor/src/dl_tensor_base.cpp.obj
+[10/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_memory_manager.cpp.obj
+[11/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_base.cpp.obj
+[12/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_memory_manager_greedy.cpp.obj
+[13/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_model_base.cpp.obj
+[14/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_espdet_postprocessor.cpp.obj
+[15/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_seg_yolo11_postprocessor.cpp.obj
+[16/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_base.cpp.obj
+[17/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_postprocessor.cpp.obj
+[18/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_pose_yolo11_postprocessor.cpp.obj
+[19/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_attention.cpp.obj
+[20/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_yolo11_postprocessor.cpp.obj
+[21/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_mnp_postprocessor.cpp.obj
+[22/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_pico_postprocessor.cpp.obj
+[23/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_msr_postprocessor.cpp.obj
+[24/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_process.cpp.obj
+[25/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_preprocessor.cpp.obj
+[26/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_creator.cpp.obj
+[27/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_lut.cpp.obj
+[28/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_avg_pool2d.cpp.obj
+[29/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_recognition_database.cpp.obj
+[30/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_and.cpp.obj
+[31/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_attention.cpp.obj
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT8; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = signed char]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1588:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT8; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = signed char]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1588:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT16; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = short int]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1589:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT16; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = short int]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1589:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_FLOAT; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = float]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1590:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_FLOAT; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = float]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1590:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+[32/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_image_preprocessor.cpp.obj
+[33/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_add2d.cpp.obj
+[34/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_base.cpp.obj
+[35/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_add.cpp.obj
+[36/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_elemwise.cpp.obj
+[37/100] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/riscv/dl_riscv_conv2d_mac.S.obj
+[38/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/xtensa/dl_xtensa_conv.cpp.obj
+[39/100] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/xtensa/dl_xtensa_s16_conv2d_1x1.S.obj
+[40/100] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/xtensa/dl_xtensa_s16_depthwise_conv2d.S.obj
+[41/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_shape.cpp.obj
+[42/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_postprocessor.cpp.obj
+[43/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/dl_cls_base.cpp.obj
+[44/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/dl_cls_postprocessor.cpp.obj
+[45/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/hand_gesture_cls_postprocessor.cpp.obj
+[46/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/imagenet_cls_postprocessor.cpp.obj
+[47/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/common/dl_audio_wav.cpp.obj
+[48/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/common/dl_audio_common.cpp.obj
+[49/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_fbank.cpp.obj
+[50/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_conv_loop.cpp.obj
+[51/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_mfcc.cpp.obj
+[52/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_speech_features.cpp.obj
+[53/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_dwconv_loop.cpp.obj
+[54/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_spectrogram.cpp.obj
+[55/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_div.cpp.obj
+[56/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_requantize_linear.cpp.obj
+[57/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_dotprod.cpp.obj
+[58/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_greater.cpp.obj
+[59/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_equal.cpp.obj
+[60/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_greaterorequal.cpp.obj
+[61/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_reduce.cpp.obj
+[62/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_less.cpp.obj
+[63/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_leakyrelu.cpp.obj
+[64/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_matmul.cpp.obj
+[65/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_lessorequal.cpp.obj
+[66/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max2d.cpp.obj
+[67/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max.cpp.obj
+[68/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max_pool2d.cpp.obj
+[69/100] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\d2l-en\Denoise_Classify ECG\Denoise-Clasify_ECG\esp32s3\f0_smoke\build\bootloader\esp-idf\esptool_py" && C:\Users\vietc\ESP_SDK\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/bootloader/bootloader.bin""
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[70/100] No install step for 'bootloader'
+[71/100] Completed 'bootloader'
+[72/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mod.cpp.obj
+[73/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_min2d.cpp.obj
+[74/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_min.cpp.obj
+[75/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mul.cpp.obj
+[76/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_xor.cpp.obj
+[77/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_sub2d.cpp.obj
+[78/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_kernel.cpp.obj
+FAILED: esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_kernel.cpp.obj 
+ccache C:\Users\vietc\ESP_SDK\Espressif\tools\xtensa-esp-elf\esp-14.2.0_20251107\xtensa-esp-elf\bin\xtensa-esp32s3-elf-g++.exe -DESP_PLATFORM -DIDF_VER=\"v5.5.2-dirty\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/config" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/tool/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/tensor/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/isa" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/isa/c" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/math/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/model/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/module/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/fbs_loader/include" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/vision/detect" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/vision/image" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/vision/image/isa" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/vision/recognition" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/vision/classification" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/audio/common" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/audio/speech_features" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/isa/tie728" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/isa/xtensa" -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/newlib/platform_include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/config/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/config/include/freertos -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/config/xtensa/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/esp_additions/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/include/soc -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/include/soc/esp32s3 -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/dma/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/ldo/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/debug_probe/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/mspi_timing_tuning/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/mspi_timing_tuning/tuning_scheme_impl/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/power_supply/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/port/esp32s3/. -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/port/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/mspi_timing_tuning/port/esp32s3/. -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support/mspi_timing_tuning/port/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/heap/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/heap/tlsf -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/log/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32s3 -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32s3/register -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/hal/platform_port/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/hal/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/hal/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3/include/esp32s3 -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32s3 -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_common/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_system/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_system/port/soc -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_system/port/include/private -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/xtensa/esp32s3/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/xtensa/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/xtensa/deprecated_include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/include/apps -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/include/apps/sntp -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/lwip/src/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/port/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/port/freertos/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/port/esp32xx/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/port/esp32xx/include/arch -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/lwip/port/esp32xx/include/sys -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__dl_fft" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__dl_fft/base" -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__dl_fft/base/isa" -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_mm/include -I"C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp_new_jpeg/include" -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_jpeg/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ppa/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_partition/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/esp_timer/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/port/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/mbedtls/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/mbedtls/library -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/esp_crt_bundle/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/mbedtls/3rdparty/everest/include -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/mbedtls/3rdparty/p256-m -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls/mbedtls/3rdparty/p256-m/p256-m -IC:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/spi_flash/include -mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -O2 "-fmacro-prefix-map=C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke=." -fmacro-prefix-map=C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu++2b -fno-exceptions -fno-rtti -fuse-cxa-atexit -ffast-math -O3 -Wno-error=format=-Wno-format -Wno-array-bounds -Wno-deprecated-copy -Wno-strict-aliasing -Wno-overloaded-virtual -MD -MT esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_kernel.cpp.obj -MF esp-idf\espressif__esp-dl\CMakeFiles\__idf_espressif__esp-dl.dir\dl\base\dl_kernel.cpp.obj.d -o esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_kernel.cpp.obj -c "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_kernel.cpp"
+In file included from C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_kernel.cpp:13:
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:3:51: error: 'dl_c_s16_conv2d_11cn' was not declared in this scope; did you mean 'dl_xtensa_s16_conv2d_11cn'?
+    3 |     {"dl_c_s16_conv2d_11cn", (dl_kernel_erased_t)(dl_c_s16_conv2d_11cn)},
+      |                                                   ^~~~~~~~~~~~~~~~~~~~
+      |                                                   dl_xtensa_s16_conv2d_11cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:6:51: error: 'dl_c_s16_conv2d_33cn' was not declared in this scope; did you mean 'dl_xtensa_s16_conv2d_33cn'?
+    6 |     {"dl_c_s16_conv2d_33cn", (dl_kernel_erased_t)(dl_c_s16_conv2d_33cn)},
+      |                                                   ^~~~~~~~~~~~~~~~~~~~
+      |                                                   dl_xtensa_s16_conv2d_33cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:9:51: error: 'dl_c_s16_conv2d_hwcn' was not declared in this scope; did you mean 'dl_xtensa_s16_conv2d_hwcn'?
+    9 |     {"dl_c_s16_conv2d_hwcn", (dl_kernel_erased_t)(dl_c_s16_conv2d_hwcn)},
+      |                                                   ^~~~~~~~~~~~~~~~~~~~
+      |                                                   dl_xtensa_s16_conv2d_hwcn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:12:61: error: 'dl_c_s16_depthwise_conv2d_33c1' was not declared in this scope; did you mean 'dl_tie728_s16_depthwise_conv2d_33c1'?
+   12 |     {"dl_c_s16_depthwise_conv2d_33c1", (dl_kernel_erased_t)(dl_c_s16_depthwise_conv2d_33c1)},
+      |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                             dl_tie728_s16_depthwise_conv2d_33c1
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:15:61: error: 'dl_c_s16_depthwise_conv2d_hwc1' was not declared in this scope; did you mean 'dl_tie728_s16_depthwise_conv2d_hwc1'?
+   15 |     {"dl_c_s16_depthwise_conv2d_hwc1", (dl_kernel_erased_t)(dl_c_s16_depthwise_conv2d_hwc1)},
+      |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                             dl_tie728_s16_depthwise_conv2d_hwc1
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:18:56: error: 'dl_c_s16_tail_bias_linear' was not declared in this scope
+   18 |     {"dl_c_s16_tail_bias_linear", (dl_kernel_erased_t)(dl_c_s16_tail_bias_linear)},
+      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:21:54: error: 'dl_c_s16_tail_bias_relu' was not declared in this scope
+   21 |     {"dl_c_s16_tail_bias_relu", (dl_kernel_erased_t)(dl_c_s16_tail_bias_relu)},
+      |                                                      ^~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:24:51: error: 'dl_c_s16_tail_linear' was not declared in this scope
+   24 |     {"dl_c_s16_tail_linear", (dl_kernel_erased_t)(dl_c_s16_tail_linear)},
+      |                                                   ^~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:27:49: error: 'dl_c_s16_tail_relu' was not declared in this scope
+   27 |     {"dl_c_s16_tail_relu", (dl_kernel_erased_t)(dl_c_s16_tail_relu)},
+      |                                                 ^~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:30:50: error: 'dl_c_s8_conv2d_11cn' was not declared in this scope; did you mean 'dl_tie728_s8_conv2d_11cn'?
+   30 |     {"dl_c_s8_conv2d_11cn", (dl_kernel_erased_t)(dl_c_s8_conv2d_11cn)},
+      |                                                  ^~~~~~~~~~~~~~~~~~~
+      |                                                  dl_tie728_s8_conv2d_11cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:33:50: error: 'dl_c_s8_conv2d_33cn' was not declared in this scope; did you mean 'dl_tie728_s8_conv2d_33cn'?
+   33 |     {"dl_c_s8_conv2d_33cn", (dl_kernel_erased_t)(dl_c_s8_conv2d_33cn)},
+      |                                                  ^~~~~~~~~~~~~~~~~~~
+      |                                                  dl_tie728_s8_conv2d_33cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:36:50: error: 'dl_c_s8_conv2d_hwcn' was not declared in this scope; did you mean 'dl_tie728_s8_conv2d_hwcn'?
+   36 |     {"dl_c_s8_conv2d_hwcn", (dl_kernel_erased_t)(dl_c_s8_conv2d_hwcn)},
+      |                                                  ^~~~~~~~~~~~~~~~~~~
+      |                                                  dl_tie728_s8_conv2d_hwcn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:39:60: error: 'dl_c_s8_depthwise_conv2d_33c1' was not declared in this scope; did you mean 'dl_tie728_s8_depthwise_conv2d_33c1'?
+   39 |     {"dl_c_s8_depthwise_conv2d_33c1", (dl_kernel_erased_t)(dl_c_s8_depthwise_conv2d_33c1)},
+      |                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            dl_tie728_s8_depthwise_conv2d_33c1
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:42:60: error: 'dl_c_s8_depthwise_conv2d_hwc1' was not declared in this scope; did you mean 'dl_tie728_s8_depthwise_conv2d_hwc1'?
+   42 |     {"dl_c_s8_depthwise_conv2d_hwc1", (dl_kernel_erased_t)(dl_c_s8_depthwise_conv2d_hwc1)},
+      |                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            dl_tie728_s8_depthwise_conv2d_hwc1
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:45:64: error: 'dl_c_s8_dw_tail_bias_per_ch_prelu' was not declared in this scope
+   45 |     {"dl_c_s8_dw_tail_bias_per_ch_prelu", (dl_kernel_erased_t)(dl_c_s8_dw_tail_bias_per_ch_prelu)},
+      |                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:48:55: error: 'dl_c_s8_tail_bias_linear' was not declared in this scope
+   48 |     {"dl_c_s8_tail_bias_linear", (dl_kernel_erased_t)(dl_c_s8_tail_bias_linear)},
+      |                                                       ^~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:51:65: error: 'dl_c_s8_tail_bias_per_ch_leakyrelu' was not declared in this scope
+   51 |     {"dl_c_s8_tail_bias_per_ch_leakyrelu", (dl_kernel_erased_t)(dl_c_s8_tail_bias_per_ch_leakyrelu)},
+      |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:54:62: error: 'dl_c_s8_tail_bias_per_ch_linear' was not declared in this scope
+   54 |     {"dl_c_s8_tail_bias_per_ch_linear", (dl_kernel_erased_t)(dl_c_s8_tail_bias_per_ch_linear)},
+      |                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:57:61: error: 'dl_c_s8_tail_bias_per_ch_prelu' was not declared in this scope
+   57 |     {"dl_c_s8_tail_bias_per_ch_prelu", (dl_kernel_erased_t)(dl_c_s8_tail_bias_per_ch_prelu)},
+      |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:60:60: error: 'dl_c_s8_tail_bias_per_ch_relu' was not declared in this scope
+   60 |     {"dl_c_s8_tail_bias_per_ch_relu", (dl_kernel_erased_t)(dl_c_s8_tail_bias_per_ch_relu)},
+      |                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:63:53: error: 'dl_c_s8_tail_bias_relu' was not declared in this scope
+   63 |     {"dl_c_s8_tail_bias_relu", (dl_kernel_erased_t)(dl_c_s8_tail_bias_relu)},
+      |                                                     ^~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:66:53: error: 'dl_c_s8_tail_leakyrelu' was not declared in this scope
+   66 |     {"dl_c_s8_tail_leakyrelu", (dl_kernel_erased_t)(dl_c_s8_tail_leakyrelu)},
+      |                                                     ^~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:69:50: error: 'dl_c_s8_tail_linear' was not declared in this scope
+   69 |     {"dl_c_s8_tail_linear", (dl_kernel_erased_t)(dl_c_s8_tail_linear)},
+      |                                                  ^~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:72:49: error: 'dl_c_s8_tail_prelu' was not declared in this scope
+   72 |     {"dl_c_s8_tail_prelu", (dl_kernel_erased_t)(dl_c_s8_tail_prelu)},
+      |                                                 ^~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:75:48: error: 'dl_c_s8_tail_relu' was not declared in this scope
+   75 |     {"dl_c_s8_tail_relu", (dl_kernel_erased_t)(dl_c_s8_tail_relu)},
+      |                                                ^~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:78:53: error: 'dl_c_w8a16_conv2d_11cn' was not declared in this scope; did you mean 'dl_tie728_w8a16_conv2d_11cn'?
+   78 |     {"dl_c_w8a16_conv2d_11cn", (dl_kernel_erased_t)(dl_c_w8a16_conv2d_11cn)},
+      |                                                     ^~~~~~~~~~~~~~~~~~~~~~
+      |                                                     dl_tie728_w8a16_conv2d_11cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:81:53: error: 'dl_c_w8a16_conv2d_33cn' was not declared in this scope; did you mean 'dl_tie728_w8a16_conv2d_33cn'?
+   81 |     {"dl_c_w8a16_conv2d_33cn", (dl_kernel_erased_t)(dl_c_w8a16_conv2d_33cn)},
+      |                                                     ^~~~~~~~~~~~~~~~~~~~~~
+      |                                                     dl_tie728_w8a16_conv2d_33cn
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/esp-idf/espressif__esp-dl/dl_kernel.inc:84:53: error: 'dl_c_w8a16_conv2d_hwcn' was not declared in this scope; did you mean 'dl_tie728_w8a16_conv2d_hwcn'?
+   84 |     {"dl_c_w8a16_conv2d_hwcn", (dl_kernel_erased_t)(dl_c_w8a16_conv2d_hwcn)},
+      |                                                     ^~~~~~~~~~~~~~~~~~~~~~
+      |                                                     dl_tie728_w8a16_conv2d_hwcn
+[79/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mul2d.cpp.obj
+[80/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_or.cpp.obj
+[81/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_prelu.cpp.obj
+[82/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_norm.cpp.obj
+[83/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_sub.cpp.obj
+[84/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_resize.cpp.obj
+[85/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_pad.cpp.obj
+[86/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_pow.cpp.obj
+[87/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_rotary_embedding.cpp.obj
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = signed char; CT = short int; YT = signed char]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:458:49:   required from here
+  458 |         rope_rows_typed<int8_t, int16_t, int8_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = signed char; CT = signed char; YT = signed char]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:461:48:   required from here
+  461 |         rope_rows_typed<int8_t, int8_t, int8_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = short int; CT = short int; YT = short int]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:464:51:   required from here
+  464 |         rope_rows_typed<int16_t, int16_t, int16_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+[88/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_relu.cpp.obj
+[89/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_conv_select.cpp.obj
+[90/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/c/dl_c_conv_tail.cpp.obj
+[91/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/c/dl_c_dwconv.cpp.obj
+[92/100] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/c/dl_c_conv.cpp.obj
+ninja: build stopped: subcommand failed.

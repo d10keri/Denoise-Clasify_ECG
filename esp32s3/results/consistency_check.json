@@ -1,0 +1,44 @@
+{
+  "cuda_available": true,
+  "all_exponents_identical_cpu_vs_phase_b": true,
+  "all_exponents_identical_cpu_vs_cuda": true,
+  "all_logits_identical_cpu_vs_cuda": false,
+  "configs": {
+    "b_int16": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.00146484
+    },
+    "c0": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.0
+    },
+    "c1": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.0
+    },
+    "c2b": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.0
+    },
+    "c3": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.00488281
+    },
+    "c_w8a16": {
+      "num_tensors_checked": 56,
+      "phase_b_vs_cpu_mismatches": [],
+      "cpu_vs_cuda_exponent_mismatches": [],
+      "max_abs_logit_diff_cpu_vs_cuda_500beats": 0.00073242
+    }
+  }
+}

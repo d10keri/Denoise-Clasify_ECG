@@ -1,0 +1,1882 @@
+{
+  "seed": 43,
+  "elapsed_sec": 16.49,
+  "models": {
+    "fp32": {
+      "config_key": "fp32",
+      "label": "A: FP32 (ONNX Ref)",
+      "espdl_size_kb": 117.43,
+      "val_metrics": {
+        "auroc": 0.869134,
+        "pr_auc": 0.49587
+      },
+      "test_metrics": {
+        "auroc": 0.912801,
+        "pr_auc": 0.697684,
+        "delta_auroc_vs_fp32": 0.0,
+        "delta_pr_auc_vs_fp32": 0.0
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.86,
+        "3_val_best_youden_j": 0.74,
+        "4_val_recall_ge_0.85": 0.58,
+        "5_val_equal_rec_spec": 0.7
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.806967,
+          "recall_non_N": 0.890866,
+          "specificity_N": 0.796627,
+          "precision_non_N": 0.350585,
+          "f1_non_N": 0.50316,
+          "macro_f1": 0.691687,
+          "youden_j": 0.687493,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35242,
+            "FP": 8997,
+            "FN": 595,
+            "TP": 4857
+          },
+          "subclass_recall": {
+            "S": 0.792052,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.917913,
+          "recall_non_N": 0.727073,
+          "specificity_N": 0.941432,
+          "precision_non_N": 0.604729,
+          "f1_non_N": 0.660282,
+          "macro_f1": 0.806799,
+          "youden_j": 0.668504,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41648,
+            "FP": 2591,
+            "FN": 1488,
+            "TP": 3964
+          },
+          "subclass_recall": {
+            "S": 0.482852,
+            "V": 0.901863,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874786,
+          "recall_non_N": 0.834556,
+          "specificity_N": 0.879744,
+          "precision_non_N": 0.460993,
+          "f1_non_N": 0.593917,
+          "macro_f1": 0.759949,
+          "youden_j": 0.7143,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38919,
+            "FP": 5320,
+            "FN": 902,
+            "TP": 4550
+          },
+          "subclass_recall": {
+            "S": 0.700599,
+            "V": 0.941615,
+            "F": 0.579897,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.831197,
+          "recall_non_N": 0.877109,
+          "specificity_N": 0.825539,
+          "precision_non_N": 0.38256,
+          "f1_non_N": 0.532754,
+          "macro_f1": 0.714873,
+          "youden_j": 0.702648,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36521,
+            "FP": 7718,
+            "FN": 670,
+            "TP": 4782
+          },
+          "subclass_recall": {
+            "S": 0.774633,
+            "V": 0.95528,
+            "F": 0.71134,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.863074,
+          "recall_non_N": 0.848496,
+          "specificity_N": 0.86487,
+          "precision_non_N": 0.43625,
+          "f1_non_N": 0.576233,
+          "macro_f1": 0.747289,
+          "youden_j": 0.713366,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38261,
+            "FP": 5978,
+            "FN": 826,
+            "TP": 4626
+          },
+          "subclass_recall": {
+            "S": 0.727273,
+            "V": 0.947205,
+            "F": 0.600515,
+            "Q": 1.0
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.806967,
+          "recall_non_N": 0.890866,
+          "specificity_N": 0.796627,
+          "precision_non_N": 0.350585,
+          "f1_non_N": 0.50316,
+          "macro_f1": 0.691687,
+          "youden_j": 0.687493,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35242,
+            "FP": 8997,
+            "FN": 595,
+            "TP": 4857
+          },
+          "subclass_recall": {
+            "S": 0.792052,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.917913,
+          "recall_non_N": 0.727073,
+          "specificity_N": 0.941432,
+          "precision_non_N": 0.604729,
+          "f1_non_N": 0.660282,
+          "macro_f1": 0.806799,
+          "youden_j": 0.668504,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41648,
+            "FP": 2591,
+            "FN": 1488,
+            "TP": 3964
+          },
+          "subclass_recall": {
+            "S": 0.482852,
+            "V": 0.901863,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874786,
+          "recall_non_N": 0.834556,
+          "specificity_N": 0.879744,
+          "precision_non_N": 0.460993,
+          "f1_non_N": 0.593917,
+          "macro_f1": 0.759949,
+          "youden_j": 0.7143,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38919,
+            "FP": 5320,
+            "FN": 902,
+            "TP": 4550
+          },
+          "subclass_recall": {
+            "S": 0.700599,
+            "V": 0.941615,
+            "F": 0.579897,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.831197,
+          "recall_non_N": 0.877109,
+          "specificity_N": 0.825539,
+          "precision_non_N": 0.38256,
+          "f1_non_N": 0.532754,
+          "macro_f1": 0.714873,
+          "youden_j": 0.702648,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36521,
+            "FP": 7718,
+            "FN": 670,
+            "TP": 4782
+          },
+          "subclass_recall": {
+            "S": 0.774633,
+            "V": 0.95528,
+            "F": 0.71134,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.863074,
+          "recall_non_N": 0.848496,
+          "specificity_N": 0.86487,
+          "precision_non_N": 0.43625,
+          "f1_non_N": 0.576233,
+          "macro_f1": 0.747289,
+          "youden_j": 0.713366,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38261,
+            "FP": 5978,
+            "FN": 826,
+            "TP": 4626
+          },
+          "subclass_recall": {
+            "S": 0.727273,
+            "V": 0.947205,
+            "F": 0.600515,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 0.0,
+        "mean_abs_logit_diff": 0.0,
+        "rmse_logit": 0.0,
+        "stm32ai_l2r": 0.0,
+        "stm32ai_cosine_similarity": 0.9999998429262648,
+        "max_abs_prob_diff": 0.0,
+        "argmax_agreement_pct": 100.0,
+        "threshold_agreement_pct": 100.0,
+        "passes_gate_c1": true
+      }
+    },
+    "b_int16": {
+      "config_key": "b_int16",
+      "label": "B (INT16 w16a16)",
+      "espdl_size_kb": 72.39,
+      "val_metrics": {
+        "auroc": 0.869116,
+        "pr_auc": 0.496102
+      },
+      "test_metrics": {
+        "auroc": 0.912817,
+        "pr_auc": 0.697877,
+        "delta_auroc_vs_fp32": 1.7e-05,
+        "delta_pr_auc_vs_fp32": 0.000193
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.86,
+        "3_val_best_youden_j": 0.74,
+        "4_val_recall_ge_0.85": 0.58,
+        "5_val_equal_rec_spec": 0.7
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.807027,
+          "recall_non_N": 0.890866,
+          "specificity_N": 0.796695,
+          "precision_non_N": 0.350661,
+          "f1_non_N": 0.503238,
+          "macro_f1": 0.691747,
+          "youden_j": 0.687561,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35245,
+            "FP": 8994,
+            "FN": 595,
+            "TP": 4857
+          },
+          "subclass_recall": {
+            "S": 0.792052,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.917913,
+          "recall_non_N": 0.726889,
+          "specificity_N": 0.941454,
+          "precision_non_N": 0.604761,
+          "f1_non_N": 0.660225,
+          "macro_f1": 0.806771,
+          "youden_j": 0.668344,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41649,
+            "FP": 2590,
+            "FN": 1489,
+            "TP": 3963
+          },
+          "subclass_recall": {
+            "S": 0.482308,
+            "V": 0.901863,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874867,
+          "recall_non_N": 0.834556,
+          "specificity_N": 0.879835,
+          "precision_non_N": 0.46118,
+          "f1_non_N": 0.594072,
+          "macro_f1": 0.760052,
+          "youden_j": 0.714391,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38923,
+            "FP": 5316,
+            "FN": 902,
+            "TP": 4550
+          },
+          "subclass_recall": {
+            "S": 0.700599,
+            "V": 0.941615,
+            "F": 0.579897,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.831418,
+          "recall_non_N": 0.877293,
+          "specificity_N": 0.825765,
+          "precision_non_N": 0.382916,
+          "f1_non_N": 0.533133,
+          "macro_f1": 0.715135,
+          "youden_j": 0.703057,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36531,
+            "FP": 7708,
+            "FN": 669,
+            "TP": 4783
+          },
+          "subclass_recall": {
+            "S": 0.774633,
+            "V": 0.95528,
+            "F": 0.713918,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.863114,
+          "recall_non_N": 0.848496,
+          "specificity_N": 0.864916,
+          "precision_non_N": 0.436333,
+          "f1_non_N": 0.576305,
+          "macro_f1": 0.747338,
+          "youden_j": 0.713412,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38263,
+            "FP": 5976,
+            "FN": 826,
+            "TP": 4626
+          },
+          "subclass_recall": {
+            "S": 0.727273,
+            "V": 0.947205,
+            "F": 0.600515,
+            "Q": 1.0
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.807027,
+          "recall_non_N": 0.890866,
+          "specificity_N": 0.796695,
+          "precision_non_N": 0.350661,
+          "f1_non_N": 0.503238,
+          "macro_f1": 0.691747,
+          "youden_j": 0.687561,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35245,
+            "FP": 8994,
+            "FN": 595,
+            "TP": 4857
+          },
+          "subclass_recall": {
+            "S": 0.792052,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.917913,
+          "recall_non_N": 0.726889,
+          "specificity_N": 0.941454,
+          "precision_non_N": 0.604761,
+          "f1_non_N": 0.660225,
+          "macro_f1": 0.806771,
+          "youden_j": 0.668344,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41649,
+            "FP": 2590,
+            "FN": 1489,
+            "TP": 3963
+          },
+          "subclass_recall": {
+            "S": 0.482308,
+            "V": 0.901863,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874867,
+          "recall_non_N": 0.834556,
+          "specificity_N": 0.879835,
+          "precision_non_N": 0.46118,
+          "f1_non_N": 0.594072,
+          "macro_f1": 0.760052,
+          "youden_j": 0.714391,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38923,
+            "FP": 5316,
+            "FN": 902,
+            "TP": 4550
+          },
+          "subclass_recall": {
+            "S": 0.700599,
+            "V": 0.941615,
+            "F": 0.579897,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.831418,
+          "recall_non_N": 0.877293,
+          "specificity_N": 0.825765,
+          "precision_non_N": 0.382916,
+          "f1_non_N": 0.533133,
+          "macro_f1": 0.715135,
+          "youden_j": 0.703057,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36531,
+            "FP": 7708,
+            "FN": 669,
+            "TP": 4783
+          },
+          "subclass_recall": {
+            "S": 0.774633,
+            "V": 0.95528,
+            "F": 0.713918,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.863114,
+          "recall_non_N": 0.848496,
+          "specificity_N": 0.864916,
+          "precision_non_N": 0.436333,
+          "f1_non_N": 0.576305,
+          "macro_f1": 0.747338,
+          "youden_j": 0.713412,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38263,
+            "FP": 5976,
+            "FN": 826,
+            "TP": 4626
+          },
+          "subclass_recall": {
+            "S": 0.727273,
+            "V": 0.947205,
+            "F": 0.600515,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 0.3846609592437744,
+        "mean_abs_logit_diff": 0.0006695291376672685,
+        "rmse_logit": 0.004379419144243002,
+        "stm32ai_l2r": 0.0034248722408393253,
+        "stm32ai_cosine_similarity": 0.9999936536842978,
+        "max_abs_prob_diff": 0.07872796058654785,
+        "argmax_agreement_pct": 99.992,
+        "threshold_agreement_pct": 99.992,
+        "passes_gate_c1": false
+      }
+    },
+    "c0": {
+      "config_key": "c0",
+      "label": "C0 (INT8 Default)",
+      "espdl_size_kb": 42.09,
+      "val_metrics": {
+        "auroc": 0.871699,
+        "pr_auc": 0.518958
+      },
+      "test_metrics": {
+        "auroc": 0.91724,
+        "pr_auc": 0.708706,
+        "delta_auroc_vs_fp32": 0.004439,
+        "delta_pr_auc_vs_fp32": 0.011022
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.82,
+        "3_val_best_youden_j": 0.72,
+        "4_val_recall_ge_0.85": 0.53,
+        "5_val_equal_rec_spec": 0.68
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.809865,
+          "recall_non_N": 0.889949,
+          "specificity_N": 0.799995,
+          "precision_non_N": 0.354161,
+          "f1_non_N": 0.506683,
+          "macro_f1": 0.694461,
+          "youden_j": 0.689944,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35391,
+            "FP": 8848,
+            "FN": 600,
+            "TP": 4852
+          },
+          "subclass_recall": {
+            "S": 0.792597,
+            "V": 0.960559,
+            "F": 0.762887,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.923286,
+          "recall_non_N": 0.717718,
+          "specificity_N": 0.94862,
+          "precision_non_N": 0.632557,
+          "f1_non_N": 0.672452,
+          "macro_f1": 0.814504,
+          "youden_j": 0.666338,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41966,
+            "FP": 2273,
+            "FN": 1539,
+            "TP": 3913
+          },
+          "subclass_recall": {
+            "S": 0.471421,
+            "V": 0.892547,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.877644,
+          "recall_non_N": 0.829054,
+          "specificity_N": 0.883632,
+          "precision_non_N": 0.467522,
+          "f1_non_N": 0.597884,
+          "macro_f1": 0.762864,
+          "youden_j": 0.712686,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 39091,
+            "FP": 5148,
+            "FN": 932,
+            "TP": 4520
+          },
+          "subclass_recall": {
+            "S": 0.689167,
+            "V": 0.940062,
+            "F": 0.569588,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.834316,
+          "recall_non_N": 0.875825,
+          "specificity_N": 0.8292,
+          "precision_non_N": 0.387235,
+          "f1_non_N": 0.53703,
+          "macro_f1": 0.718067,
+          "youden_j": 0.705026,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36683,
+            "FP": 7556,
+            "FN": 677,
+            "TP": 4775
+          },
+          "subclass_recall": {
+            "S": 0.773544,
+            "V": 0.954969,
+            "F": 0.701031,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.866374,
+          "recall_non_N": 0.84391,
+          "specificity_N": 0.869143,
+          "precision_non_N": 0.44283,
+          "f1_non_N": 0.580861,
+          "macro_f1": 0.750689,
+          "youden_j": 0.713053,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38450,
+            "FP": 5789,
+            "FN": 851,
+            "TP": 4601
+          },
+          "subclass_recall": {
+            "S": 0.718019,
+            "V": 0.945963,
+            "F": 0.592784,
+            "Q": 0.857143
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.809865,
+          "recall_non_N": 0.889949,
+          "specificity_N": 0.799995,
+          "precision_non_N": 0.354161,
+          "f1_non_N": 0.506683,
+          "macro_f1": 0.694461,
+          "youden_j": 0.689944,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35391,
+            "FP": 8848,
+            "FN": 600,
+            "TP": 4852
+          },
+          "subclass_recall": {
+            "S": 0.792597,
+            "V": 0.960559,
+            "F": 0.762887,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.82,
+          "accuracy": 0.905114,
+          "recall_non_N": 0.77091,
+          "specificity_N": 0.921653,
+          "precision_non_N": 0.548051,
+          "f1_non_N": 0.640652,
+          "macro_f1": 0.792996,
+          "youden_j": 0.692563,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 40773,
+            "FP": 3466,
+            "FN": 1249,
+            "TP": 4203
+          },
+          "subclass_recall": {
+            "S": 0.579205,
+            "V": 0.916149,
+            "F": 0.474227,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.72,
+          "accuracy": 0.871868,
+          "recall_non_N": 0.837491,
+          "specificity_N": 0.876105,
+          "precision_non_N": 0.454464,
+          "f1_non_N": 0.589199,
+          "macro_f1": 0.756648,
+          "youden_j": 0.713596,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38758,
+            "FP": 5481,
+            "FN": 886,
+            "TP": 4566
+          },
+          "subclass_recall": {
+            "S": 0.705498,
+            "V": 0.943478,
+            "F": 0.582474,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.53,
+          "accuracy": 0.818518,
+          "recall_non_N": 0.884996,
+          "specificity_N": 0.810326,
+          "precision_non_N": 0.365088,
+          "f1_non_N": 0.516927,
+          "macro_f1": 0.7026,
+          "youden_j": 0.695322,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35848,
+            "FP": 8391,
+            "FN": 627,
+            "TP": 4825
+          },
+          "subclass_recall": {
+            "S": 0.786609,
+            "V": 0.958696,
+            "F": 0.737113,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.68,
+          "accuracy": 0.861001,
+          "recall_non_N": 0.851981,
+          "specificity_N": 0.862113,
+          "precision_non_N": 0.432294,
+          "f1_non_N": 0.573563,
+          "macro_f1": 0.745266,
+          "youden_j": 0.714094,
+          "passes_gate_85_85": true,
+          "confusion_matrix": {
+            "TN": 38139,
+            "FP": 6100,
+            "FN": 807,
+            "TP": 4645
+          },
+          "subclass_recall": {
+            "S": 0.734349,
+            "V": 0.947516,
+            "F": 0.613402,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 2.190761089324951,
+        "mean_abs_logit_diff": 0.08279186487197876,
+        "rmse_logit": 0.12892551720142365,
+        "stm32ai_l2r": 0.10082467268975061,
+        "stm32ai_cosine_similarity": 0.9949083743428923,
+        "max_abs_prob_diff": 0.5478857755661011,
+        "argmax_agreement_pct": 98.706,
+        "threshold_agreement_pct": 98.8932,
+        "passes_gate_c1": false
+      }
+    },
+    "c1": {
+      "config_key": "c1",
+      "label": "C1 (INT8 Peak-Calib)",
+      "espdl_size_kb": 42.09,
+      "val_metrics": {
+        "auroc": 0.871699,
+        "pr_auc": 0.518958
+      },
+      "test_metrics": {
+        "auroc": 0.91724,
+        "pr_auc": 0.708706,
+        "delta_auroc_vs_fp32": 0.004439,
+        "delta_pr_auc_vs_fp32": 0.011022
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.82,
+        "3_val_best_youden_j": 0.72,
+        "4_val_recall_ge_0.85": 0.53,
+        "5_val_equal_rec_spec": 0.68
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.809865,
+          "recall_non_N": 0.889949,
+          "specificity_N": 0.799995,
+          "precision_non_N": 0.354161,
+          "f1_non_N": 0.506683,
+          "macro_f1": 0.694461,
+          "youden_j": 0.689944,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35391,
+            "FP": 8848,
+            "FN": 600,
+            "TP": 4852
+          },
+          "subclass_recall": {
+            "S": 0.792597,
+            "V": 0.960559,
+            "F": 0.762887,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.923286,
+          "recall_non_N": 0.717718,
+          "specificity_N": 0.94862,
+          "precision_non_N": 0.632557,
+          "f1_non_N": 0.672452,
+          "macro_f1": 0.814504,
+          "youden_j": 0.666338,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41966,
+            "FP": 2273,
+            "FN": 1539,
+            "TP": 3913
+          },
+          "subclass_recall": {
+            "S": 0.471421,
+            "V": 0.892547,
+            "F": 0.43299,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.877644,
+          "recall_non_N": 0.829054,
+          "specificity_N": 0.883632,
+          "precision_non_N": 0.467522,
+          "f1_non_N": 0.597884,
+          "macro_f1": 0.762864,
+          "youden_j": 0.712686,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 39091,
+            "FP": 5148,
+            "FN": 932,
+            "TP": 4520
+          },
+          "subclass_recall": {
+            "S": 0.689167,
+            "V": 0.940062,
+            "F": 0.569588,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.834316,
+          "recall_non_N": 0.875825,
+          "specificity_N": 0.8292,
+          "precision_non_N": 0.387235,
+          "f1_non_N": 0.53703,
+          "macro_f1": 0.718067,
+          "youden_j": 0.705026,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36683,
+            "FP": 7556,
+            "FN": 677,
+            "TP": 4775
+          },
+          "subclass_recall": {
+            "S": 0.773544,
+            "V": 0.954969,
+            "F": 0.701031,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.866374,
+          "recall_non_N": 0.84391,
+          "specificity_N": 0.869143,
+          "precision_non_N": 0.44283,
+          "f1_non_N": 0.580861,
+          "macro_f1": 0.750689,
+          "youden_j": 0.713053,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38450,
+            "FP": 5789,
+            "FN": 851,
+            "TP": 4601
+          },
+          "subclass_recall": {
+            "S": 0.718019,
+            "V": 0.945963,
+            "F": 0.592784,
+            "Q": 0.857143
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.809865,
+          "recall_non_N": 0.889949,
+          "specificity_N": 0.799995,
+          "precision_non_N": 0.354161,
+          "f1_non_N": 0.506683,
+          "macro_f1": 0.694461,
+          "youden_j": 0.689944,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35391,
+            "FP": 8848,
+            "FN": 600,
+            "TP": 4852
+          },
+          "subclass_recall": {
+            "S": 0.792597,
+            "V": 0.960559,
+            "F": 0.762887,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.82,
+          "accuracy": 0.905114,
+          "recall_non_N": 0.77091,
+          "specificity_N": 0.921653,
+          "precision_non_N": 0.548051,
+          "f1_non_N": 0.640652,
+          "macro_f1": 0.792996,
+          "youden_j": 0.692563,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 40773,
+            "FP": 3466,
+            "FN": 1249,
+            "TP": 4203
+          },
+          "subclass_recall": {
+            "S": 0.579205,
+            "V": 0.916149,
+            "F": 0.474227,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.72,
+          "accuracy": 0.871868,
+          "recall_non_N": 0.837491,
+          "specificity_N": 0.876105,
+          "precision_non_N": 0.454464,
+          "f1_non_N": 0.589199,
+          "macro_f1": 0.756648,
+          "youden_j": 0.713596,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38758,
+            "FP": 5481,
+            "FN": 886,
+            "TP": 4566
+          },
+          "subclass_recall": {
+            "S": 0.705498,
+            "V": 0.943478,
+            "F": 0.582474,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.53,
+          "accuracy": 0.818518,
+          "recall_non_N": 0.884996,
+          "specificity_N": 0.810326,
+          "precision_non_N": 0.365088,
+          "f1_non_N": 0.516927,
+          "macro_f1": 0.7026,
+          "youden_j": 0.695322,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35848,
+            "FP": 8391,
+            "FN": 627,
+            "TP": 4825
+          },
+          "subclass_recall": {
+            "S": 0.786609,
+            "V": 0.958696,
+            "F": 0.737113,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.68,
+          "accuracy": 0.861001,
+          "recall_non_N": 0.851981,
+          "specificity_N": 0.862113,
+          "precision_non_N": 0.432294,
+          "f1_non_N": 0.573563,
+          "macro_f1": 0.745266,
+          "youden_j": 0.714094,
+          "passes_gate_85_85": true,
+          "confusion_matrix": {
+            "TN": 38139,
+            "FP": 6100,
+            "FN": 807,
+            "TP": 4645
+          },
+          "subclass_recall": {
+            "S": 0.734349,
+            "V": 0.947516,
+            "F": 0.613402,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 2.190761089324951,
+        "mean_abs_logit_diff": 0.08279186487197876,
+        "rmse_logit": 0.12892551720142365,
+        "stm32ai_l2r": 0.10082467268975061,
+        "stm32ai_cosine_similarity": 0.9949083743428923,
+        "max_abs_prob_diff": 0.5478857755661011,
+        "argmax_agreement_pct": 98.706,
+        "threshold_agreement_pct": 98.8932,
+        "passes_gate_c1": false
+      }
+    },
+    "c2b": {
+      "config_key": "c2b",
+      "label": "C2b (INT8 exp=-5)",
+      "espdl_size_kb": 42.09,
+      "val_metrics": {
+        "auroc": 0.874807,
+        "pr_auc": 0.514405
+      },
+      "test_metrics": {
+        "auroc": 0.917755,
+        "pr_auc": 0.708221,
+        "delta_auroc_vs_fp32": 0.004954,
+        "delta_pr_auc_vs_fp32": 0.010537
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.88,
+        "3_val_best_youden_j": 0.67,
+        "4_val_recall_ge_0.85": 0.56,
+        "5_val_equal_rec_spec": 0.68
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.807772,
+          "recall_non_N": 0.886831,
+          "specificity_N": 0.798029,
+          "precision_non_N": 0.351126,
+          "f1_non_N": 0.503069,
+          "macro_f1": 0.691954,
+          "youden_j": 0.684859,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35304,
+            "FP": 8935,
+            "FN": 617,
+            "TP": 4835
+          },
+          "subclass_recall": {
+            "S": 0.790419,
+            "V": 0.96087,
+            "F": 0.726804,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.927512,
+          "recall_non_N": 0.716618,
+          "specificity_N": 0.953503,
+          "precision_non_N": 0.655097,
+          "f1_non_N": 0.684478,
+          "macro_f1": 0.821765,
+          "youden_j": 0.67012,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 42182,
+            "FP": 2057,
+            "FN": 1545,
+            "TP": 3907
+          },
+          "subclass_recall": {
+            "S": 0.459445,
+            "V": 0.899068,
+            "F": 0.420103,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.878368,
+          "recall_non_N": 0.82245,
+          "specificity_N": 0.88526,
+          "precision_non_N": 0.469038,
+          "f1_non_N": 0.597389,
+          "macro_f1": 0.762876,
+          "youden_j": 0.70771,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 39163,
+            "FP": 5076,
+            "FN": 968,
+            "TP": 4484
+          },
+          "subclass_recall": {
+            "S": 0.67828,
+            "V": 0.940062,
+            "F": 0.528351,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.832324,
+          "recall_non_N": 0.87179,
+          "specificity_N": 0.82746,
+          "precision_non_N": 0.38374,
+          "f1_non_N": 0.532907,
+          "macro_f1": 0.715365,
+          "youden_j": 0.69925,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36606,
+            "FP": 7633,
+            "FN": 699,
+            "TP": 4753
+          },
+          "subclass_recall": {
+            "S": 0.771911,
+            "V": 0.956522,
+            "F": 0.639175,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.86575,
+          "recall_non_N": 0.836941,
+          "specificity_N": 0.869301,
+          "precision_non_N": 0.441083,
+          "f1_non_N": 0.577705,
+          "macro_f1": 0.748947,
+          "youden_j": 0.706241,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38457,
+            "FP": 5782,
+            "FN": 889,
+            "TP": 4563
+          },
+          "subclass_recall": {
+            "S": 0.706042,
+            "V": 0.945031,
+            "F": 0.556701,
+            "Q": 1.0
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.807772,
+          "recall_non_N": 0.886831,
+          "specificity_N": 0.798029,
+          "precision_non_N": 0.351126,
+          "f1_non_N": 0.503069,
+          "macro_f1": 0.691954,
+          "youden_j": 0.684859,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35304,
+            "FP": 8935,
+            "FN": 617,
+            "TP": 4835
+          },
+          "subclass_recall": {
+            "S": 0.790419,
+            "V": 0.96087,
+            "F": 0.726804,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.88,
+          "accuracy": 0.932382,
+          "recall_non_N": 0.687271,
+          "specificity_N": 0.96259,
+          "precision_non_N": 0.693632,
+          "f1_non_N": 0.690437,
+          "macro_f1": 0.826241,
+          "youden_j": 0.64986,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 42584,
+            "FP": 1655,
+            "FN": 1705,
+            "TP": 3747
+          },
+          "subclass_recall": {
+            "S": 0.39521,
+            "V": 0.886957,
+            "F": 0.412371,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.67,
+          "accuracy": 0.856372,
+          "recall_non_N": 0.848313,
+          "specificity_N": 0.857366,
+          "precision_non_N": 0.422954,
+          "f1_non_N": 0.564472,
+          "macro_f1": 0.739239,
+          "youden_j": 0.705678,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 37929,
+            "FP": 6310,
+            "FN": 827,
+            "TP": 4625
+          },
+          "subclass_recall": {
+            "S": 0.727817,
+            "V": 0.949068,
+            "F": 0.579897,
+            "Q": 1.0
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.56,
+          "accuracy": 0.825783,
+          "recall_non_N": 0.876559,
+          "specificity_N": 0.819526,
+          "precision_non_N": 0.374442,
+          "f1_non_N": 0.524732,
+          "macro_f1": 0.709038,
+          "youden_j": 0.696085,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36255,
+            "FP": 7984,
+            "FN": 673,
+            "TP": 4779
+          },
+          "subclass_recall": {
+            "S": 0.779532,
+            "V": 0.957453,
+            "F": 0.662371,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.68,
+          "accuracy": 0.860397,
+          "recall_non_N": 0.842627,
+          "specificity_N": 0.862587,
+          "precision_non_N": 0.430432,
+          "f1_non_N": 0.569798,
+          "macro_f1": 0.743239,
+          "youden_j": 0.705214,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38160,
+            "FP": 6079,
+            "FN": 858,
+            "TP": 4594
+          },
+          "subclass_recall": {
+            "S": 0.717474,
+            "V": 0.946894,
+            "F": 0.56701,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 2.2806785106658936,
+        "mean_abs_logit_diff": 0.1666833460330963,
+        "rmse_logit": 0.25056716799736023,
+        "stm32ai_l2r": 0.19595307960070193,
+        "stm32ai_cosine_similarity": 0.981443707557041,
+        "max_abs_prob_diff": 0.6336967945098877,
+        "argmax_agreement_pct": 98.1264,
+        "threshold_agreement_pct": 98.0479,
+        "passes_gate_c1": false
+      }
+    },
+    "c3": {
+      "config_key": "c3",
+      "label": "C3 (Mixed INT16+INT8)",
+      "espdl_size_kb": 44.12,
+      "val_metrics": {
+        "auroc": 0.867336,
+        "pr_auc": 0.500921
+      },
+      "test_metrics": {
+        "auroc": 0.916769,
+        "pr_auc": 0.707138,
+        "delta_auroc_vs_fp32": 0.003968,
+        "delta_pr_auc_vs_fp32": 0.009454
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.86,
+        "3_val_best_youden_j": 0.74,
+        "4_val_recall_ge_0.85": 0.56,
+        "5_val_equal_rec_spec": 0.71
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.806001,
+          "recall_non_N": 0.892333,
+          "specificity_N": 0.795362,
+          "precision_non_N": 0.349547,
+          "f1_non_N": 0.502323,
+          "macro_f1": 0.690921,
+          "youden_j": 0.687695,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35186,
+            "FP": 9053,
+            "FN": 587,
+            "TP": 4865
+          },
+          "subclass_recall": {
+            "S": 0.796407,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.91908,
+          "recall_non_N": 0.734226,
+          "specificity_N": 0.941861,
+          "precision_non_N": 0.608821,
+          "f1_non_N": 0.665669,
+          "macro_f1": 0.809819,
+          "youden_j": 0.676087,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41667,
+            "FP": 2572,
+            "FN": 1449,
+            "TP": 4003
+          },
+          "subclass_recall": {
+            "S": 0.502994,
+            "V": 0.901553,
+            "F": 0.440722,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874404,
+          "recall_non_N": 0.835657,
+          "specificity_N": 0.879179,
+          "precision_non_N": 0.460156,
+          "f1_non_N": 0.5935,
+          "macro_f1": 0.759614,
+          "youden_j": 0.714836,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38894,
+            "FP": 5345,
+            "FN": 896,
+            "TP": 4556
+          },
+          "subclass_recall": {
+            "S": 0.703865,
+            "V": 0.940994,
+            "F": 0.585052,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.830331,
+          "recall_non_N": 0.879127,
+          "specificity_N": 0.824318,
+          "precision_non_N": 0.381456,
+          "f1_non_N": 0.532053,
+          "macro_f1": 0.714217,
+          "youden_j": 0.703445,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36467,
+            "FP": 7772,
+            "FN": 659,
+            "TP": 4793
+          },
+          "subclass_recall": {
+            "S": 0.777354,
+            "V": 0.955901,
+            "F": 0.721649,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.863215,
+          "recall_non_N": 0.85088,
+          "specificity_N": 0.864735,
+          "precision_non_N": 0.436694,
+          "f1_non_N": 0.57717,
+          "macro_f1": 0.74779,
+          "youden_j": 0.715615,
+          "passes_gate_85_85": true,
+          "confusion_matrix": {
+            "TN": 38255,
+            "FP": 5984,
+            "FN": 813,
+            "TP": 4639
+          },
+          "subclass_recall": {
+            "S": 0.733805,
+            "V": 0.946894,
+            "F": 0.60567,
+            "Q": 1.0
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.806001,
+          "recall_non_N": 0.892333,
+          "specificity_N": 0.795362,
+          "precision_non_N": 0.349547,
+          "f1_non_N": 0.502323,
+          "macro_f1": 0.690921,
+          "youden_j": 0.687695,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35186,
+            "FP": 9053,
+            "FN": 587,
+            "TP": 4865
+          },
+          "subclass_recall": {
+            "S": 0.796407,
+            "V": 0.961491,
+            "F": 0.770619,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.91908,
+          "recall_non_N": 0.734226,
+          "specificity_N": 0.941861,
+          "precision_non_N": 0.608821,
+          "f1_non_N": 0.665669,
+          "macro_f1": 0.809819,
+          "youden_j": 0.676087,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41667,
+            "FP": 2572,
+            "FN": 1449,
+            "TP": 4003
+          },
+          "subclass_recall": {
+            "S": 0.502994,
+            "V": 0.901553,
+            "F": 0.440722,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.874404,
+          "recall_non_N": 0.835657,
+          "specificity_N": 0.879179,
+          "precision_non_N": 0.460156,
+          "f1_non_N": 0.5935,
+          "macro_f1": 0.759614,
+          "youden_j": 0.714836,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38894,
+            "FP": 5345,
+            "FN": 896,
+            "TP": 4556
+          },
+          "subclass_recall": {
+            "S": 0.703865,
+            "V": 0.940994,
+            "F": 0.585052,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.56,
+          "accuracy": 0.824274,
+          "recall_non_N": 0.882612,
+          "specificity_N": 0.817084,
+          "precision_non_N": 0.372908,
+          "f1_non_N": 0.524297,
+          "macro_f1": 0.708265,
+          "youden_j": 0.699696,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36147,
+            "FP": 8092,
+            "FN": 640,
+            "TP": 4812
+          },
+          "subclass_recall": {
+            "S": 0.781709,
+            "V": 0.957453,
+            "F": 0.737113,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.71,
+          "accuracy": 0.865871,
+          "recall_non_N": 0.847579,
+          "specificity_N": 0.868125,
+          "precision_non_N": 0.441989,
+          "f1_non_N": 0.581002,
+          "macro_f1": 0.750579,
+          "youden_j": 0.715704,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38405,
+            "FP": 5834,
+            "FN": 831,
+            "TP": 4621
+          },
+          "subclass_recall": {
+            "S": 0.728361,
+            "V": 0.945652,
+            "F": 0.595361,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 2.099452495574951,
+        "mean_abs_logit_diff": 0.06718510389328003,
+        "rmse_logit": 0.12353157252073288,
+        "stm32ai_l2r": 0.09660640365261129,
+        "stm32ai_cosine_similarity": 0.9957867516275665,
+        "max_abs_prob_diff": 0.5480164289474487,
+        "argmax_agreement_pct": 99.1246,
+        "threshold_agreement_pct": 99.2333,
+        "passes_gate_c1": false
+      }
+    },
+    "c_w8a16": {
+      "config_key": "c_w8a16",
+      "label": "C_W8A16 (W8A16)",
+      "espdl_size_kb": 45.95,
+      "val_metrics": {
+        "auroc": 0.87409,
+        "pr_auc": 0.518803
+      },
+      "test_metrics": {
+        "auroc": 0.914167,
+        "pr_auc": 0.708522,
+        "delta_auroc_vs_fp32": 0.001366,
+        "delta_pr_auc_vs_fp32": 0.010838
+      },
+      "recalibrated_val_thresholds": {
+        "1_default_0.50": 0.5,
+        "2_val_best_f1": 0.89,
+        "3_val_best_youden_j": 0.73,
+        "4_val_recall_ge_0.85": 0.55,
+        "5_val_equal_rec_spec": 0.7
+      },
+      "test_operating_points_fixed_fp32_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.810267,
+          "recall_non_N": 0.887564,
+          "specificity_N": 0.800741,
+          "precision_non_N": 0.354402,
+          "f1_non_N": 0.506542,
+          "macro_f1": 0.694549,
+          "youden_j": 0.688306,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35424,
+            "FP": 8815,
+            "FN": 613,
+            "TP": 4839
+          },
+          "subclass_recall": {
+            "S": 0.788242,
+            "V": 0.960248,
+            "F": 0.752577,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.86,
+          "accuracy": 0.92073,
+          "recall_non_N": 0.732759,
+          "specificity_N": 0.943896,
+          "precision_non_N": 0.616798,
+          "f1_non_N": 0.669796,
+          "macro_f1": 0.812377,
+          "youden_j": 0.676654,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 41757,
+            "FP": 2482,
+            "FN": 1457,
+            "TP": 3995
+          },
+          "subclass_recall": {
+            "S": 0.498095,
+            "V": 0.903106,
+            "F": 0.430412,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.74,
+          "accuracy": 0.876457,
+          "recall_non_N": 0.831255,
+          "specificity_N": 0.882027,
+          "precision_non_N": 0.464773,
+          "f1_non_N": 0.596198,
+          "macro_f1": 0.761635,
+          "youden_j": 0.713282,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 39020,
+            "FP": 5219,
+            "FN": 920,
+            "TP": 4532
+          },
+          "subclass_recall": {
+            "S": 0.694066,
+            "V": 0.941615,
+            "F": 0.564433,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.58,
+          "accuracy": 0.834477,
+          "recall_non_N": 0.875642,
+          "specificity_N": 0.829404,
+          "precision_non_N": 0.387469,
+          "f1_non_N": 0.537219,
+          "macro_f1": 0.718217,
+          "youden_j": 0.705046,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36692,
+            "FP": 7547,
+            "FN": 678,
+            "TP": 4774
+          },
+          "subclass_recall": {
+            "S": 0.770822,
+            "V": 0.955901,
+            "F": 0.703608,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.865509,
+          "recall_non_N": 0.846478,
+          "specificity_N": 0.867854,
+          "precision_non_N": 0.441162,
+          "f1_non_N": 0.580029,
+          "macro_f1": 0.749982,
+          "youden_j": 0.714333,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38393,
+            "FP": 5846,
+            "FN": 837,
+            "TP": 4615
+          },
+          "subclass_recall": {
+            "S": 0.726184,
+            "V": 0.945652,
+            "F": 0.590206,
+            "Q": 1.0
+          }
+        }
+      },
+      "test_operating_points_recal_val_th": {
+        "1_default_0.50": {
+          "threshold": 0.5,
+          "accuracy": 0.810267,
+          "recall_non_N": 0.887564,
+          "specificity_N": 0.800741,
+          "precision_non_N": 0.354402,
+          "f1_non_N": 0.506542,
+          "macro_f1": 0.694549,
+          "youden_j": 0.688306,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 35424,
+            "FP": 8815,
+            "FN": 613,
+            "TP": 4839
+          },
+          "subclass_recall": {
+            "S": 0.788242,
+            "V": 0.960248,
+            "F": 0.752577,
+            "Q": 1.0
+          }
+        },
+        "2_val_best_f1": {
+          "threshold": 0.89,
+          "accuracy": 0.930973,
+          "recall_non_N": 0.680484,
+          "specificity_N": 0.961844,
+          "precision_non_N": 0.687292,
+          "f1_non_N": 0.683871,
+          "macro_f1": 0.822564,
+          "youden_j": 0.642328,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 42551,
+            "FP": 1688,
+            "FN": 1742,
+            "TP": 3710
+          },
+          "subclass_recall": {
+            "S": 0.393576,
+            "V": 0.877019,
+            "F": 0.407216,
+            "Q": 0.714286
+          }
+        },
+        "3_val_best_youden_j": {
+          "threshold": 0.73,
+          "accuracy": 0.87372,
+          "recall_non_N": 0.835106,
+          "specificity_N": 0.878478,
+          "precision_non_N": 0.458556,
+          "f1_non_N": 0.592029,
+          "macro_f1": 0.758664,
+          "youden_j": 0.713585,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38863,
+            "FP": 5376,
+            "FN": 899,
+            "TP": 4553
+          },
+          "subclass_recall": {
+            "S": 0.703321,
+            "V": 0.941925,
+            "F": 0.572165,
+            "Q": 0.857143
+          }
+        },
+        "4_val_recall_ge_0.85": {
+          "threshold": 0.55,
+          "accuracy": 0.825703,
+          "recall_non_N": 0.879677,
+          "specificity_N": 0.819051,
+          "precision_non_N": 0.374658,
+          "f1_non_N": 0.525503,
+          "macro_f1": 0.709373,
+          "youden_j": 0.698728,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 36234,
+            "FP": 8005,
+            "FN": 656,
+            "TP": 4796
+          },
+          "subclass_recall": {
+            "S": 0.777354,
+            "V": 0.957143,
+            "F": 0.719072,
+            "Q": 1.0
+          }
+        },
+        "5_val_equal_rec_spec": {
+          "threshold": 0.7,
+          "accuracy": 0.865509,
+          "recall_non_N": 0.846478,
+          "specificity_N": 0.867854,
+          "precision_non_N": 0.441162,
+          "f1_non_N": 0.580029,
+          "macro_f1": 0.749982,
+          "youden_j": 0.714333,
+          "passes_gate_85_85": false,
+          "confusion_matrix": {
+            "TN": 38393,
+            "FP": 5846,
+            "FN": 837,
+            "TP": 4615
+          },
+          "subclass_recall": {
+            "S": 0.726184,
+            "V": 0.945652,
+            "F": 0.590206,
+            "Q": 1.0
+          }
+        }
+      },
+      "error_vs_fp32_test49691": {
+        "num_samples": 49691,
+        "max_abs_logit_diff": 0.4415457248687744,
+        "mean_abs_logit_diff": 0.04604484885931015,
+        "rmse_logit": 0.055899929255247116,
+        "stm32ai_l2r": 0.04371586654129931,
+        "stm32ai_cosine_similarity": 0.9993895104482282,
+        "max_abs_prob_diff": 0.11984169483184814,
+        "argmax_agreement_pct": 99.3741,
+        "threshold_agreement_pct": 99.5231,
+        "passes_gate_c1": false
+      }
+    }
+  }
+}

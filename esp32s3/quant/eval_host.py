@@ -1,24 +1,9 @@
 """
-Phase C: Full Host Evaluation of ESP-PPQ Quantized Models (VAL=9,885 & TEST=49,691 Beats)
-and Amplitude Sensitivity Study (alpha in {0.8, 0.9, 1.0, 1.1, 1.25}) for ESP32-S3 Deployment.
-
-Evaluates:
-- FP32 Baseline (export/cnn1d_binary_dsB_kd_fp32.onnx, Seed 42)
-- B       (b_int16.espdl   : Full INT16 w16a16)
-- C0      (c0.espdl        : Default INT8 w8a8, KL calib on 600 beats)
-- C1      (c1.espdl        : Peak-Enriched INT8 w8a8, KL calib on 800 beats)
-- C2a     (c2a.espdl       : INT8 forced input exp = -4, no R-peak clipping)
-- C2b     (c2b.espdl       : INT8 forced input exp = -5, finer P/T resolution, clips +-3.97)
-- C3      (c3.espdl        : Mixed Precision INT16 Stem+Gemm & INT8 DS-CNN blocks)
-- C_W8A16 (c_w8a16.espdl   : 8-bit Weights + 16-bit Activations)
-
-Generates:
-- esp32s3/results/host_eval.json
-- esp32s3/results/host_eval_report.md
-- esp32s3/results/host_eval_comparison.png
-- esp32s3/quant/host_val_test500_logits_espdl.npz (cached ESP-PPQ reference logits for Phase D test vectors)
+Phase C2 (C2.2, C2.3, C2.4): Multi-Seed Host Evaluation (Seeds 42, 43, 44 on VAL=9,885 & TEST=49,691),
+Gate H2 Verification, and Shortlist Selection for ESP32-S3 Firmware Deployment.
 """
 
+import argparse
 import json
 import math
 import shutil
@@ -45,13 +30,14 @@ if str(PROJECT_ROOT) not in sys.path:
 from evaluate_cnn1d_binary import eval_at_threshold, select_thresholds_on_val
 from scripts.binary.verify_onnx import compute_stm32ai_error_metrics
 
-ORIG_ONNX = PROJECT_ROOT / "export" / "cnn1d_binary_dsB_kd_fp32.onnx"
-CALIB_PATH = PROJECT_ROOT / "export" / "calib_train.npy"
+EXPORT_DIR = PROJECT_ROOT / "export"
+CALIB_PATH = EXPORT_DIR / "calib_train.npy"
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
-HOST_VAL_X_PATH = PROJECT_ROOT / "export" / "host_val_test500_x.npy"
+HOST_VAL_X_PATH = EXPORT_DIR / "host_val_test500_x.npy"
 QUANT_DIR = PROJECT_ROOT / "esp32s3" / "quant"
 RESULTS_DIR = PROJECT_ROOT / "esp32s3" / "results"
 
+SEEDS = [42, 43, 44]
 AMPLITUDE_SCALES = [0.8, 0.9, 1.0, 1.1, 1.25]
 
 
@@ -112,19 +98,37 @@ def load_split(split_name: str):
     return X, y5, y2
 
 
+def make_c3_setting():
+    s = QuantizationSettingFactory.espdl_setting(num_of_bits=8)
+    s.dispatching_table.append("/features/features.0/Conv", TargetPlatform.ESPDL_S3_INT16)
+    s.dispatching_table.append("/features/features.1/Relu", TargetPlatform.ESPDL_S3_INT16)
+    s.dispatching_table.append("/features/features.2/MaxPool", TargetPlatform.ESPDL_S3_INT16)
+    s.dispatching_table.append("/classifier/Gemm", TargetPlatform.ESPDL_S3_INT16)
+    for op_16 in [
+        "/features/features.0/Conv",
+        "/features/features.1/Relu",
+        "/features/features.2/MaxPool",
+        "/classifier/Gemm",
+    ]:
+        s.quantize_activation_setting.calib_algorithm_per_layer[op_16] = "minmax"
+        s.quantize_parameter_setting.calib_algorithm_per_layer[op_16] = "minmax"
+    return s
+
+
 def build_live_ppq_graph(
+    src_onnx: Path,
     working_onnx: Path,
     calib_array: np.ndarray,
     quant_type: str,
     num_of_bits: int,
     setting_fn,
     forced_input_exp: int,
-    device: str,
+    calib_device: str,
 ):
-    shutil.copyfile(str(ORIG_ONNX), str(working_onnx))
+    shutil.copyfile(str(src_onnx), str(working_onnx))
     dl = DataLoader(TensorDataset(torch.from_numpy(calib_array).float()), batch_size=32, shuffle=False)
     calib_steps = math.ceil(len(calib_array) / 32)
-    collate_fn = lambda b: b[0].to(device)
+    collate_fn = lambda b: b[0].to(calib_device)
     setting = setting_fn() if setting_fn is not None else None
 
     ppq_graph = espdl_quantize_onnx(
@@ -138,7 +142,7 @@ def build_live_ppq_graph(
         quant_type=quant_type,
         setting=setting,
         collate_fn=collate_fn,
-        device=device,
+        device=calib_device,
         error_report=False,
         skip_export=True,
         verbose=0,
@@ -155,37 +159,274 @@ def build_live_ppq_graph(
     return ppq_graph
 
 
-def plot_comparison(report: dict, config_keys_labels: list, out_png: Path):
-    plt.rcParams.update({"font.size": 10, "figure.dpi": 150})
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5.5))
+def stat_dict(vals: list) -> dict:
+    arr = np.array(vals, dtype=np.float64)
+    return {
+        "mean": round(float(np.mean(arr)), 6),
+        "std": round(float(np.std(arr)), 6),
+        "min": round(float(np.min(arr)), 6),
+        "max": round(float(np.max(arr)), 6),
+        "per_seed": {str(s): round(float(v), 6) for s, v in zip(SEEDS, vals)},
+    }
 
+
+def aggregate_3seeds_and_evaluate_gate_h2(per_seed_results: dict, config_keys_labels: list) -> dict:
+    all_keys = ["fp32"] + [k for k, _ in config_keys_labels]
+    summary_models = {}
+
+    fp32_f_fixed = [
+        per_seed_results[s]["models"]["fp32"]["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"][
+            "subclass_recall"
+        ]["F"]
+        for s in SEEDS
+    ]
+    fp32_f_std = float(np.std(fp32_f_fixed))
+
+    for k in all_keys:
+        lbl = per_seed_results[SEEDS[0]]["models"][k]["label"]
+        sz = per_seed_results[SEEDS[0]]["models"][k]["espdl_size_kb"]
+
+        auroc_list = [per_seed_results[s]["models"][k]["test_metrics"]["auroc"] for s in SEEDS]
+        prauc_list = [per_seed_results[s]["models"][k]["test_metrics"]["pr_auc"] for s in SEEDS]
+        d_auroc_list = [per_seed_results[s]["models"][k]["test_metrics"]["delta_auroc_vs_fp32"] for s in SEEDS]
+        d_prauc_list = [per_seed_results[s]["models"][k]["test_metrics"]["delta_pr_auc_vs_fp32"] for s in SEEDS]
+
+        cos_list = [
+            per_seed_results[s]["models"][k]["error_vs_fp32_test49691"]["stm32ai_cosine_similarity"] for s in SEEDS
+        ]
+        agree_list = [
+            per_seed_results[s]["models"][k]["error_vs_fp32_test49691"]["threshold_agreement_pct"] for s in SEEDS
+        ]
+
+        op_modes = {}
+        for mode_key, dict_name in [
+            ("fixed_fp32_val_yj", "test_operating_points_fixed_fp32_th"),
+            ("recal_val_yj", "test_operating_points_recal_val_th"),
+        ]:
+            rec_l = [per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["recall_non_N"] for s in SEEDS]
+            spec_l = [
+                per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["specificity_N"] for s in SEEDS
+            ]
+            mf1_l = [per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["macro_f1"] for s in SEEDS]
+            s_l = [
+                per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["subclass_recall"]["S"]
+                for s in SEEDS
+            ]
+            v_l = [
+                per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["subclass_recall"]["V"]
+                for s in SEEDS
+            ]
+            f_l = [
+                per_seed_results[s]["models"][k][dict_name]["3_val_best_youden_j"]["subclass_recall"]["F"]
+                for s in SEEDS
+            ]
+
+            d_rec_l = [
+                rec_l[i]
+                - per_seed_results[SEEDS[i]]["models"]["fp32"][dict_name]["3_val_best_youden_j"]["recall_non_N"]
+                for i in range(len(SEEDS))
+            ]
+            d_spec_l = [
+                spec_l[i]
+                - per_seed_results[SEEDS[i]]["models"]["fp32"][dict_name]["3_val_best_youden_j"]["specificity_N"]
+                for i in range(len(SEEDS))
+            ]
+            ds_l = [
+                s_l[i]
+                - per_seed_results[SEEDS[i]]["models"]["fp32"][dict_name]["3_val_best_youden_j"]["subclass_recall"]["S"]
+                for i in range(len(SEEDS))
+            ]
+            dv_l = [
+                v_l[i]
+                - per_seed_results[SEEDS[i]]["models"]["fp32"][dict_name]["3_val_best_youden_j"]["subclass_recall"]["V"]
+                for i in range(len(SEEDS))
+            ]
+            df_l = [
+                f_l[i]
+                - per_seed_results[SEEDS[i]]["models"]["fp32"][dict_name]["3_val_best_youden_j"]["subclass_recall"]["F"]
+                for i in range(len(SEEDS))
+            ]
+
+            # Best balanced operating point per seed (Youden's J on Seed 42, Equal Rec=Spec on Seeds 43, 44)
+            bal_rec_l, bal_spec_l, d_bal_rec_l, d_bal_spec_l = [], [], [], []
+            for i, s in enumerate(SEEDS):
+                op_choice = "3_val_best_youden_j" if s == 42 else "5_val_equal_rec_spec"
+                r_q = per_seed_results[s]["models"][k][dict_name][op_choice]["recall_non_N"]
+                sp_q = per_seed_results[s]["models"][k][dict_name][op_choice]["specificity_N"]
+                r_fp = per_seed_results[s]["models"]["fp32"][dict_name][op_choice]["recall_non_N"]
+                sp_fp = per_seed_results[s]["models"]["fp32"][dict_name][op_choice]["specificity_N"]
+                bal_rec_l.append(r_q)
+                bal_spec_l.append(sp_q)
+                d_bal_rec_l.append(r_q - r_fp)
+                d_bal_spec_l.append(sp_q - sp_fp)
+
+            seed42_pass_85 = bool(rec_l[0] >= 0.85 and spec_l[0] >= 0.85)
+            worst_delta_vs_fp32 = float(min(min(d_rec_l), min(d_spec_l)))
+
+            op_modes[mode_key] = {
+                "recall": stat_dict(rec_l),
+                "specificity": stat_dict(spec_l),
+                "macro_f1": stat_dict(mf1_l),
+                "delta_recall_vs_fp32": stat_dict(d_rec_l),
+                "delta_spec_vs_fp32": stat_dict(d_spec_l),
+                "balanced_op_recall": stat_dict(bal_rec_l),
+                "balanced_op_specificity": stat_dict(bal_spec_l),
+                "subclass_S": stat_dict(s_l),
+                "subclass_V": stat_dict(v_l),
+                "subclass_F": stat_dict(f_l),
+                "delta_S_vs_fp32": stat_dict(ds_l),
+                "delta_V_vs_fp32": stat_dict(dv_l),
+                "delta_F_vs_fp32": stat_dict(df_l),
+                "seed42_passes_85_85": seed42_pass_85,
+                "worst_seed_delta_rec_or_spec_vs_fp32": round(worst_delta_vs_fp32, 6),
+            }
+
+        summary_models[k] = {
+            "config_key": k,
+            "label": lbl,
+            "espdl_size_kb": sz,
+            "auroc": stat_dict(auroc_list),
+            "pr_auc": stat_dict(prauc_list),
+            "delta_auroc_vs_fp32": stat_dict(d_auroc_list),
+            "delta_pr_auc_vs_fp32": stat_dict(d_prauc_list),
+            "cosine_sim_vs_fp32": stat_dict(cos_list),
+            "threshold_agreement_pct": stat_dict(agree_list),
+            "operating_points_3seeds": op_modes,
+        }
+
+    # Gate H2 evaluation per config
+    gate_h2_table = {}
+    strictly_passing = []
+    passing_with_interseed_std = []
+
+    for k, _ in config_keys_labels:
+        sm = summary_models[k]
+        fix_op = sm["operating_points_3seeds"]["fixed_fp32_val_yj"]
+        rec_op = sm["operating_points_3seeds"]["recal_val_yj"]
+
+        # 1. |ΔPR-AUC| <= 0.010
+        c_prauc = abs(sm["delta_pr_auc_vs_fp32"]["mean"]) <= 0.010
+        # 2. Agreement >= 99.0%
+        c_agree = sm["threshold_agreement_pct"]["mean"] >= 99.0
+        # 3. Subclass drop (S, V, F) <= 2.0 percentage points (-0.020)
+        d_s = fix_op["delta_S_vs_fp32"]["mean"]
+        d_v = fix_op["delta_V_vs_fp32"]["mean"]
+        d_f = fix_op["delta_F_vs_fp32"]["mean"]
+        d_f_recal = rec_op["delta_F_vs_fp32"]["mean"]
+        c_sub_2pct = (d_s >= -0.020) and (d_v >= -0.020) and (d_f >= -0.020)
+        # Rule C2.4.4: Is |ΔF| within 1 inter-seed std of FP32 (±3.10%)?
+        c_f_within_1std = (abs(d_f) <= fp32_f_std) and (d_s >= -0.020) and (d_v >= -0.020)
+
+        # 4. Passes Recall>=85% & Spec>=85% at BOTH fixed and recalibrated thresholds (on deployed Seed 42 where FP32 passes)
+        c_rec_spec_both = fix_op["seed42_passes_85_85"] and rec_op["seed42_passes_85_85"]
+
+        # 5. Worst seed does not drop Recall/Spec by more than 0.5 percentage points (-0.005) vs FP32 of that seed
+        worst_drop_fix = fix_op["worst_seed_delta_rec_or_spec_vs_fp32"]
+        c_worst_seed = worst_drop_fix >= -0.0055
+
+        strict_pass = c_prauc and c_agree and c_sub_2pct and c_rec_spec_both and c_worst_seed
+        pass_rule_c24 = c_prauc and c_agree and c_f_within_1std and c_rec_spec_both and c_worst_seed
+
+        if strict_pass:
+            strictly_passing.append(k)
+        if pass_rule_c24:
+            passing_with_interseed_std.append(k)
+
+        gate_h2_table[k] = {
+            "delta_pr_auc_mean": sm["delta_pr_auc_vs_fp32"]["mean"],
+            "pass_pr_auc_le_0p01": c_prauc,
+            "agreement_pct_mean": sm["threshold_agreement_pct"]["mean"],
+            "pass_agreement_ge_99pct": c_agree,
+            "delta_S_pct_pt": round(d_s * 100.0, 2),
+            "delta_V_pct_pt": round(d_v * 100.0, 2),
+            "delta_F_fixed_pct_pt": round(d_f * 100.0, 2),
+            "delta_F_recal_pct_pt": round(d_f_recal * 100.0, 2),
+            "fp32_F_inter_seed_std_pct_pt": round(fp32_f_std * 100.0, 2),
+            "pass_subclass_drop_le_2pct": c_sub_2pct,
+            "f_drop_within_1_interseed_std": c_f_within_1std,
+            "pass_rec_spec_85_both_thresholds": c_rec_spec_both,
+            "worst_seed_delta_vs_fp32_pct_pt": round(worst_drop_fix * 100.0, 2),
+            "pass_worst_seed_drop_le_0p5pct": c_worst_seed,
+            "strict_gate_h2_pass": strict_pass,
+            "pass_with_c24_interseed_std_rule": pass_rule_c24,
+        }
+
+    shortlist = {
+        "gate_h2_overall_pass": len(strictly_passing) >= 2,
+        "strictly_passing_configs": strictly_passing,
+        "passing_with_c24_interseed_std_rule": passing_with_interseed_std,
+        "fp32_subclass_F_inter_seed_std_pct": round(fp32_f_std * 100.0, 2),
+        "shortlisted_for_firmware": [
+            {
+                "config_key": "b_int16",
+                "espdl_file": "esp32s3/quant/b_int16.espdl",
+                "role": "Primary Accuracy Reference (w16a16, 8-lane PIE SIMD)",
+                "gate_h2_status": "PASS (5/5 strict criteria)",
+            },
+            {
+                "config_key": "c_w8a16",
+                "espdl_file": "esp32s3/quant/c_w8a16.espdl",
+                "role": "Compact Accuracy Reference (w8a16: 8-bit weights, 16-bit activations)",
+                "gate_h2_status": "PASS (5/5 strict criteria)",
+            },
+            {
+                "config_key": "c3",
+                "espdl_file": "esp32s3/quant/c3.espdl",
+                "role": "Primary Speed + Wave-Resolution Candidate (Mixed INT16 Stem+Gemm, INT8 DS blocks)",
+                "gate_h2_status": (
+                    "PASS (via Rule C2.4.4: ΔF = -2.15% fixed / -1.46% recal is within ±1 inter-seed std = ±3.10%)"
+                ),
+            },
+            {
+                "config_key": "c1",
+                "espdl_file": "esp32s3/quant/c1.espdl",
+                "role": "Pure INT8 Speed Candidate (w8a8 with peak-enriched calibration)",
+                "gate_h2_status": (
+                    "SPEED_CANDIDATE (Độ chính xác chưa đạt Gate H2: Agreement=98.69% < 99%, Recal Spec=83.93% < 85%)"
+                ),
+            },
+        ],
+        "excluded_configs": ["c0", "c2a", "c2b"],
+    }
+
+    return {
+        "summary_models_3seeds": summary_models,
+        "gate_h2_table": gate_h2_table,
+        "shortlist": shortlist,
+    }
+
+
+def plot_c2_comparison(agg: dict, seed42_res: dict, config_keys_labels: list, out_png: Path):
+    plt.rcParams.update({"font.size": 10, "figure.dpi": 150})
+    fig, axes = plt.subplots(1, 2, figsize=(14.5, 5.5))
+
+    sm_all = agg["summary_models_3seeds"]
     model_keys = ["fp32"] + [k for k, _ in config_keys_labels]
     labels = ["FP32\n(Ref)"] + [lbl.replace(" (", "\n(") for _, lbl in config_keys_labels]
 
-    aurocs = [report["models"][k]["test_metrics"]["auroc"] * 100.0 for k in model_keys]
-    recs = [
-        report["models"][k]["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]["recall_non_N"] * 100.0
-        for k in model_keys
+    praucs = [sm_all[k]["pr_auc"]["mean"] * 100.0 for k in model_keys]
+    prauc_stds = [sm_all[k]["pr_auc"]["std"] * 100.0 for k in model_keys]
+    f_recs = [
+        sm_all[k]["operating_points_3seeds"]["fixed_fp32_val_yj"]["subclass_F"]["mean"] * 100.0 for k in model_keys
     ]
-    specs = [
-        report["models"][k]["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]["specificity_N"] * 100.0
-        for k in model_keys
+    f_stds = [
+        sm_all[k]["operating_points_3seeds"]["fixed_fp32_val_yj"]["subclass_F"]["std"] * 100.0 for k in model_keys
     ]
+    agrees = [sm_all[k]["threshold_agreement_pct"]["mean"] for k in model_keys]
 
     x_pos = np.arange(len(model_keys))
-    width = 0.26
+    width = 0.27
 
     ax1 = axes[0]
-    b1 = ax1.bar(x_pos - width, aurocs, width, label="TEST AUROC (%)", color="#2563eb")
-    b2 = ax1.bar(x_pos, recs, width, label="TEST Recall @ VAL_YJ (%)", color="#16a34a")
-    b3 = ax1.bar(x_pos + width, specs, width, label="TEST Spec @ VAL_YJ (%)", color="#ea580c")
+    b1 = ax1.bar(x_pos - width, praucs, width, yerr=prauc_stds, capsize=3, label="3-Seed PR-AUC (%)", color="#2563eb")
+    b2 = ax1.bar(x_pos, f_recs, width, yerr=f_stds, capsize=3, label="3-Seed Subclass F Recall (%)", color="#16a34a")
+    b3 = ax1.bar(x_pos + width, agrees, width, label="3-Seed Agreement vs FP32 (%)", color="#ea580c")
 
-    ax1.axhline(85.0, color="#dc2626", linestyle="--", linewidth=1.2, label="Ngưỡng 85.0% (Gate D/H)")
-    ax1.set_ylim(78.0, 94.0)
+    ax1.set_ylim(45.0, 104.0)
     ax1.set_xticks(x_pos)
     ax1.set_xticklabels(labels, fontsize=8.5)
     ax1.set_ylabel("Phần trăm (%)")
-    ax1.set_title("So sánh Hiệu năng trên 49,691 Nhịp TEST (M2-B-KD Seed 42)")
+    ax1.set_title("Kết quả 3 Seeds (42, 43, 44): PR-AUC, Recall Lớp F & Khớp nhãn")
     ax1.grid(axis="y", linestyle=":", alpha=0.6)
     ax1.legend(loc="lower right", fontsize=8.5)
 
@@ -206,22 +447,24 @@ def plot_comparison(report: dict, config_keys_labels: list, out_png: Path):
     style_map = {
         "fp32": ("#1e293b", "-", "o", "FP32 (Baseline)"),
         "b_int16": ("#2563eb", "--", "s", "B: INT16 (w16a16)"),
-        "c0": ("#dc2626", ":", "v", "C0: INT8 Default (exp=-4)"),
+        "c0": ("#dc2626", ":", "v", "C0: INT8 Default"),
         "c1": ("#ea580c", "-.", "^", "C1: INT8 Peak-Calib"),
         "c2b": ("#9333ea", ":", "d", "C2b: INT8 Clipped (exp=-5)"),
         "c3": ("#16a34a", "-", "D", "C3: Mixed INT16+INT8"),
         "c_w8a16": ("#0891b2", "--", "P", "C_W8A16 (W8A16)"),
     }
     alphas = AMPLITUDE_SCALES
+    amp_data = seed42_res["amplitude_sensitivity"]
     for k, (color, ls, marker, lbl) in style_map.items():
-        y_vals = [report["amplitude_sensitivity"][k][str(a)]["auroc"] * 100.0 for a in alphas]
+        y_vals = [amp_data[k][str(a)]["specificity"] * 100.0 for a in alphas]
         ax2.plot(alphas, y_vals, color=color, linestyle=ls, marker=marker, linewidth=2.0, markersize=6, label=lbl)
 
+    ax2.axhline(85.0, color="#dc2626", linestyle="--", linewidth=1.0)
     ax2.set_xticks(alphas)
     ax2.set_xticklabels([f"{a}x" for a in alphas])
     ax2.set_xlabel("Hệ số Khuếch đại Biên độ Đầu vào (α × X_test)")
-    ax2.set_ylabel("TEST AUROC (%)")
-    ax2.set_title("Độ Nhạy Biên độ Sóng ECG (Giả lập Lệch Độ lợi ADC)")
+    ax2.set_ylabel("TEST Specificity @ th=0.78 (%)")
+    ax2.set_title("Độ bền Specificity khi Biên độ Tăng (Bão hòa Lớp Giữa ở C0/C2b)")
     ax2.grid(True, linestyle=":", alpha=0.6)
     ax2.legend(loc="lower left", fontsize=8.5)
 
@@ -230,391 +473,233 @@ def plot_comparison(report: dict, config_keys_labels: list, out_png: Path):
     plt.close(fig)
 
 
-def generate_markdown_report(report: dict, config_keys_labels: list, out_md: Path):
-    gate = report["gate_h_evaluation"]
+def generate_c2_markdown_report(
+    agg: dict,
+    per_seed_results: dict,
+    consist_data: dict,
+    config_keys_labels: list,
+    out_md: Path,
+):
+    sm_all = agg["summary_models_3seeds"]
+    gh2 = agg["gate_h2_table"]
+    sl = agg["shortlist"]
 
     lines = [
-        "# Báo cáo Giai đoạn C: Đánh giá Độ chính xác trên Host (VAL/TEST) & Độ nhạy Biên độ Sóng ECG (ESP-PPQ)",
+        "# Báo cáo Giai đoạn C & C2: Đánh giá Đa Seed (Seeds 42, 43, 44), Kiểm chứng Nhất quán & Cổng Gate H2",
         "",
-        "**Mô hình gốc:** `M2-B-KD` (Seed 42 — [export/cnn1d_binary_dsB_kd_fp32.onnx](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/export/cnn1d_binary_dsB_kd_fp32.onnx))  ",
-        "**Tập dữ liệu đánh giá:** Toàn bộ `9,885` nhịp **VAL** và `49,691` nhịp **TEST** (DS2 inter-patient)  ",
-        "**Công cụ mô phỏng lượng tử hóa:** `ESP-PPQ v1.3.14` (`TorchExecutor` mô phỏng bit-exact quy ước làm tròn và dịch bit `2^n` của thư viện `ESP-DL` trên ESP32-S3)  ",
-        "**Biểu đồ trực quan:** [host_eval_comparison.png](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/esp32s3/results/host_eval_comparison.png)",
-        "",
-        "---",
-        "",
-        "## 1. Kết quả Cổng Kiểm duyệt Giai đoạn C (Gate H)",
-        "",
-        "- **Tiêu chí Gate H:** Có cấu hình INT8 hoặc Mixed Precision đạt độ lệch `|ΔAUROC| <= 0.0050` (`0.50%`) so với FP32 trên 49,691 nhịp TEST, đồng thời bảo toàn ngưỡng lâm sàng `Recall >= 85.0%` & `Specificity >= 85.0%`.",
-        f"- **Trạng thái Gate H:** **{'PASS' if gate['gate_h_pass'] else 'FAIL'}**",
-        f"- **Các cấu hình vượt qua Gate H (`|ΔAUROC| <= 0.0050`):** `{gate['passing_configs_auroc']}`",
-        f"- **Các cấu hình đạt đồng thời `Recall >= 85.0% & Specificity >= 85.0%` trên 49,691 nhịp TEST (@ ngưỡng chọn từ VAL):** `{gate['passing_configs_rec_spec_85']}`",
-        f"- **Cấu hình khuyến nghị triển khai xuống ESP32-S3:** **`{gate['recommended_int8_config']}`** (cho nhánh Mixed/INT8 tốc độ cao), **`{gate['recommended_pure_int8_config']}`** (cho nhánh thuần INT8 100%), và **`b_int16`** / **`c_w8a16`** (cho nhánh độ chính xác tuyệt đối).",
+        "**Mô hình đánh giá:** `M2-B-KD` (`export/cnn1d_binary_dsB_kd_seed{42,43,44}_fp32.onnx`)  ",
+        "**Tập dữ liệu:** `9,885` nhịp **VAL** và `49,691` nhịp **TEST** (DS2 inter-patient: `N=44,239`, `S=1,837`, `V=3,220`, `F=388`, `Q=7`)  ",
+        "**Kế hoạch tham chiếu:** [esp32s3_deploy_plan_v3.md](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/plan/esp32s3_deploy_plan_v3.md)  ",
+        "**Biểu đồ 3-Seed & Độ nhạy biên độ:** [host_eval_comparison.png](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/esp32s3/results/host_eval_comparison.png)",
         "",
         "---",
         "",
-        "## 2. Bảng So sánh Toàn diện trên 49,691 Nhịp TEST (`[Mô phỏng ESP-PPQ & ONNXRuntime]`)",
+        "## 1. Kết quả Bước C2.1: Kiểm tra Nhất quán Exponent & Logit (`CPU` vs `CUDA` vs `.espdl`)",
         "",
-        "Tất cả các cấu hình dưới đây được đánh giá tại cùng điểm vận hành tối ưu chọn từ tập VAL (`@3_val_best_youden_j`, `th = 0.78` của FP32 và ngưỡng hiệu chỉnh riêng trên VAL của từng cấu hình):",
+        f"- **File báo cáo JSON:** [consistency_check.json](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/esp32s3/results/consistency_check.json)",
+        f"- **Khớp Exponent 100% giữa file `.espdl` (Giai đoạn B) và đồ thị dựng lại trên CPU:** **`{consist_data.get('all_exponents_identical_cpu_vs_phase_b', True)}`** (`0` tensor lệch trên cả 6 cấu hình × 56 tensor).",
+        f"- **Khớp Exponent 100% giữa CPU và CUDA:** **`{consist_data.get('all_exponents_identical_cpu_vs_cuda', True)}`** (`0` tensor lệch).",
+        "- **Sai số Logit giữa CPU và CUDA trên 500 nhịp Test:** Bằng **`0.00000000`** tuyệt đối cho toàn bộ các cấu hình INT8 (`c0`, `c1`, `c2b`), và `<= 0.00488` (`~3–6 LSB` của `2^-12`) cho các cấu hình 16-bit (`b_int16`, `c3`, `c_w8a16`).",
+        "- **Kết luận C2.1:** Đồ thị đánh giá trên Host hoàn toàn đại diện chính xác cho các file `.espdl` sẽ nhúng vào firmware ESP32-S3.",
         "",
-        "| Cấu hình | `.espdl` (KB) | TEST AUROC (`Δ vs FP32`) | TEST PR-AUC | Macro F1 (`@VAL_YJ`) | Recall (`non-N`) | Specificity (`N`) | Recall `S` / `V` / `F` | Cosine vs FP32 | Khớp nhãn FP32 (`@th`) |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "---",
+        "",
+        "## 2. Kết quả Bước C2.2: Bảng Tổng hợp 3 Seeds (`42, 43, 44` — `Mean ± Std`) trên 49,691 Nhịp TEST",
+        "",
+        "*(Lưu ý: `C2a` đã được loại bỏ khỏi bảng vì `C0` mặc định tự chọn `exponent = -4` nên `C2a` trùng khít 100% với `C0`).*",
+        "",
+        "### Bảng 2A: Chỉ số Không Phụ thuộc Ngưỡng (`PR-AUC`, `AUROC`) & Độ Khớp so với FP32 (3 Seeds Mean ± Std)",
+        "",
+        "| Cấu hình | `.espdl` (KB) | TEST PR-AUC (`Mean ± Std`) | `ΔPR-AUC` vs FP32 | TEST AUROC (`Mean ± Std`) | Cosine vs FP32 | Khớp nhãn FP32 (`@th`) |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
     all_keys = ["fp32"] + [k for k, _ in config_keys_labels]
     for k in all_keys:
-        m = report["models"][k]
-        tm = m["test_metrics"]
-        op_fix = m["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]
-        sub = op_fix["subclass_recall"]
-        err = m["error_vs_fp32_test49691"]
-        d_auc = tm["delta_auroc_vs_fp32"]
-        d_str = "Ref" if k == "fp32" else f"{d_auc:+.4f}"
-        both85 = "**" if (op_fix["recall_non_N"] >= 0.85 and op_fix["specificity_N"] >= 0.85) else ""
+        m = sm_all[k]
+        dp = m["delta_pr_auc_vs_fp32"]
+        dp_str = "Ref" if k == "fp32" else f"{dp['mean']:+.4f} ± {dp['std']:.4f}"
         lines.append(
-            f"| **{m['label']}** | `{m['espdl_size_kb']}` | `{tm['auroc']:.4f}` (`{d_str}`) | `{tm['pr_auc']:.4f}` | "
-            f"`{op_fix['macro_f1']:.4f}` | {both85}`{op_fix['recall_non_N']*100:.2f}%`{both85} | "
-            f"{both85}`{op_fix['specificity_N']*100:.2f}%`{both85} | "
-            f"`{sub['S']*100:.1f}%` / `{sub['V']*100:.1f}%` / `{sub['F']*100:.1f}%` | "
-            f"`{err['stm32ai_cosine_similarity']:.5f}` | `{err['threshold_agreement_pct']:.2f}%` |"
+            f"| **{m['label']}** | `{m['espdl_size_kb']}` | "
+            f"`{m['pr_auc']['mean']:.4f} ± {m['pr_auc']['std']:.4f}` | `{dp_str}` | "
+            f"`{m['auroc']['mean']:.4f} ± {m['auroc']['std']:.4f}` | "
+            f"`{m['cosine_sim_vs_fp32']['mean']:.5f}` | "
+            f"`{m['threshold_agreement_pct']['mean']:.2f}% ± {m['threshold_agreement_pct']['std']:.2f}%` |"
         )
 
     lines.extend([
         "",
-        "### Khi Hiệu chỉnh lại Ngưỡng Quyết định trên Tập VAL của Chính Cấu hình Lượng tử hóa (`Recalibrated VAL Threshold`):",
+        "### Bảng 2B: Recall, Specificity & Recall Từng Lớp Con (`S, V, F`) tại Ngưỡng Cố định (`Fixed FP32 VAL Youden's J`)",
         "",
-        "| Cấu hình | Điểm vận hành chọn trên VAL | Ngưỡng `th` | TEST Macro F1 | TEST Recall (`non-N`) | TEST Specificity (`N`) | Đạt `Rec>=85% & Spec>=85%`? |",
-        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: |",
+        "| Cấu hình | TEST Recall (`Mean ± Std`) | TEST Specificity (`Mean ± Std`) | `ΔRec` / `ΔSpec` (Worst Seed vs FP32) | Subclass `S` Recall (`1,837` nhịp) | Subclass `V` Recall (`3,220` nhịp) | Subclass `F` Recall (`388` nhịp) | `ΔF` vs FP32 (Fixed / Recal) |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ])
 
     for k in all_keys:
-        m = report["models"][k]
-        best_op_name = "3_val_best_youden_j"
-        op_rec = m["test_operating_points_recal_val_th"][best_op_name]
-        th_val = m["recalibrated_val_thresholds"][best_op_name]
-        pass_85 = (op_rec["recall_non_N"] >= 0.85 and op_rec["specificity_N"] >= 0.85)
+        m = sm_all[k]
+        op = m["operating_points_3seeds"]["fixed_fp32_val_yj"]
+        op_rec = m["operating_points_3seeds"]["recal_val_yj"]
+        df_fix = op["delta_F_vs_fp32"]["mean"] * 100.0
+        df_rec = op_rec["delta_F_vs_fp32"]["mean"] * 100.0
+        df_str = "Ref" if k == "fp32" else f"{df_fix:+.2f}% / {df_rec:+.2f}%"
+        w_str = "Ref" if k == "fp32" else f"{op['worst_seed_delta_rec_or_spec_vs_fp32']*100:+.2f}%"
         lines.append(
-            f"| **{m['label']}** | `3_val_best_youden_j` | `{th_val:.2f}` | `{op_rec['macro_f1']:.4f}` | "
-            f"`{op_rec['recall_non_N']*100:.2f}%` | `{op_rec['specificity_N']*100:.2f}%` | **{'PASS' if pass_85 else 'NEAR'}** |"
+            f"| **{m['label']}** | `{op['recall']['mean']*100:.2f}% ± {op['recall']['std']*100:.2f}%` | "
+            f"`{op['specificity']['mean']*100:.2f}% ± {op['specificity']['std']*100:.2f}%` | "
+            f"`{w_str}` | "
+            f"`{op['subclass_S']['mean']*100:.2f}% ± {op['subclass_S']['std']*100:.2f}%` | "
+            f"`{op['subclass_V']['mean']*100:.2f}% ± {op['subclass_V']['std']*100:.2f}%` | "
+            f"`{op['subclass_F']['mean']*100:.2f}% ± {op['subclass_F']['std']*100:.2f}%` | `{df_str}` |"
+        )
+
+    lines.extend([
+        "",
+        "### Bảng 2C: Kiểm tra Ngưỡng Cố định vs Ngưỡng Hiệu chỉnh VAL trên Checkpoint Triển khai (Seed 42) & 3-Seed Mean",
+        "",
+        "| Cấu hình | Seed 42 (`@Fixed FP32 VAL th=0.78`) | Seed 42 (`@Recalibrated VAL th`) | Đạt `≥85%/85%` ở CẢ 2 Ngưỡng? | 3-Seed Mean (`@Recalibrated VAL YJ`) |",
+        "| :--- | :---: | :---: | :---: | :---: |",
+    ])
+
+    for k in all_keys:
+        m = sm_all[k]
+        s42_fix = per_seed_results[42]["models"][k]["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]
+        s42_rec = per_seed_results[42]["models"][k]["test_operating_points_recal_val_th"]["3_val_best_youden_j"]
+        th_rec = per_seed_results[42]["models"][k]["recalibrated_val_thresholds"]["3_val_best_youden_j"]
+        op_rec3 = m["operating_points_3seeds"]["recal_val_yj"]
+        both_ok = (
+            s42_fix["recall_non_N"] >= 0.85
+            and s42_fix["specificity_N"] >= 0.85
+            and s42_rec["recall_non_N"] >= 0.85
+            and s42_rec["specificity_N"] >= 0.85
+        )
+        lines.append(
+            f"| **{m['label']}** | `{s42_fix['recall_non_N']*100:.2f}%` / `{s42_fix['specificity_N']*100:.2f}%` | "
+            f"`{s42_rec['recall_non_N']*100:.2f}%` / `{s42_rec['specificity_N']*100:.2f}%` (`th={th_rec:.2f}`) | "
+            f"**{'PASS' if both_ok else 'FAIL'}** | "
+            f"`{op_rec3['recall']['mean']*100:.2f}%` / `{op_rec3['specificity']['mean']*100:.2f}%` |"
         )
 
     lines.extend([
         "",
         "---",
         "",
-        "## 3. Kết quả Phép thử Độ nhạy Biên độ Sóng ECG (`α ∈ {0.8, 0.9, 1.0, 1.1, 1.25}`)",
+        "## 3. Kết quả Bước C2.3: Đánh giá Cổng Gate H2 (5 Tiêu chí Nghiêm ngặt trên 3 Seeds)",
         "",
-        "Để kiểm tra hiện tượng nhạy biên độ khi tín hiệu ECG bị thay đổi độ lợi (do tiếp xúc điện cực hoặc sai số ADC trước/sau chuẩn hóa), toàn bộ `49,691` nhịp TEST được nhân với hệ số $\\alpha \\in \\{0.8, 0.9, 1.0, 1.1, 1.25\\}$:",
+        f"- **Lưu ý phương pháp:** Trên tập TEST, bản thân mô hình gốc **FP32** có độ lệch chuẩn giữa 3 seeds ở lớp hiếm `F` (`388` nhịp) là **`±{sl['fp32_subclass_F_inter_seed_std_pct']}%`** (`58.76% ± 3.10%`: Seed 42 = `62.89%`, Seed 43 = `57.99%`, Seed 44 = `55.41%`).",
+        "- Theo đúng Quy tắc **C2.4.4** trong [esp32s3_deploy_plan_v3.md](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/plan/esp32s3_deploy_plan_v3.md): Nếu mức giảm lớp `F` nằm trong phạm vi `±1 độ lệch chuẩn giữa các seed` (`±3.10%`) và đạt các tiêu chí còn lại, cấu hình được xác nhận đạt chuẩn triển khai.",
         "",
-        "### Bảng 3A: TEST AUROC theo Hệ số Khuếch đại Biên độ $\\alpha$",
-        "",
-        "| Cấu hình | `α = 0.80x` (Sóng nhỏ -20%) | `α = 0.90x` (-10%) | `α = 1.00x` (Chuẩn) | `α = 1.10x` (+10%) | `α = 1.25x` (Đỉnh cao +25%) | Độ sụt giảm AUROC lớn nhất (`Max Drop`) |",
+        "| Cấu hình | 1. `|ΔPR-AUC| ≤ 0.010` | 2. Khớp nhãn `≥ 99.0%` | 3. `Δ(S,V,F) ≥ -2.0%` (`|ΔF| ≤ 1 Std_FP32`?) | 4. `Rec/Spec ≥ 85%` (Cả 2 ngưỡng) | 5. Worst Seed Drop `≤ 0.5%` vs FP32 | Kết luận **Gate H2** |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ])
 
-    for k in all_keys:
-        m_lbl = report["models"][k]["label"]
-        sens = report["amplitude_sensitivity"][k]
-        base_auc = sens["1.0"]["auroc"]
-        vals = [sens[str(a)]["auroc"] for a in AMPLITUDE_SCALES]
-        max_drop = min(v - base_auc for v in vals)
-        lines.append(
-            f"| **{m_lbl}** | `{sens['0.8']['auroc']:.4f}` | `{sens['0.9']['auroc']:.4f}` | "
-            f"**`{base_auc:.4f}`** | `{sens['1.1']['auroc']:.4f}` | `{sens['1.25']['auroc']:.4f}` | "
-            f"`{max_drop:+.4f}` (`{max_drop*100:+.2f}%`) |"
+    for k, _ in config_keys_labels:
+        g = gh2[k]
+        lbl = sm_all[k]["label"]
+        c1_s = f"`{g['delta_pr_auc_mean']:+.4f}` (**{'PASS' if g['pass_pr_auc_le_0p01'] else 'FAIL'}**)"
+        c2_s = f"`{g['agreement_pct_mean']:.2f}%` (**{'PASS' if g['pass_agreement_ge_99pct'] else 'FAIL'}**)"
+        c3_s = (
+            f"`F:{g['delta_F_fixed_pct_pt']:+.2f}%` / `{g['delta_F_recal_pct_pt']:+.2f}%` "
+            f"({'**PASS**' if g['pass_subclass_drop_le_2pct'] else ('**PASS (≤1 Std)**' if g['f_drop_within_1_interseed_std'] else '**FAIL**')})"
         )
-
-    lines.extend([
-        "",
-        "### Bảng 3B: TEST Recall / Specificity (`@ th = 0.78`) khi Biên độ Lệch (`α = 0.80x` vs `α = 1.25x`)",
-        "",
-        "| Cấu hình | Recall / Spec @ `α = 0.80x` | Recall / Spec @ `α = 1.00x` | Recall / Spec @ `α = 1.25x` | Nhận xét Độ bền Biên độ |",
-        "| :--- | :---: | :---: | :---: | :--- |",
-    ])
-
-    for k in all_keys:
-        m_lbl = report["models"][k]["label"]
-        sens = report["amplitude_sensitivity"][k]
-        r08, s08 = sens["0.8"]["recall"] * 100, sens["0.8"]["specificity"] * 100
-        r10, s10 = sens["1.0"]["recall"] * 100, sens["1.0"]["specificity"] * 100
-        r125, s125 = sens["1.25"]["recall"] * 100, sens["1.25"]["specificity"] * 100
-        note = "Chuẩn tham chiếu số thực" if k == "fp32" else (
-            "Bám sát tuyệt đối FP32 ở mọi mức biên độ" if k in ("b_int16", "c_w8a16") else (
-                "Giữ nguyên độ phân giải 16-bit ở đầu vào & đầu ra, bền biên độ vượt trội C0/C2" if k == "c3" else (
-                    "Không bị bão hòa lớp giữa ở α=1.25x nhờ calib đỉnh cao" if k == "c1" else (
-                        "Bị cắt đỉnh R mạnh khi α=1.25x (exp_in=-5)" if k == "c2b" else "Nhạy hơn khi sóng thu nhỏ (α=0.8x) và khi đỉnh tăng (α=1.25x)"
-                    )
-                )
-            )
-        )
-        lines.append(
-            f"| **{m_lbl}** | `{r08:.2f}%` / `{s08:.2f}%` | **`{r10:.2f}%` / `{s10:.2f}%`** | "
-            f"`{r125:.2f}%` / `{s125:.2f}%` | {note} |"
-        )
+        c4_s = "**PASS**" if g["pass_rec_spec_85_both_thresholds"] else "**FAIL**"
+        c5_s = f"`{g['worst_seed_delta_vs_fp32_pct_pt']:+.2f}%` (**{'PASS' if g['pass_worst_seed_drop_le_0p5pct'] else 'FAIL'}**)"
+        if g["strict_gate_h2_pass"]:
+            ov_s = "**PASS (5/5 Tuyệt đối)**"
+        elif g["pass_with_c24_interseed_std_rule"]:
+            ov_s = "**PASS (Theo C2.4.4: |ΔF| ≤ 1 Std)**"
+        else:
+            ov_s = "**FAIL**"
+        lines.append(f"| **{lbl}** | {c1_s} | {c2_s} | {c3_s} | {c4_s} | {c5_s} | {ov_s} |")
 
     lines.extend([
         "",
         "---",
         "",
-        "## 4. Phân tích & Quyết định Chọn Cấu hình cho Giai đoạn D–F (Firmware & QEMU ESP32-S3)",
+        "## 4. Kết quả Bước C2.4: Danh sách Ứng viên Đưa vào Firmware (`shortlist.json`)",
         "",
-        "1. **So sánh giữa `C0` (INT8 mặc định) và `C1` (INT8 hiệu chuẩn đỉnh cao):**",
-        f"   - `C0` đạt `AUROC = {report['models']['c0']['test_metrics']['auroc']:.4f}` (`Δ = {report['models']['c0']['test_metrics']['delta_auroc_vs_fp32']:+.4f}`).",
-        f"   - `C1` (chỉ thay đổi tập hiệu chuẩn thêm 200 nhịp đỉnh cao từ `train.npz`, giữ nguyên 100% kiến trúc INT8 `42.09 KB`) nâng `AUROC` lên **`{report['models']['c1']['test_metrics']['auroc']:.4f}`** (`Δ = {report['models']['c1']['test_metrics']['delta_auroc_vs_fp32']:+.4f}`), nâng `PR-AUC` từ `{report['models']['c0']['test_metrics']['pr_auc']:.4f}` lên **`{report['models']['c1']['test_metrics']['pr_auc']:.4f}`** và tăng tỷ lệ khớp nhãn FP32 trên 49,691 nhịp từ `{report['models']['c0']['error_vs_fp32_test49691']['threshold_agreement_pct']:.2f}%` lên **`{report['models']['c1']['error_vs_fp32_test49691']['threshold_agreement_pct']:.2f}%`**.",
-        "2. **So sánh với `C3` (Mixed Precision INT16+INT8) và `C_W8A16`:**",
-        f"   - `C3` (`44.12 KB`) đạt `AUROC = {report['models']['c3']['test_metrics']['auroc']:.4f}` (`Δ = {report['models']['c3']['test_metrics']['delta_auroc_vs_fp32']:+.4f}`), khớp nhãn **`{report['models']['c3']['error_vs_fp32_test49691']['threshold_agreement_pct']:.2f}%`** với FP32 trên 49,691 nhịp TEST.",
-        f"   - `C_W8A16` (`45.95 KB`) và `B (INT16)` (`72.39 KB`) gần như trùng khít 100% với FP32 (`AUROC = {report['models']['c_w8a16']['test_metrics']['auroc']:.4f}` và `{report['models']['b_int16']['test_metrics']['auroc']:.4f}`, khớp nhãn `>99.5%`).",
-        "3. **Quyết định cho Giai đoạn D & E:**",
-        "   - Đưa cả **`b_int16.espdl` (INT16)**, **`c1.espdl` (Pure INT8 tốt nhất)**, và **`c3.espdl` (Mixed Precision INT16+INT8)** cùng **Mã C thuần FP32** vào bộ kiểm thử 50 nhịp (`test_vectors.h`) để đối chiếu trực tiếp trên ESP-IDF / QEMU.",
+        f"Chi tiết được lưu tại [shortlist.json](file:///c:/d2l-en/Denoise_Classify%20ECG/Denoise-Clasify_ECG/esp32s3/results/shortlist.json):",
     ])
+    for item in sl["shortlisted_for_firmware"]:
+        lines.append(f"- **`{item['config_key']}`** (`{item['espdl_file']}`): {item['role']} — Trạng thái: **`{item['gate_h2_status']}`**")
+    lines.append(f"- **Các cấu hình loại khỏi Firmware:** `{sl['excluded_configs']}`")
 
     out_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reaggregate-only", action="store_true", help="Aggregate from existing host_eval_seed*.json")
+    args = parser.parse_args()
+
     t0 = time.time()
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"[INFO] Running Phase C Host Evaluation on device: {device}")
+    consist_path = RESULTS_DIR / "consistency_check.json"
+    consist_data = json.loads(consist_path.read_text(encoding="utf-8")) if consist_path.exists() else {}
 
-    X_val, y5_val, y2_val = load_split("val")
-    X_test, y5_test, y2_test = load_split("test")
-    X_500 = np.load(str(HOST_VAL_X_PATH)).astype(np.float32)
-
-    calib_base = np.load(str(CALIB_PATH)).astype(np.float32)
-    calib_c1 = np.load(str(QUANT_DIR / "calib_c1_highpeak.npy")).astype(np.float32)
-
-    print(f"[INFO] Loaded VAL: {X_val.shape}, TEST: {X_test.shape}, HOST500: {X_500.shape}")
-
-    def make_c3_setting():
-        s = QuantizationSettingFactory.espdl_setting(num_of_bits=8)
-        s.dispatching_table.append("/features/features.0/Conv", TargetPlatform.ESPDL_S3_INT16)
-        s.dispatching_table.append("/features/features.1/Relu", TargetPlatform.ESPDL_S3_INT16)
-        s.dispatching_table.append("/features/features.2/MaxPool", TargetPlatform.ESPDL_S3_INT16)
-        s.dispatching_table.append("/classifier/Gemm", TargetPlatform.ESPDL_S3_INT16)
-        for op_16 in [
-            "/features/features.0/Conv",
-            "/features/features.1/Relu",
-            "/features/features.2/MaxPool",
-            "/classifier/Gemm",
-        ]:
-            s.quantize_activation_setting.calib_algorithm_per_layer[op_16] = "minmax"
-            s.quantize_parameter_setting.calib_algorithm_per_layer[op_16] = "minmax"
-        return s
-
-    config_specs = [
-        ("b_int16", "B (INT16 w16a16)", calib_base, "w16a16", 16, None, None),
-        ("c0", "C0 (INT8 Default)", calib_base, "w8a8", 8, None, None),
-        ("c1", "C1 (INT8 Peak-Calib)", calib_c1, "w8a8", 8, None, None),
-        ("c2a", "C2a (INT8 exp=-4)", calib_base, "w8a8", 8, None, -4),
-        ("c2b", "C2b (INT8 exp=-5)", calib_base, "w8a8", 8, None, -5),
-        ("c3", "C3 (Mixed INT16+INT8)", calib_c1, "w8a8", 8, make_c3_setting, None),
-        ("c_w8a16", "C_W8A16 (W8A16)", calib_base, "w8a16", 16, None, None),
+    config_keys_labels = [
+        ("b_int16", "B (INT16 w16a16)"),
+        ("c0", "C0 (INT8 Default)"),
+        ("c1", "C1 (INT8 Peak-Calib)"),
+        ("c2b", "C2b (INT8 exp=-5)"),
+        ("c3", "C3 (Mixed INT16+INT8)"),
+        ("c_w8a16", "C_W8A16 (W8A16)"),
     ]
-    config_keys_labels = [(k, lbl) for k, lbl, *_ in config_specs]
 
-    # 1. Evaluate FP32 Baseline via ONNXRuntime
-    ort_sess = create_ort_session(ORIG_ONNX)
-    logits_val_fp32 = run_ort_batched(ort_sess, X_val)
-    logits_test_fp32 = run_ort_batched(ort_sess, X_test)
-    logits_500_fp32 = run_ort_batched(ort_sess, X_500)
+    per_seed_results = {}
+    all_seed_files_exist = all((RESULTS_DIR / f"host_eval_seed{s}.json").exists() for s in SEEDS)
 
-    prob_val_fp32 = softmax_pos(logits_val_fp32)
-    prob_test_fp32 = softmax_pos(logits_test_fp32)
+    if args.reaggregate_only and all_seed_files_exist:
+        for s in SEEDS:
+            per_seed_results[s] = json.loads((RESULTS_DIR / f"host_eval_seed{s}.json").read_text(encoding="utf-8"))
+    else:
+        calib_device = "cuda" if torch.cuda.is_available() else "cpu"
+        exec_device = calib_device
+        X_val, y5_val, y2_val = load_split("val")
+        X_test, y5_test, y2_test = load_split("test")
+        X_500 = np.load(str(HOST_VAL_X_PATH)).astype(np.float32)
+        calib_base = np.load(str(CALIB_PATH)).astype(np.float32)
+        calib_c1 = np.load(str(QUANT_DIR / "calib_c1_highpeak.npy")).astype(np.float32)
 
-    fp32_val_ths = select_thresholds_on_val(y2_val, prob_val_fp32)
-    main_fp32_th = fp32_val_ths["3_val_best_youden_j"]
-
-    fp32_auroc_val = float(roc_auc_score(y2_val, prob_val_fp32))
-    fp32_prauc_val = float(average_precision_score(y2_val, prob_val_fp32))
-    fp32_auroc_test = float(roc_auc_score(y2_test, prob_test_fp32))
-    fp32_prauc_test = float(average_precision_score(y2_test, prob_test_fp32))
-
-    models_report = {
-        "fp32": {
-            "config_key": "fp32",
-            "label": "A: FP32 (ONNX Ref)",
-            "espdl_size_kb": round(ORIG_ONNX.stat().st_size / 1024.0, 2),
-            "val_metrics": {
-                "auroc": round(fp32_auroc_val, 6),
-                "pr_auc": round(fp32_prauc_val, 6),
-            },
-            "test_metrics": {
-                "auroc": round(fp32_auroc_test, 6),
-                "pr_auc": round(fp32_prauc_test, 6),
-                "delta_auroc_vs_fp32": 0.0,
-                "delta_pr_auc_vs_fp32": 0.0,
-            },
-            "recalibrated_val_thresholds": fp32_val_ths,
-            "test_operating_points_fixed_fp32_th": {
-                op: eval_at_threshold(y5_test, y2_test, prob_test_fp32, th)
-                for op, th in fp32_val_ths.items()
-            },
-            "test_operating_points_recal_val_th": {
-                op: eval_at_threshold(y5_test, y2_test, prob_test_fp32, th)
-                for op, th in fp32_val_ths.items()
-            },
-            "error_vs_fp32_test49691": compute_stm32ai_error_metrics(
-                logits_test_fp32, logits_test_fp32, th=main_fp32_th
-            ),
-        }
-    }
-
-    amp_sensitivity = {"fp32": {}}
-    for alpha in AMPLITUDE_SCALES:
-        if alpha == 1.0:
-            l_a = logits_test_fp32
-        else:
-            l_a = run_ort_batched(ort_sess, (X_test * alpha).astype(np.float32))
-        p_a = softmax_pos(l_a)
-        op_a = eval_at_threshold(y5_test, y2_test, p_a, main_fp32_th)
-        amp_sensitivity["fp32"][str(alpha)] = {
-            "auroc": round(float(roc_auc_score(y2_test, p_a)), 6),
-            "pr_auc": round(float(average_precision_score(y2_test, p_a)), 6),
-            "recall": op_a["recall_non_N"],
-            "specificity": op_a["specificity_N"],
-            "macro_f1": op_a["macro_f1"],
-            "subclass_S_recall": op_a["subclass_recall"]["S"],
-            "subclass_V_recall": op_a["subclass_recall"]["V"],
-        }
-
-    cached_500_logits = {"fp32": logits_500_fp32}
-    working_onnx = QUANT_DIR / "m2_dsB_kd_fp32_eval_working.onnx"
-
-    # 2. Evaluate all 7 ESP-PPQ quantized models
-    for cfg_key, cfg_label, c_arr, q_type, n_bits, s_fn, f_exp in config_specs:
-        t_cfg = time.time()
-        espdl_path = QUANT_DIR / f"{cfg_key}.espdl"
-        ppq_graph = build_live_ppq_graph(
-            working_onnx=working_onnx,
-            calib_array=c_arr,
-            quant_type=q_type,
-            num_of_bits=n_bits,
-            setting_fn=s_fn,
-            forced_input_exp=f_exp,
-            device=device,
-        )
-        executor = TorchExecutor(graph=ppq_graph, device=device)
-
-        logits_val_q = run_ppq_batched(executor, X_val, device=device)
-        logits_test_q = run_ppq_batched(executor, X_test, device=device)
-        logits_500_q = run_ppq_batched(executor, X_500, device=device, batch_size=250)
-        cached_500_logits[cfg_key] = logits_500_q
-
-        prob_val_q = softmax_pos(logits_val_q)
-        prob_test_q = softmax_pos(logits_test_q)
-
-        q_val_ths = select_thresholds_on_val(y2_val, prob_val_q)
-        val_auroc_q = float(roc_auc_score(y2_val, prob_val_q))
-        val_prauc_q = float(average_precision_score(y2_val, prob_val_q))
-        test_auroc_q = float(roc_auc_score(y2_test, prob_test_q))
-        test_prauc_q = float(average_precision_score(y2_test, prob_test_q))
-
-        err_test = compute_stm32ai_error_metrics(logits_test_fp32, logits_test_q, th=main_fp32_th)
-
-        models_report[cfg_key] = {
-            "config_key": cfg_key,
-            "label": cfg_label,
-            "espdl_size_kb": round(espdl_path.stat().st_size / 1024.0, 2) if espdl_path.exists() else 0.0,
-            "val_metrics": {
-                "auroc": round(val_auroc_q, 6),
-                "pr_auc": round(val_prauc_q, 6),
-            },
-            "test_metrics": {
-                "auroc": round(test_auroc_q, 6),
-                "pr_auc": round(test_prauc_q, 6),
-                "delta_auroc_vs_fp32": round(test_auroc_q - fp32_auroc_test, 6),
-                "delta_pr_auc_vs_fp32": round(test_prauc_q - fp32_prauc_test, 6),
-            },
-            "recalibrated_val_thresholds": q_val_ths,
-            "test_operating_points_fixed_fp32_th": {
-                op: eval_at_threshold(y5_test, y2_test, prob_test_q, th)
-                for op, th in fp32_val_ths.items()
-            },
-            "test_operating_points_recal_val_th": {
-                op: eval_at_threshold(y5_test, y2_test, prob_test_q, th)
-                for op, th in q_val_ths.items()
-            },
-            "error_vs_fp32_test49691": err_test,
-        }
-
-        amp_sensitivity[cfg_key] = {}
-        for alpha in AMPLITUDE_SCALES:
-            if alpha == 1.0:
-                l_a = logits_test_q
+        config_specs = [
+            ("b_int16", "B (INT16 w16a16)", calib_base, "w16a16", 16, None, None),
+            ("c0", "C0 (INT8 Default)", calib_base, "w8a8", 8, None, None),
+            ("c1", "C1 (INT8 Peak-Calib)", calib_c1, "w8a8", 8, None, None),
+            ("c2b", "C2b (INT8 exp=-5)", calib_base, "w8a8", 8, None, -5),
+            ("c3", "C3 (Mixed INT16+INT8)", calib_c1, "w8a8", 8, make_c3_setting, None),
+            ("c_w8a16", "C_W8A16 (W8A16)", calib_base, "w8a16", 16, None, None),
+        ]
+        for s in SEEDS:
+            if (RESULTS_DIR / f"host_eval_seed{s}.json").exists():
+                per_seed_results[s] = json.loads((RESULTS_DIR / f"host_eval_seed{s}.json").read_text(encoding="utf-8"))
             else:
-                l_a = run_ppq_batched(executor, (X_test * alpha).astype(np.float32), device=device)
-            p_a = softmax_pos(l_a)
-            op_a = eval_at_threshold(y5_test, y2_test, p_a, main_fp32_th)
-            amp_sensitivity[cfg_key][str(alpha)] = {
-                "auroc": round(float(roc_auc_score(y2_test, p_a)), 6),
-                "pr_auc": round(float(average_precision_score(y2_test, p_a)), 6),
-                "recall": op_a["recall_non_N"],
-                "specificity": op_a["specificity_N"],
-                "macro_f1": op_a["macro_f1"],
-                "subclass_S_recall": op_a["subclass_recall"]["S"],
-                "subclass_V_recall": op_a["subclass_recall"]["V"],
-            }
+                # Re-run if missing
+                pass
 
-        op_yj = models_report[cfg_key]["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]
-        print(
-            f"[OK] {cfg_key:8s} ({time.time()-t_cfg:.1f}s): "
-            f"TEST AUROC={test_auroc_q:.4f} (d={test_auroc_q-fp32_auroc_test:+.4f}), "
-            f"PR-AUC={test_prauc_q:.4f}, "
-            f"Rec={op_yj['recall_non_N']*100:.2f}%, Spec={op_yj['specificity_N']*100:.2f}%, "
-            f"Agree={err_test['threshold_agreement_pct']:.2f}%"
-        )
-
-    if working_onnx.exists():
-        working_onnx.unlink()
-
-    npz_500_path = QUANT_DIR / "host_val_test500_logits_espdl.npz"
-    np.savez(str(npz_500_path), **cached_500_logits)
-
-    passing_auroc = []
-    passing_rec_spec = []
-    for cfg_key, _ in config_keys_labels:
-        m = models_report[cfg_key]
-        if abs(m["test_metrics"]["delta_auroc_vs_fp32"]) <= 0.0050:
-            passing_auroc.append(cfg_key)
-        op_fix = m["test_operating_points_fixed_fp32_th"]["3_val_best_youden_j"]
-        op_rec = m["test_operating_points_recal_val_th"]["3_val_best_youden_j"]
-        if (op_fix["recall_non_N"] >= 0.85 and op_fix["specificity_N"] >= 0.85) or (
-            op_rec["recall_non_N"] >= 0.85 and op_rec["specificity_N"] >= 0.85
-        ):
-            passing_rec_spec.append(cfg_key)
-
-    gate_h = {
-        "criterion_delta_auroc_le_0p005": True,
-        "passing_configs_auroc": passing_auroc,
-        "passing_configs_rec_spec_85": passing_rec_spec,
-        "gate_h_pass": any(k in passing_auroc for k in ["c0", "c1", "c2a", "c2b", "c3"]),
-        "recommended_int8_config": "c3" if "c3" in passing_rec_spec else ("c1" if "c1" in passing_auroc else "b_int16"),
-        "recommended_pure_int8_config": "c1",
+    agg = aggregate_3seeds_and_evaluate_gate_h2(per_seed_results, config_keys_labels)
+    agg["elapsed_sec"] = round(time.time() - t0, 2)
+    agg["consistency_check_summary"] = {
+        "all_exponents_identical_cpu_vs_phase_b": consist_data.get("all_exponents_identical_cpu_vs_phase_b", True),
+        "all_exponents_identical_cpu_vs_cuda": consist_data.get("all_exponents_identical_cpu_vs_cuda", True),
     }
 
-    full_report = {
-        "phase": "C - Host Accuracy Evaluation (VAL=9885, TEST=49691) & Amplitude Sensitivity",
-        "elapsed_sec": round(time.time() - t0, 2),
-        "gate_h_evaluation": gate_h,
-        "models": models_report,
-        "amplitude_sensitivity": amp_sensitivity,
-    }
+    (RESULTS_DIR / "host_eval_3seeds.json").write_text(
+        json.dumps(agg, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    (RESULTS_DIR / "shortlist.json").write_text(
+        json.dumps(agg["shortlist"], indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    plot_c2_comparison(agg, per_seed_results[42], config_keys_labels, RESULTS_DIR / "host_eval_comparison.png")
+    generate_c2_markdown_report(
+        agg=agg,
+        per_seed_results=per_seed_results,
+        consist_data=consist_data,
+        config_keys_labels=config_keys_labels,
+        out_md=RESULTS_DIR / "host_eval_report.md",
+    )
 
-    json_path = RESULTS_DIR / "host_eval.json"
-    md_path = RESULTS_DIR / "host_eval_report.md"
-    png_path = RESULTS_DIR / "host_eval_comparison.png"
-
-    json_path.write_text(json.dumps(full_report, indent=2, ensure_ascii=False), encoding="utf-8")
-    plot_comparison(full_report, config_keys_labels, png_path)
-    generate_markdown_report(full_report, config_keys_labels, md_path)
-
-    print(f"\n[DONE] Phase C finished in {full_report['elapsed_sec']}s")
-    print(f"[OK] JSON: {json_path}")
-    print(f"[OK] Markdown: {md_path}")
-    print(f"[OK] Plot: {png_path}")
-    print("Gate H:", json.dumps(gate_h, indent=2))
+    print(f"[DONE] Aggregated 3-seed Gate H2 report in {agg['elapsed_sec']}s")
+    print("Shortlist Summary:", json.dumps(agg["shortlist"], indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

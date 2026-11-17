@@ -1,0 +1,406 @@
+Command: ninja all
+[1/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/tool/src/dl_tool.cpp.obj
+[2/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/math/src/dl_math_matrix.cpp.obj
+[3/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/math/src/dl_math.cpp.obj
+[4/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_model_context.cpp.obj
+[5/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_bmp.cpp.obj
+[6/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/fbs_loader/src/fbs_loader.cpp.obj
+[7/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/tensor/src/dl_tensor_base.cpp.obj
+[8/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_pixel_kernel.cpp.obj
+[9/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_jpeg.cpp.obj
+[10/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_base.cpp.obj
+[11/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_memory_manager.cpp.obj
+[12/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_memory_manager_greedy.cpp.obj
+[13/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_pose_yolo11_postprocessor.cpp.obj
+[14/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_msr_postprocessor.cpp.obj
+[15/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_pico_postprocessor.cpp.obj
+[16/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_yolo11_postprocessor.cpp.obj
+[17/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_seg_yolo11_postprocessor.cpp.obj
+[18/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/model/src/dl_model_base.cpp.obj
+[19/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_mnp_postprocessor.cpp.obj
+[20/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_base.cpp.obj
+[21/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_espdet_postprocessor.cpp.obj
+[22/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_attention.cpp.obj
+[23/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/detect/dl_detect_postprocessor.cpp.obj
+[24/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_add.S.obj
+[25/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_process.cpp.obj
+[26/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_add2d.S.obj
+[27/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_add.S.obj
+[28/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_add2d.S.obj
+[29/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/image/dl_image_preprocessor.cpp.obj
+[30/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_image_preprocessor.cpp.obj
+[31/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_avg_pool2d.cpp.obj
+[32/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_avg_pool2d.S.obj
+[33/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_avg_pool2d.S.obj
+[34/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_base.cpp.obj
+[35/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_and.cpp.obj
+[36/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_elemwise.cpp.obj
+[37/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_conv2d.S.obj
+[38/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_recognition_database.cpp.obj
+[39/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_conv2d.S.obj
+[40/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_conv2d.S.obj
+[41/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_w8a16_conv2d.S.obj
+[42/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_w8a16_unaligned_conv2d.S.obj
+[43/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_depthwise_conv2d_block.S.obj
+[44/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_add.cpp.obj
+[45/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_depthwise_conv2d.S.obj
+[46/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_shape.cpp.obj
+[47/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_depthwise_conv2d.S.obj
+[48/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_requantize_linear.S.obj
+[49/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_requantize_linear.S.obj
+[50/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_equal.S.obj
+[51/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_attention.cpp.obj
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT8; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = signed char]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1588:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT8; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = signed char]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1588:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT16; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = short int]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1589:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_INT16; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = short int]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1589:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_FLOAT; bool causal = true]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1545:48:   required from 'void dl::base::attention(void*) [with feature_t = float]'
+ 1545 |         attention_forward_impl<qkv_dtype, true>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1546 |                                                 a.k,
+      |                                                 ~~~~
+ 1547 |                                                 a.v,
+      |                                                 ~~~~
+ 1548 |                                                 a.o,
+      |                                                 ~~~~
+ 1549 |                                                 a.has_scale,
+      |                                                 ~~~~~~~~~~~~
+ 1550 |                                                 a.scale,
+      |                                                 ~~~~~~~~
+ 1551 |                                                 a.task_id,
+      |                                                 ~~~~~~~~~~
+ 1552 |                                                 a.task_count,
+      |                                                 ~~~~~~~~~~~~~
+ 1553 |                                                 a.head_chunk_size,
+      |                                                 ~~~~~~~~~~~~~~~~~~
+ 1554 |                                                 tile_buf[a.task_id],
+      |                                                 ~~~~~~~~~~~~~~~~~~~~
+ 1555 |                                                 a.workspace,
+      |                                                 ~~~~~~~~~~~~
+ 1556 |                                                 a.layout,
+      |                                                 ~~~~~~~~~
+ 1557 |                                                 a.mask,
+      |                                                 ~~~~~~~
+ 1558 |                                                 *a.execution_context);
+      |                                                 ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1590:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp: In instantiation of 'void dl::base::{anonymous}::attention_forward_impl(const dl::TensorBase*, const dl::TensorBase*, const dl::TensorBase*, dl::TensorBase*, bool, float, int, int, int, AttentionTileBuffer&, const dl::base::AttentionWorkspace&, dl::AttentionLayout, const dl::base::AttentionMaskArgs&, const dl::base::AttentionExecutionContext&) [with dl::dtype_t qkv_dtype = dl::DATA_TYPE_FLOAT; bool causal = false]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1560:49:   required from 'void dl::base::attention(void*) [with feature_t = float]'
+ 1560 |         attention_forward_impl<qkv_dtype, false>(a.q,
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+ 1561 |                                                  a.k,
+      |                                                  ~~~~
+ 1562 |                                                  a.v,
+      |                                                  ~~~~
+ 1563 |                                                  a.o,
+      |                                                  ~~~~
+ 1564 |                                                  a.has_scale,
+      |                                                  ~~~~~~~~~~~~
+ 1565 |                                                  a.scale,
+      |                                                  ~~~~~~~~
+ 1566 |                                                  a.task_id,
+      |                                                  ~~~~~~~~~~
+ 1567 |                                                  a.task_count,
+      |                                                  ~~~~~~~~~~~~~
+ 1568 |                                                  a.head_chunk_size,
+      |                                                  ~~~~~~~~~~~~~~~~~~
+ 1569 |                                                  tile_buf[a.task_id],
+      |                                                  ~~~~~~~~~~~~~~~~~~~~
+ 1570 |                                                  a.workspace,
+      |                                                  ~~~~~~~~~~~~
+ 1571 |                                                  a.layout,
+      |                                                  ~~~~~~~~~
+ 1572 |                                                  a.mask,
+      |                                                  ~~~~~~~
+ 1573 |                                                  *a.execution_context);
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:1590:1:   required from here
+ 1586 |     template void attention<T>(void *);
+      |                                      ^
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:430:15: warning: unused variable 'n_k_tiles' [-Wunused-variable]
+  430 |     const int n_k_tiles = (Lk + ATTENTION_KEY_TILE_SIZE - 1) / ATTENTION_KEY_TILE_SIZE;
+      |               ^~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_attention.cpp:431:15: warning: unused variable 'v_tile_stride' [-Wunused-variable]
+  431 |     const int v_tile_stride = static_cast<int>(attention_v_tile_bytes(D_pad, qkv_element_size<qkv_dtype>()));
+      |               ^~~~~~~~~~~~~
+[52/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_equal.S.obj
+[53/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_add2d.cpp.obj
+[54/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_greater.S.obj
+[55/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_greater.S.obj
+[56/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/recognition/dl_feat_postprocessor.cpp.obj
+[57/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/dl_cls_base.cpp.obj
+[58/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_greaterorequal.S.obj
+[59/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_greaterorequal.S.obj
+[60/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/dl_cls_postprocessor.cpp.obj
+[61/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_lut.cpp.obj
+[62/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_relu.S.obj
+[63/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_relu.S.obj
+[64/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_less.S.obj
+[65/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_less.S.obj
+[66/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_conv_loop.cpp.obj
+[67/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/hand_gesture_cls_postprocessor.cpp.obj
+[68/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_lessorequal.S.obj
+[69/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_lessorequal.S.obj
+[70/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_matmul.S.obj
+[71/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/vision/classification/imagenet_cls_postprocessor.cpp.obj
+[72/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_unaligned_matmul.S.obj
+[73/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_matmul.S.obj
+[74/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_unaligned_matmul.S.obj
+[75/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_dwconv_loop.cpp.obj
+[76/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_max2d.S.obj
+[77/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_max2d.S.obj
+[78/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/common/dl_audio_wav.cpp.obj
+[79/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/common/dl_audio_common.cpp.obj
+[80/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_max_pool2d.S.obj
+[81/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_max_pool2d.S.obj
+[82/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_fbank.cpp.obj
+[83/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_speech_features.cpp.obj
+[84/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_min2d.S.obj
+[85/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_min2d.S.obj
+[86/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_mfcc.cpp.obj
+[87/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/audio/speech_features/dl_spectrogram.cpp.obj
+[88/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_mul.S.obj
+[89/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_mul2d.S.obj
+[90/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_mul.S.obj
+[91/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_conv_select.cpp.obj
+[92/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_mul2d.S.obj
+[93/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_requantize_linear.cpp.obj
+[94/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_prelu.S.obj
+[95/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_prelu.S.obj
+[96/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_greater.cpp.obj
+[97/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_div.cpp.obj
+[98/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_greaterorequal.cpp.obj
+[99/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_equal.cpp.obj
+[100/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_dotprod.cpp.obj
+[101/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_resize.S.obj
+[102/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_leakyrelu.cpp.obj
+[103/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_reduce.cpp.obj
+[104/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_lessorequal.cpp.obj
+[105/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_less.cpp.obj
+[106/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_sub.S.obj
+[107/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s8_sub2d.S.obj
+[108/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_sub.S.obj
+[109/141] Building ASM object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/isa/tie728/dl_tie728_s16_sub2d.S.obj
+[110/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_matmul.cpp.obj
+[111/141] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\d2l-en\Denoise_Classify ECG\Denoise-Clasify_ECG\esp32s3\f0_smoke\build\bootloader\esp-idf\esptool_py" && C:\Users\vietc\ESP_SDK\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/bootloader/bootloader.bin""
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[112/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max2d.cpp.obj
+[113/141] No install step for 'bootloader'
+[114/141] Completed 'bootloader'
+[115/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_kernel.cpp.obj
+[116/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_sub.cpp.obj
+[117/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_sub2d.cpp.obj
+[118/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_xor.cpp.obj
+[119/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max.cpp.obj
+[120/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_max_pool2d.cpp.obj
+[121/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_min2d.cpp.obj
+[122/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mod.cpp.obj
+[123/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mul2d.cpp.obj
+[124/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_prelu.cpp.obj
+[125/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_min.cpp.obj
+[126/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_or.cpp.obj
+[127/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_mul.cpp.obj
+[128/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_resize.cpp.obj
+[129/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_norm.cpp.obj
+[130/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_pow.cpp.obj
+[131/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_relu.cpp.obj
+[132/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_rotary_embedding.cpp.obj
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = signed char; CT = short int; YT = signed char]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:458:49:   required from here
+  458 |         rope_rows_typed<int8_t, int16_t, int8_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = signed char; CT = signed char; YT = signed char]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:461:48:   required from here
+  461 |         rope_rows_typed<int8_t, int8_t, int8_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp: In instantiation of 'void dl::base::{anonymous}::rope_rows_typed(const dl::base::RopeArgs&) [with XT = short int; CT = short int; YT = short int]':
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:464:51:   required from here
+  464 |         rope_rows_typed<int16_t, int16_t, int16_t>(args);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/managed_components/espressif__esp-dl/dl/base/dl_base_rotary_embedding.cpp:326:16: warning: unused variable 'simd_shape_ok' [-Wunused-variable]
+  326 |     const bool simd_shape_ok = false;
+      |                ^~~~~~~~~~~~~
+[133/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/base/dl_base_pad.cpp.obj
+[134/141] Building CXX object esp-idf/espressif__esp-dl/CMakeFiles/__idf_espressif__esp-dl.dir/dl/module/src/dl_module_creator.cpp.obj
+[135/141] Linking C static library esp-idf\espressif__esp-dl\libespressif__esp-dl.a
+[136/141] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/main.cpp.obj
+[137/141] Linking C static library esp-idf\main\libmain.a
+[138/141] Generating esp-idf/esp_system/ld/sections.ld
+[139/141] Linking CXX executable f0_smoke.elf
+[140/141] Generating binary image from built executable
+esptool.py v4.12.dev1
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/f0_smoke.bin
+[141/141] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\d2l-en\Denoise_Classify ECG\Denoise-Clasify_ECG\esp32s3\f0_smoke\build\esp-idf\esptool_py" && C:\Users\vietc\ESP_SDK\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/vietc/ESP_SDK/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/partition_table/partition-table.bin" "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke/build/f0_smoke.bin""
+f0_smoke.bin binary size 0x1706e0 bytes. Smallest app partition is 0x177000 bytes. 0x6920 bytes (2%) free.
+Warning: The smallest app partition is nearly full (2% free space left)!
