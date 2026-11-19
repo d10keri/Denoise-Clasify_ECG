@@ -2,5 +2,7 @@
   "python.defaultInterpreterPath": "C:\\Users\\vietc\\.conda\\envs\\ecg\\python.exe",
   "python.terminal.activateEnvironment": false,
   "python.analysis.diagnosticsSource": "Pylance + Pyrefly",
-  "cmake.sourceDirectory": "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke"
+  "cmake.sourceDirectory": "C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/f0_smoke",
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda"
 }
