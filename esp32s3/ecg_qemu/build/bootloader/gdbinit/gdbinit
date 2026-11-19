@@ -1,0 +1,2 @@
+source C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/ecg_qemu/build/bootloader/gdbinit/symbols
+source C:/d2l-en/Denoise_Classify ECG/Denoise-Clasify_ECG/esp32s3/ecg_qemu/build/bootloader/gdbinit/connect

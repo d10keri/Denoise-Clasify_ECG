@@ -1,0 +1,28 @@
+{
+  "generation": {
+    "h_path": "C:\\d2l-en\\Denoise_Classify ECG\\Denoise-Clasify_ECG\\esp32s3\\c_fp32\\model_fp32.h",
+    "c_path": "C:\\d2l-en\\Denoise_Classify ECG\\Denoise-Clasify_ECG\\esp32s3\\c_fp32\\model_fp32.c",
+    "total_params": 29058,
+    "weights_kb": 113.51,
+    "ping_pong_elems_each": 8320,
+    "ping_pong_total_bytes": 66560,
+    "ping_pong_total_kb": 65.0
+  },
+  "pc_verification": {
+    "num_beats": 500,
+    "gcc_warnings": "",
+    "max_logit_diff": 1.1920928955078125e-06,
+    "mean_logit_diff": 2.3762230227930559e-07,
+    "argmax_match": "500/500",
+    "gate_d1_threshold": 0.0001,
+    "gate_d1_pass": true,
+    "sample0_ort": [
+      -1.5167503356933594,
+      1.2082911729812622
+    ],
+    "sample0_c": [
+      -1.5167505741119385,
+      1.2082914113998413
+    ]
+  }
+}

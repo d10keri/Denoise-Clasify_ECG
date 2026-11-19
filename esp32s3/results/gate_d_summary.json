@@ -1,0 +1,21 @@
+{
+  "gate_d1_fp32_c_pass": true,
+  "gate_d1_max_logit_diff": 1.1920928955078125e-06,
+  "gate_d2_headers_compile": {
+    "c11_compile_ok": true,
+    "c11_warnings": "",
+    "cpp17_compile_ok": true,
+    "cpp17_warnings": "",
+    "runtime_output": "COMPILE_CHECK_OK vectors=50 disagree_20=20/20"
+  },
+  "gate_d2_disagreement_20_all_valid": true,
+  "disagreement_20_coverage_by_config": {
+    "b_int16": 4,
+    "c_w8a16": 10,
+    "c3": 13,
+    "c1": 12
+  },
+  "test_vectors_h_size_kb": 198.89,
+  "thresholds_h_size_kb": 1.61,
+  "gate_d_overall_pass": true
+}
